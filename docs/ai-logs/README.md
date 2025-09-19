@@ -5,8 +5,8 @@ A running log of AI-assisted work (Windsurf SWE-1 and Codex CLI), kept as eviden
 | # | Date (Africa/Casablanca) | Feature / Thread | Tool | Link |
 |---|---------------------------|------------------|------|------|
 | 01 | 9/19/2025 | shadcn setup (UI primitives) | CLI (shadcn) | [01-shadcn-setup.md](./01-shadcn-setup.md) |
-| 02 | 9/19/2025 | Contentlayer2 setup (MDX Projects) | Windsurf (SWE-1) | [02-contentlayer-setup.md](./02-contentlayer-setup.md) |
-| 03 | (fill) | Pages & Routing scaffold | Windsurf (SWE-1) | [03-pages-routing.md](./03-pages-routing.md) |
+| 02 | 9/19/2025 | Contentlayer2 setup (MDX Projects) | Windsurf (SWE-1) + terminal | [02-contentlayer-setup.md](./02-contentlayer-setup.md) |
+| 03 | 9/19/2025 | Pages & Routing scaffold | Windsurf (SWE-1) | [03-pages-routing.md](./03-pages-routing.md) |
 | 04 | (fill) | Contact API + env validation | Windsurf (SWE-1) | [04-contact-api.md](./04-contact-api.md) |
 | 05 | (fill) | Tailwind tokens & a11y polish | Windsurf (SWE-1) | [05-a11y-polish.md](./05-a11y-polish.md) |
 | … | … | … | … | … |
