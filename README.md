@@ -60,3 +60,22 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
   - Contentlayer config and MDX frontmatter to keep code/data aligned.  
 - **API/Schema grounding:** When adding routes or external APIs, paste the schema/OpenAPI snippet so AI can produce typed helpers and contract tests.
 
+---
+
+## 🚀 Features Implemented
+
+### Step 3 — Pages & Routing
+- App layout with accessible header navigation and footer
+- Home page with hero, CTAs, and "Recent projects" (top 3 from Contentlayer2)
+- Projects index with responsive grid and project cards
+- Project detail pages rendering MDX content by slug (Contentlayer2 + App Router)
+- About page with bio and highlights
+- Contact page (UI only) with client-side Zod validation and inline errors
+
+---
+
+## 🤖 AI Usage (so far)
+
+- **Windsurf (SWE-1):** scaffolded pages/routing, header/footer, and form UI with a11y guardrails, using repo context and helpers.
+- Changes delivered as small, reviewable diffs with verification steps and README notes.
+

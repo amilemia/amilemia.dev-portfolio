@@ -1,26 +1,29 @@
 import { Project as ProjectType } from 'contentlayer/generated';
 
-// This is a workaround for the fact that we can't directly import from 'contentlayer/generated'
-// until after the first build. The types will be available after running `pnpm build:content`
-let _allProjects: ProjectType[] = [];
-
-try {
-  // Dynamic import to avoid build-time errors
-  _allProjects = require('contentlayer/generated').allProjects as ProjectType[];
-} catch (e) {
-  if (process.env.NODE_ENV === 'development') {
-    console.warn('Contentlayer data not available. Run `pnpm build:content` to generate it.');
+// Helper to get projects with proper type safety
+async function getProjectsData(): Promise<ProjectType[]> {
+  try {
+    // Using dynamic import to avoid build-time errors
+    const { allProjects } = await import('contentlayer/generated');
+    return allProjects as ProjectType[];
+  } catch (e) {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Contentlayer data not available. Run `pnpm build:content` to generate it.');
+    }
+    return [];
   }
 }
 
-export function getProjects(): ProjectType[] {
-  return [..._allProjects].sort((a: ProjectType, b: ProjectType) => {
-    const dateA = a.dates.end ? new Date(a.dates.end) : new Date(a.dates.start);
-    const dateB = b.dates.end ? new Date(b.dates.end) : new Date(b.dates.start);
+export async function getProjects(): Promise<ProjectType[]> {
+  const projects = await getProjectsData();
+  return [...projects].sort((a: ProjectType, b: ProjectType) => {
+    const dateA = a.dates?.end ? new Date(a.dates.end) : new Date(a.dates?.start || 0);
+    const dateB = b.dates?.end ? new Date(b.dates.end) : new Date(b.dates?.start || 0);
     return dateB.getTime() - dateA.getTime();
   });
 }
 
-export function getProjectBySlug(slug: string): ProjectType | undefined {
-  return _allProjects.find((project: ProjectType) => project.slug === slug);
+export async function getProjectBySlug(slug: string): Promise<ProjectType | undefined> {
+  const projects = await getProjectsData();
+  return projects.find((project) => project.slug === slug);
 }
