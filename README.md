@@ -72,10 +72,38 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - About page with bio and highlights
 - Contact page (UI only) with client-side Zod validation and inline errors
 
+### Step 4 — Contact API
+- POST `/api/contact` with Zod validation and Resend integration
+- Runtime env validation for required secrets (`RESEND_API_KEY`, `CONTACT_TO`)
+- Contact page wired to call the API with pending state and toasts
+- Server returns field-level errors on 400 (mirrored in the UI)
+- Rate limiting (3 requests/minute per IP) using Upstash Redis
+
 ---
+
+## 🛠️ Setup & Run
+
+### Environment
+Create `.env.local` from `.env.local.example` and fill:
+- `RESEND_API_KEY` — Resend API key
+- `CONTACT_TO` — the destination email for contact messages
+- `UPSTASH_REDIS_REST_URL` — Upstash Redis REST URL (for rate limiting)
+- `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis REST token (for rate limiting)
+
+> For development, the API uses `onboarding@resend.dev` as the sender.
+
+### Development
+```bash
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+```
 
 ## 🤖 AI Usage (so far)
 
+- **Windsurf (SWE-1):** implemented typed API route, env runtime validation, and client wiring with a11y feedback and error handling.
 - **Windsurf (SWE-1):** scaffolded pages/routing, header/footer, and form UI with a11y guardrails, using repo context and helpers.
 - Changes delivered as small, reviewable diffs with verification steps and README notes.
 
