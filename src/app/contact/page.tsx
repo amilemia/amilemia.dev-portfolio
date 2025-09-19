@@ -2,7 +2,8 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,24 +16,14 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
-  message: z.string().min(10, {
-    message: 'Message must be at least 10 characters.',
-  }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import { ContactSchema, type ContactInput } from '@/lib/validation/contact';
 
 export default function ContactPage() {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+
+  const form = useForm<ContactInput>({
+    resolver: zodResolver(ContactSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -40,11 +31,44 @@ export default function ContactPage() {
     },
   });
 
-  function onSubmit(values: FormValues) {
-    // This will be replaced with actual form submission logic
-    console.log('Form submitted:', values);
-    toast.success('Message sent successfully!');
-    form.reset();
+  async function onSubmit(values: ContactInput) {
+    try {
+      setIsSubmitting(true);
+      
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle field validation errors
+        if (response.status === 400 && data.errors) {
+          Object.entries(data.errors).forEach(([field, messages]) => {
+            form.setError(field as keyof ContactInput, {
+              type: 'manual',
+              message: (messages as string[]).join(', '),
+            });
+          });
+          return;
+        }
+        throw new Error(data.message || 'Failed to send message');
+      }
+
+      toast.success('Message sent successfully!');
+      form.reset();
+      // Optional: Scroll to top of form
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -124,13 +148,27 @@ export default function ContactPage() {
                 size="lg"
                 className="w-full sm:w-auto"
                 data-testid="submit-button"
-                disabled={form.formState.isSubmitting}
+                disabled={isSubmitting}
+                aria-disabled={isSubmitting}
               >
-                {form.formState.isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </div>
           </form>
         </Form>
+
+        {/* Form status region for screen readers */}
+        <div 
+          role="status" 
+          aria-live="polite"
+          className="sr-only"
+        >
+          {isSubmitting 
+            ? 'Sending your message...' 
+            : form.formState.isSubmitSuccessful 
+              ? 'Message sent successfully!' 
+              : ''}
+        </div>
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2">
           <div>
