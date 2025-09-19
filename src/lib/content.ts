@@ -6,7 +6,7 @@ async function getProjectsData(): Promise<ProjectType[]> {
     // Using dynamic import to avoid build-time errors
     const { allProjects } = await import('contentlayer/generated');
     return allProjects as ProjectType[];
-  } catch (e) {
+  } catch {
     if (process.env.NODE_ENV === 'development') {
       console.warn('Contentlayer data not available. Run `pnpm build:content` to generate it.');
     }

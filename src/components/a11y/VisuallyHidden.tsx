@@ -1,9 +1,12 @@
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+} from "react";
 
-interface VisuallyHiddenProps extends ComponentPropsWithoutRef<"span"> {
-  as?: React.ElementType;
-  className?: string;
-}
+type VisuallyHiddenProps = ComponentPropsWithoutRef<"span"> & {
+  as?: ElementType;
+};
 
 export const VisuallyHidden = forwardRef<HTMLSpanElement, VisuallyHiddenProps>(
   ({ as: Component = "span", className, ...props }, ref) => {

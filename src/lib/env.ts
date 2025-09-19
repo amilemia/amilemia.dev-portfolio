@@ -5,14 +5,6 @@ const envSchema = z.object({
   CONTACT_TO: z.string().email('CONTACT_TO must be a valid email address'),
 });
 
-type EnvSchema = z.infer<typeof envSchema>;
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv extends EnvSchema {}
-  }
-}
-
 // Validate environment variables at runtime
 function getEnv() {
   try {

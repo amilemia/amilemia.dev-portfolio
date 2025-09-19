@@ -15,7 +15,7 @@ export default async function Home() {
       <Section className="py-20">
         <Container className="text-center">
         <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-          Hi, I'm Amilemia
+          Hi, I&apos;m Amilemia
         </h1>
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
           I build exceptional digital experiences with modern web technologies.

@@ -1,33 +1,20 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 import { format } from "date-fns";
 import { useMDXComponent } from "next-contentlayer2/hooks";
-import Link from "next/link";
+import type { Project } from "contentlayer/generated";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 
-type Project = {
-  title: string;
-  slug: string;
-  summary: string;
-  body: {
-    code: string;
-  };
-  dates?: {
-    start: string;
-    end?: string;
-  };
-  role?: string;
-  tags?: string[];
-  links?: {
-    repo?: string;
-    live?: string;
-  };
+type ProjectContentProps = {
+  project: Project;
 };
 
-export function ProjectContent({ project }: { project: Project }) {
+export function ProjectContent({ project }: ProjectContentProps) {
   const MDXContent = useMDXComponent(project?.body?.code || '');
 
   return (

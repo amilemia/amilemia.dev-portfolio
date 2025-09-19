@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+} from "react";
 
-interface ContainerProps extends ComponentPropsWithoutRef<"div"> {
-  as?: React.ElementType;
-  className?: string;
-}
+type ContainerProps = ComponentPropsWithoutRef<"div"> & {
+  as?: ElementType;
+};
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   ({ as: Component = "div", className, ...props }, ref) => {

@@ -2,7 +2,6 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -22,7 +21,6 @@ import { Section } from '@/components/Section';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
 
   const form = useForm<ContactInput>({
     resolver: zodResolver(ContactSchema),
@@ -79,7 +77,7 @@ export default function ContactPage() {
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight">Get in Touch</h1>
           <p className="text-muted-foreground">
-            Have a question or want to work together? Send me a message and I'll get back to you as
+            Have a question or want to work together? Send me a message and I&apos;ll get back to you as
             soon as possible.
           </p>
         </div>

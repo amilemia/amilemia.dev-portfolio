@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import {
+  forwardRef,
+  type ComponentPropsWithoutRef,
+  type ElementType,
+} from "react";
 
-interface SectionProps extends ComponentPropsWithoutRef<"section"> {
-  as?: React.ElementType;
-  className?: string;
-}
+type SectionProps = ComponentPropsWithoutRef<"section"> & {
+  as?: ElementType;
+};
 
 export const Section = forwardRef<HTMLElement, SectionProps>(
   ({ as: Component = "section", className, ...props }, ref) => {

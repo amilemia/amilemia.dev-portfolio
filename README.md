@@ -15,7 +15,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 
 ## 🛠️ Tech Stack
 
-- **Framework & Language:** Next.js 14 (App Router), React 18, TypeScript (strict)
+- **Framework & Language:** Next.js 15 (App Router), React 19, TypeScript (strict)
 - **Styling & UI:** Tailwind CSS, shadcn/ui, Framer Motion (light, purposeful animations)
 - **Content:** MDX + Contentlayer (projects, about, uses)
 - **Forms & Validation:** Next.js Route Handlers, Zod
