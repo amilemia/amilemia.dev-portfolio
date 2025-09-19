@@ -1,36 +1,25 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 import { format } from "date-fns";
 import { useMDXComponent } from "next-contentlayer2/hooks";
-import Link from "next/link";
+import type { Project } from "contentlayer/generated";
 
-type Project = {
-  title: string;
-  slug: string;
-  summary: string;
-  body: {
-    code: string;
-  };
-  dates?: {
-    start: string;
-    end?: string;
-  };
-  role?: string;
-  tags?: string[];
-  links?: {
-    repo?: string;
-    live?: string;
-  };
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/Container";
+import { Section } from "@/components/Section";
+
+type ProjectContentProps = {
+  project: Project;
 };
 
-export function ProjectContent({ project }: { project: Project }) {
+export function ProjectContent({ project }: ProjectContentProps) {
   const MDXContent = useMDXComponent(project?.body?.code || '');
 
   return (
-    <div className="container py-12">
-      <div className="mb-8">
+    <Section>
+      <Container className="py-12">
         <Button asChild variant="ghost" className="mb-8 -ml-4">
           <Link href="/projects" className="flex items-center gap-2">
             <svg
@@ -79,7 +68,7 @@ export function ProjectContent({ project }: { project: Project }) {
           )}
         </div>
 
-        <div className="prose prose-slate dark:prose-invert max-w-none">
+        <div className="prose dark:prose-invert max-w-none">
           {project.body && (
             <MDXContent />
           )}
@@ -142,7 +131,7 @@ export function ProjectContent({ project }: { project: Project }) {
             )}
           </div>
         )}
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 }

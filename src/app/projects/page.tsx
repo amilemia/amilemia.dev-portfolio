@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/content";
+import { Container } from "@/components/Container";
+import { Section } from "@/components/Section";
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <div className="container py-12">
-      <div className="mb-12 text-center">
+    <Section>
+      <Container>
+        <div className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold tracking-tight">Projects</h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
           A collection of my recent work and contributions.
@@ -47,7 +50,8 @@ export default async function ProjectsPage() {
             </CardFooter>
           </Card>
         ))}
-      </div>
-    </div>
+        </div>
+      </Container>
+    </Section>
   );
 }

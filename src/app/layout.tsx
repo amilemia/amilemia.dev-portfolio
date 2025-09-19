@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import type { ReactNode } from "react";
+
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { SkipLink } from "@/components/a11y/SkipLink";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -84,18 +88,27 @@ const suppressHydrationWarning = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body 
+      <body
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
         {...suppressHydrationWarning}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <Toaster position="top-center" />
+        <ThemeProvider attribute="class" defaultTheme="system" disableTransitionOnChange enableSystem>
+          <SkipLink />
+          <Header />
+          <main
+            id="main-content"
+            className="flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            tabIndex={-1}
+          >
+            {children}
+          </main>
+          <Footer />
+          <Toaster position="top-center" />
+        </ThemeProvider>
       </body>
     </html>
   );
