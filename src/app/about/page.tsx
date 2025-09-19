@@ -1,9 +1,12 @@
+﻿import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/Container";
+import { Section } from "@/components/Section";
 
 export default function AboutPage() {
   return (
-    <div className="container py-12">
-      <div className="mx-auto max-w-3xl">
+    <Section>
+      <Container className="max-w-3xl">
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight">About Me</h1>
           <p className="mx-auto max-w-2xl text-muted-foreground">
@@ -11,7 +14,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="prose prose-slate dark:prose-invert mx-auto">
+        <div className="prose dark:prose-invert mx-auto">
           <p className="text-lg">
             Hello! I'm Amilemia, a full-stack developer with a passion for creating
             beautiful, functional, and user-centered digital experiences. With a
@@ -46,7 +49,7 @@ export default function AboutPage() {
             <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:h-3 before:w-3 before:rounded-full before:bg-primary before:content-['']">
               <h3 className="text-lg font-semibold">Senior Frontend Developer</h3>
               <div className="mb-2 text-sm text-muted-foreground">
-                Company Name • 2022 - Present
+                Company Name �?� 2022 - Present
               </div>
               <p className="text-muted-foreground">
                 Led the development of responsive web applications using React and
@@ -57,7 +60,7 @@ export default function AboutPage() {
             <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:h-3 before:w-3 before:rounded-full before:bg-primary before:content-['']">
               <h3 className="text-lg font-semibold">Full Stack Developer</h3>
               <div className="mb-2 text-sm text-muted-foreground">
-                Another Company • 2019 - 2022
+                Another Company �?� 2019 - 2022
               </div>
               <p className="text-muted-foreground">
                 Developed and maintained web applications using modern JavaScript
@@ -65,14 +68,14 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-
-          <div className="mt-12 flex justify-center">
-            <Button asChild size="lg">
-              <a href="/contact">Get In Touch</a>
-            </Button>
-          </div>
         </div>
-      </div>
-    </div>
+
+        <div className="mt-12 flex justify-center">
+          <Button asChild size="lg">
+            <Link href="/contact">Get In Touch</Link>
+          </Button>
+        </div>
+      </Container>
+    </Section>
   );
 }

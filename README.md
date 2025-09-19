@@ -79,6 +79,14 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Server returns field-level errors on 400 (mirrored in the UI)
 - Rate limiting (3 requests/minute per IP) using Upstash Redis
 
+### Step 5 — A11y & Design Polish
+- Skip link for keyboard users and main content landmark
+- Consistent layout primitives: `Container` and `Section`
+- Global focus-visible outlines using theme ring token
+- Minimal prose-like MDX styles (light/dark) without extra plugins
+- Reduced-motion support
+- External link safety (`rel="noopener noreferrer"`)
+
 ---
 
 ## 🛠️ Setup & Run
@@ -106,4 +114,4 @@ pnpm dev
 - **Windsurf (SWE-1):** implemented typed API route, env runtime validation, and client wiring with a11y feedback and error handling.
 - **Windsurf (SWE-1):** scaffolded pages/routing, header/footer, and form UI with a11y guardrails, using repo context and helpers.
 - Changes delivered as small, reviewable diffs with verification steps and README notes.
-
+- **Windsurf (SWE-1):** produced small diffs for a11y polish (skip link, focus styles) and reusable layout primitives without adding dependencies.

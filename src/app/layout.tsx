@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
+import { SkipLink } from "@/components/a11y/SkipLink";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -92,8 +93,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
         {...suppressHydrationWarning}
       >
+        <SkipLink />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main 
+          id="main-content" 
+          className="flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" 
+          tabIndex={-1}
+        >
+          {children}
+        </main>
         <Footer />
         <Toaster position="top-center" />
       </body>

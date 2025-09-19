@@ -3,14 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/content";
+import { Container } from "@/components/Container";
+import { Section } from "@/components/Section";
 
 export default async function Home() {
   const projects = (await getProjects()).slice(0, 3);
 
   return (
-    <div className="container">
+    <>
       {/* Hero Section */}
-      <section className="py-20 text-center">
+      <Section className="py-20">
+        <Container className="text-center">
         <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
           Hi, I'm Amilemia
         </h1>
@@ -25,10 +28,12 @@ export default async function Home() {
             <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* Recent Projects */}
-      <section className="py-12">
+      <Section>
+        <Container>
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-2xl font-bold">Recent Projects</h2>
           <Button asChild variant="ghost">
@@ -68,7 +73,8 @@ export default async function Home() {
             </Card>
           ))}
         </div>
-      </section>
-    </div>
+        </Container>
+      </Section>
+    </>
   );
 }

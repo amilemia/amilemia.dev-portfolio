@@ -17,6 +17,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { ContactSchema, type ContactInput } from '@/lib/validation/contact';
+import { Container } from '@/components/Container';
+import { Section } from '@/components/Section';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -72,11 +74,11 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="container py-12">
-      <div className="mx-auto max-w-2xl">
+    <Section>
+      <Container className="max-w-2xl">
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight">Get In Touch</h1>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight">Get in Touch</h1>
+          <p className="text-muted-foreground">
             Have a question or want to work together? Send me a message and I'll get back to you as
             soon as possible.
           </p>
@@ -253,7 +255,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 }
