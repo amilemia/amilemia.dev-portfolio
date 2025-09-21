@@ -1,25 +1,43 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Toaster as Sonner } from "sonner";
-import type { ToasterProps } from "sonner";
-import type { CSSProperties } from "react";
+import { Toaster as SonnerToaster } from "sonner";
+import { cn } from "@/lib/utils";
 
-export function Toaster(props: ToasterProps) {
-  const { theme = "system" } = useTheme();
+type ToasterProps = React.ComponentProps<typeof SonnerToaster>;
 
-  const style: CSSProperties = {
-    "--normal-bg": "var(--popover)",
-    "--normal-text": "var(--popover-foreground)",
-    "--normal-border": "var(--border)",
-  };
+const Toaster = ({
+  position = "top-center",
+  ...props
+}: ToasterProps) => {
+  const { theme: currentTheme } = useTheme();
 
   return (
-    <Sonner
-      theme={theme as ToasterProps["theme"]}
+    <SonnerToaster
+      position={position}
+      theme={currentTheme as ToasterProps["theme"]}
       className="toaster group"
-      style={style}
+      toastOptions={{
+        classNames: {
+          toast: cn(
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground",
+            "group-[.toaster]:pointer-events-auto group-[.toaster]:flex group-[.toaster]:w-full",
+            "group-[.toaster]:items-center group-[.toaster]:justify-between",
+            "group-[.toaster]:space-x-4 group-[.toaster]:overflow-hidden",
+            "group-[.toaster]:rounded-md group-[.toaster]:border group-[.toaster]:p-4",
+            "group-[.toaster]:shadow-lg"
+          ),
+          description: "group-[.toast]:text-muted-foreground",
+          actionButton:
+            "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+          cancelButton:
+            "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+        },
+      }}
       {...props}
     />
   );
-}
+};
+
+export { Toaster };
+

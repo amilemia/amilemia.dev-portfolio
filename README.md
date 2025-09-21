@@ -87,6 +87,12 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Reduced-motion support
 - External link safety (`rel="noopener noreferrer"`)
 
+### Hire-me uplift (pre-tests)
+- Hero value prop with clear 2-CTA funnel (Start a project / View work)
+- Availability pill (Africa/Casablanca)
+- Mobile sticky “Hire me” CTA
+- Subtle polish to project cards (hover/focus) without changing selectors
+
 ---
 
 ## 🛠️ Setup & Run
@@ -115,3 +121,5 @@ pnpm dev
 - **Windsurf (SWE-1):** scaffolded pages/routing, header/footer, and form UI with a11y guardrails, using repo context and helpers.
 - Changes delivered as small, reviewable diffs with verification steps and README notes.
 - **Windsurf (SWE-1):** produced small diffs for a11y polish (skip link, focus styles) and reusable layout primitives without adding dependencies.
+- **Windsurf (SWE-1):** small, test-safe UI uplift focused on conversion (no new deps, selectors stable).
+

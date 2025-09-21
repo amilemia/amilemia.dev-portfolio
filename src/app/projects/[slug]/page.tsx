@@ -10,23 +10,22 @@ export async function generateStaticParams() {
   }));
 }
 
+type ProjectPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
 // This is the actual page component
-export default async function ProjectPage({
-  params,
-}: {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
-}) {
-  // Get the slug from params in a way that's safe for Next.js 14+
-  const { slug } = await Promise.resolve(params);
-  
+export default async function Page({ params }: ProjectPageProps) {
+  const { slug } = await params;
+
   // Validate the slug
-  if (!slug || typeof slug !== 'string') {
+  if (!slug) {
     notFound();
   }
 
   // Fetch the project data
   const project = await getProjectBySlug(slug);
-  
+
   if (!project) {
     notFound();
   }
