@@ -12,6 +12,7 @@ A running log of AI-assisted work (Windsurf SWE-1 and Codex CLI), kept as eviden
 | 06 | 9/21/2025 | Hire-me uplift (hero/cards/CTA) | Windsurf (SWE-1) | [06-ui-ux.md](./06-ui-ux.md) |
 | 07 | 9/22/2025 | Tests scaffold & specs (Vitest + Playwright) | Codex CLI | [07-tests.md](./07-tests.md) |
 | 08 | 9/22/2025 | CI + Analytics (Plausible) | Windsurf (SWE-1) | [08-ci-analytics.md](./08-ci-analytics.md) |
+| 09 | 9/22/2025 | API-aware client + changelog | Windsurf (SWE-1) | [09-api-aware-client.md](./09-api-aware-client.md) |
 | … | … | … | … | … |
 
 > Each file includes: prompt (verbatim), AI output (verbatim), changed files, verification notes, commit link, and takeaways.
