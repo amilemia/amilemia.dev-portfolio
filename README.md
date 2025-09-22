@@ -24,7 +24,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - **Testing:** Vitest, @testing-library/react, Playwright
 - **Quality:** ESLint, Prettier, TypeScript strict
 - **CI/CD:** GitHub Actions (lint, typecheck, test, build, e2e)
-- **Analytics:** Plausible (lightweight, privacy-friendly)
+- **Analytics:** Plausible (lightweight, privacy-friendly), Vercel Web Analytics, and Speed Insights
 - **Hosting & Domain:** Vercel + `amilemia.dev` (optionally `portfolio.amilemia.dev`)
 - **Assets:** next/image with optimized local images
 
@@ -80,6 +80,33 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Contact page wired to call the API with pending state and toasts
 - Server returns field-level errors on 400 (mirrored in the UI)
 - Rate limiting (3 requests/minute per IP) using Upstash Redis
+
+### Analytics & Performance
+
+#### Vercel Web Analytics 
+- Enable in Vercel dashboard
+- Added `@vercel/analytics` package
+- Rendered `<Analytics />` in the root layout
+- Verify in production/preview: Look for requests to `/_vercel/insights/view`
+
+#### Vercel Speed Insights
+- Enable in Vercel dashboard
+- Added `@vercel/speed-insights` package
+- Rendered `<SpeedInsights />` in the root layout
+- Verify in production/preview: Look for `/_vercel/speed-insights/script.js`
+  - Note: No data collection in development mode
+
+#### Privacy Protection
+- Uses `beforeSend` to filter sensitive routes:
+  - Excludes `/admin` paths
+  - Redacts URLs containing `?token=` or `&token=`
+- No personally identifiable information (PII) is collected
+- Data collection is limited to production deployments
+
+#### Plausible Integration
+- Running alongside Vercel Analytics for complementary insights
+- Privacy-focused visitor analytics
+- No cookies or persistent identifiers
 
 ### Step 5 — A11y & Design Polish
 - Skip link for keyboard users and main content landmark
