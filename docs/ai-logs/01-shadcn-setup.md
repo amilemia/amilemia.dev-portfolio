@@ -8,8 +8,8 @@
 ## Prompt (verbatim)
 N/A (CLI). Commands executed:
 ```bash
-pnpm dlx shadcn@latest init
-pnpm dlx shadcn@latest add button card input textarea label form sonner separator badge navigation-menu dropdown-menu
+npx shadcn@latest init
+npx shadcn@latest add button card input textarea label form sonner separator badge navigation-menu dropdown-menu
 ```
 
 ## AI Output (verbatim)
@@ -55,7 +55,7 @@ Note: toast is deprecated; using sonner.
 ## Verification
 Commands run:
 ```bash
-pnpm dev
+npm run dev
 ```
 Observations:
 - App compiles with new UI primitives ✅

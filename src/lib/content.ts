@@ -8,7 +8,7 @@ async function getProjectsData(): Promise<ProjectType[]> {
     return allProjects as ProjectType[];
   } catch {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('Contentlayer data not available. Run `pnpm build:content` to generate it.');
+      console.warn('Contentlayer data not available. Run `npm run build:content` to generate it.');
     }
     return [];
   }

@@ -26,9 +26,8 @@
 Commands run:
 ```bash
 # examples
-pnpm approve-builds
-pnpm build:content
-pnpm dev
+npm run build:content
+npm run dev
 ```
 URLs clicked / behaviors observed:
 - <url> — <what you saw/verified>

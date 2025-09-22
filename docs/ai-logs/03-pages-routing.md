@@ -231,8 +231,8 @@ The code follows best practices for Next.js 15 with the App Router, TypeScript, 
 ## Verification
 Commands run:
 ```bash
-pnpm build:content
-pnpm dev
+npm run build:content
+npm run dev
 ```
 
 URLs clicked / behaviors observed:

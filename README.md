@@ -109,10 +109,10 @@ Create `.env.local` from `.env.local.example` and fill:
 ### Development
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Start development server
-pnpm dev
+npm run dev
 ```
 
 ## 🤖 AI Usage (so far)

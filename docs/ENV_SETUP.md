@@ -26,7 +26,7 @@ To test the contact form locally:
 2. Add the required environment variables to `.env.local`
 3. Start the development server:
    ```bash
-   pnpm dev
+   npm run dev
    ```
 4. Navigate to `/contact` and submit the form
 5. Check your email inbox for the test message
