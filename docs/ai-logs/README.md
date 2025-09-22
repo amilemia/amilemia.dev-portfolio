@@ -11,6 +11,7 @@ A running log of AI-assisted work (Windsurf SWE-1 and Codex CLI), kept as eviden
 | 05 | 9/19/2025 | Tailwind tokens & a11y polish | Windsurf (SWE-1) + Codex CLI | [05-a11y-polish.md](./05-a11y-polish.md) |
 | 06 | 9/21/2025 | Hire-me uplift (hero/cards/CTA) | Windsurf (SWE-1) | [06-ui-ux.md](./06-ui-ux.md) |
 | 07 | 9/22/2025 | Tests scaffold & specs (Vitest + Playwright) | Codex CLI | [07-tests.md](./07-tests.md) |
+| 08 | 9/22/2025 | CI + Analytics (Plausible) | Windsurf (SWE-1) | [08-ci-analytics.md](./08-ci-analytics.md) |
 | … | … | … | … | … |
 
 > Each file includes: prompt (verbatim), AI output (verbatim), changed files, verification notes, commit link, and takeaways.

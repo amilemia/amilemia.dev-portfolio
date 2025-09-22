@@ -8,6 +8,9 @@ RESEND_API_KEY=your_resend_api_key_here
 
 # The email address where contact form submissions will be sent
 CONTACT_TO=your_verified_email@example.com
+
+# Analytics (leave empty to disable)
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your_domain.com
 ```
 
 ## Development Notes

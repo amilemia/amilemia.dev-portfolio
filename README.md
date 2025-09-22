@@ -99,6 +99,10 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Stable selectors (`data-testid`) and a11y-aware queries (roles/labels)
 - Commands: `npm test`, `npm run e2e`
 
+### CI/CD
+- CI: GitHub Actions pipeline (Node 20, npm cache, unit + e2e with Playwright)
+- Analytics: Plausible (env-gated via `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`)
+
 ---
 
 ## 🛠️ Setup & Run
@@ -109,6 +113,7 @@ Create `.env.local` from `.env.local.example` and fill:
 - `CONTACT_TO` — the destination email for contact messages
 - `UPSTASH_REDIS_REST_URL` — Upstash Redis REST URL (for rate limiting)
 - `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis REST token (for rate limiting)
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — if set, loads Plausible analytics script; leave blank to disable locally.
 
 > For development, the API uses `onboarding@resend.dev` as the sender.
 
@@ -120,6 +125,15 @@ npm install
 # Start development server
 npm run dev
 ```
+---
+
+### Continuous Integration
+- GitHub Actions runs on push/PR to `main`:
+  - content build → typecheck → lint → unit tests → Playwright e2e
+- Dummy env vars are used in CI so the Contact API module loads:
+  - `RESEND_API_KEY=dummy`
+  - `CONTACT_TO=test@example.com`
+- On e2e failure, the Playwright report is uploaded as a build artifact.
 
 ## 🤖 AI Usage (so far)
 

@@ -11,6 +11,7 @@ import { SkipLink } from "@/components/a11y/SkipLink";
 import { Toaster } from "sonner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Plausible } from "@/components/analytics/Plausible";
 
 // Navigation items
 const navItems = [
@@ -143,6 +144,7 @@ export function ClientLayout({ children }: { children: ReactNode }) {
       </main>
       <Footer />
       <Toaster position="top-center" />
+      <Plausible />
     </ThemeProvider>
   );
 }

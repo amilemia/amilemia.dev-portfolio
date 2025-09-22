@@ -1,6 +1,6 @@
 # 07 — Tests scaffold & specs (Vitest + RTL + Playwright)
 
-**Date (Africa/Casablanca):** 2025-09-22 — time: 4:05 AM
+**Date (Africa/Casablanca):** 2025-09-22 — time: 04:05 AM
 **Branch:** dev  
 **Tool:** Codex CLI
 **Commit(s):** f9c6b1b (HEAD -> dev, origin/dev) test(setup,unit,component,e2e): add Vitest config and Playwright specs
