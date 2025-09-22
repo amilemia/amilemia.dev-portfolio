@@ -6,6 +6,12 @@ class ResizeObserverStub {
   disconnect(): void {}
 }
 
+declare global {
+  interface Window {
+    ResizeObserver: typeof ResizeObserverStub;
+  }
+}
+
 if (!('ResizeObserver' in globalThis)) {
-  (globalThis as { ResizeObserver?: typeof ResizeObserverStub }).ResizeObserver = ResizeObserverStub;
+  (globalThis as unknown as Window).ResizeObserver = ResizeObserverStub;
 }

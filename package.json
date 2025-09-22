@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit",
     "e2e": "contentlayer2 build && playwright test",
     "e2e:open": "contentlayer2 build && playwright test --ui",
     "postinstall": "contentlayer2 build"
