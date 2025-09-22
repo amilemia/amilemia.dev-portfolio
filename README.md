@@ -20,6 +20,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - **Content:** MDX + Contentlayer (projects, about, uses)
 - **Forms & Validation:** Next.js Route Handlers, Zod
 - **Email (contact):** Resend
+- **API-aware generation:** OpenAPI 3.1 spec for `/api/contact` → types via `openapi-typescript` → typed client wrapper.
 - **Testing:** Vitest, @testing-library/react, Playwright
 - **Quality:** ESLint, Prettier, TypeScript strict
 - **CI/CD:** GitHub Actions (lint, typecheck, test, build, e2e)
@@ -36,6 +37,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
   - Scaffold components, routes, and utilities from clear acceptance criteria.  
   - Generate small, reviewable diffs (component + test together).  
   - Enforce accessibility (keyboard focus, roles/labels) and TypeScript strict types in all prompts.
+  - **Windsurf (SWE-1):** used an OpenAPI spec to scaffold a typed client, demonstrating schema-aware generation.
 - **Sample prompts:**  
   - *“Create a `ProjectCard` component using shadcn/ui Card + Tailwind. Props must match this Zod schema. Include keyboard focus styles, ARIA where needed, and a Vitest + Testing Library spec. Provide a usage example in MDX.”*  
   - *“Generate `/app/api/contact/route.ts` with Zod validation `{ name: string; email: string; message: string; }`. On success send via Resend, else return typed error. Include unit tests for the validator and a Playwright e2e for happy/invalid cases.”*
@@ -87,6 +89,47 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Reduced-motion support
 - External link safety (`rel="noopener noreferrer"`)
 
+### Changelog Management
+
+We use [Conventional Commits](https://www.conventionalcommits.org/) for consistent commit messages and automated changelog generation.
+
+#### Updating the Changelog
+
+1. Make sure your commits follow the Conventional Commits format:
+   ```
+   type(scope): short description
+   
+   [optional body]
+   
+   [optional footer]
+   ```
+   
+   Example:
+   ```
+   feat(contact): add typed API client for contact form
+   
+   - Add OpenAPI spec for /api/contact
+   - Generate TypeScript types from OpenAPI
+   - Create typed fetch wrapper
+   - Update contact form to use new client
+   ```
+
+2. To update the CHANGELOG.md, run:
+   ```bash
+   npm run changelog
+   ```
+
+3. Review the changes, then commit the updated CHANGELOG.md
+
+#### Commit Types
+- `feat`: New features
+- `fix`: Bug fixes
+- `docs`: Documentation changes
+- `style`: Code style/formatting
+- `refactor`: Code changes that don't add features or fix bugs
+- `test`: Adding or updating tests
+- `chore`: Build process or tooling changes
+
 ### Hire-me uplift (pre-tests)
 - Hero value prop with clear 2-CTA funnel (Start a project / View work)
 - Availability pill (Africa/Casablanca)
@@ -125,6 +168,17 @@ npm install
 # Start development server
 npm run dev
 ```
+
+### API Types
+- Generate types from the OpenAPI spec:
+  ```bash
+  npm run generate:api:types
+  ```
+
+### Changelog
+- Uses Conventional Commits
+- Update with: `npm run changelog`
+
 ---
 
 ### Continuous Integration

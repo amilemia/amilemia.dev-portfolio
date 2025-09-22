@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Contact API
+  description: |
+    API for handling contact form submissions.
+    
+    Note: This specification mirrors the Zod schema defined in `src/lib/validation/contact.ts`.
+  version: 1.0.0
+
+paths:
+  /api/contact:
+    post:
+      summary: Submit a contact form
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactRequest'
+            example:
+              name: "John Doe"
+              email: "john@example.com"
+              message: "Hello, I'm interested in your work!"
+      responses:
+        '200':
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+              example:
+                ok: true
+        '400':
+          description: Invalid request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                ok: false
+                error: "Validation failed"
+                fieldErrors:
+                  name: ["String must contain at least 2 character(s)"]
+                  email: ["Invalid email"]
+                  message: ["String must contain at least 10 character(s)"]
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                ok: false
+                error: "Failed to send message. Please try again later."
+
+components:
+  schemas:
+    ContactRequest:
+      type: object
+      required:
+        - name
+        - email
+        - message
+      properties:
+        name:
+          type: string
+          minLength: 2
+          description: Full name of the sender
+        email:
+          type: string
+          format: email
+          description: Email address of the sender
+        message:
+          type: string
+          minLength: 10
+          maxLength: 2000
+          description: The message content
+      example:
+        name: "Jane Smith"
+        email: "jane@example.com"
+        message: "I would like to discuss a potential project with you."
+
+    SuccessResponse:
+      type: object
+      required:
+        - ok
+      properties:
+        ok:
+          type: boolean
+          const: true
+
+    ErrorResponse:
+      type: object
+      required:
+        - ok
+        - error
+      properties:
+        ok:
+          type: boolean
+          const: false
+        error:
+          type: string
+          description: Error message
+        fieldErrors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: Field-specific validation errors, if any
+          nullable: true

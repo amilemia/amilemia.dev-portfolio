@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { ContactSchema, type ContactInput } from '@/lib/validation/contact';
+import { postContact } from '@/lib/api/client';
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
 
@@ -35,28 +36,20 @@ export default function ContactPage() {
     try {
       setIsSubmitting(true);
       
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
+      const result = await postContact(values);
 
-      const data = await response.json();
-
-      if (!response.ok) {
+      if (!result.ok) {
         // Handle field validation errors
-        if (response.status === 400 && data.errors) {
-          Object.entries(data.errors).forEach(([field, messages]) => {
+        if (result.fieldErrors) {
+          Object.entries(result.fieldErrors).forEach(([field, messages]) => {
             form.setError(field as keyof ContactInput, {
               type: 'manual',
-              message: (messages as string[]).join(', '),
+              message: messages.join(', '),
             });
           });
           return;
         }
-        throw new Error(data.message || 'Failed to send message');
+        throw new Error(result.error || 'Failed to send message');
       }
 
       toast.success('Message sent!');
