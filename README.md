@@ -93,6 +93,12 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Mobile sticky “Hire me” CTA
 - Subtle polish to project cards (hover/focus) without changing selectors
 
+### Testing (Day 2)
+- **Unit/Component:** Vitest + Testing Library with jsdom setup
+- **E2E:** Playwright with dev server auto-start and network stub for contact endpoint
+- Stable selectors (`data-testid`) and a11y-aware queries (roles/labels)
+- Commands: `npm test`, `npm run e2e`
+
 ---
 
 ## 🛠️ Setup & Run
@@ -122,4 +128,4 @@ npm run dev
 - Changes delivered as small, reviewable diffs with verification steps and README notes.
 - **Windsurf (SWE-1):** produced small diffs for a11y polish (skip link, focus styles) and reusable layout primitives without adding dependencies.
 - **Windsurf (SWE-1):** small, test-safe UI uplift focused on conversion (no new deps, selectors stable).
-
+- **Codex CLI:** scaffolded test config and representative tests & generated Conventional Commit messages and PR summaries.
