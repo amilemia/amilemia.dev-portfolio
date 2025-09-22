@@ -7,8 +7,10 @@ type VercelAnalyticsEvent = {
   url: string;
   /** The type of analytics event */
   type: string;
-  /** Any additional event properties */
-  [key: string]: any;
+  /** Event name (for custom events) */
+  event?: string;
+  /** Event properties */
+  [key: string]: string | number | boolean | undefined;
 };
 
 /**
