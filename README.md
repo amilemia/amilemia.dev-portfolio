@@ -24,7 +24,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - **Testing:** Vitest, @testing-library/react, Playwright
 - **Quality:** ESLint, Prettier, TypeScript strict
 - **CI/CD:** GitHub Actions (lint, typecheck, test, build, e2e)
-- **Analytics:** Plausible (lightweight, privacy-friendly)
+- **Analytics:** Plausible (lightweight, privacy-friendly), Vercel Web Analytics, and Speed Insights
 - **Hosting & Domain:** Vercel + `amilemia.dev` (optionally `portfolio.amilemia.dev`)
 - **Assets:** next/image with optimized local images
 
@@ -80,6 +80,33 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Contact page wired to call the API with pending state and toasts
 - Server returns field-level errors on 400 (mirrored in the UI)
 - Rate limiting (3 requests/minute per IP) using Upstash Redis
+
+### Analytics & Performance
+
+#### Vercel Web Analytics 
+- Enable in Vercel dashboard
+- Added `@vercel/analytics` package
+- Rendered `<Analytics />` in the root layout
+- Verify in production/preview: Look for requests to `/_vercel/insights/view`
+
+#### Vercel Speed Insights
+- Enable in Vercel dashboard
+- Added `@vercel/speed-insights` package
+- Rendered `<SpeedInsights />` in the root layout
+- Verify in production/preview: Look for `/_vercel/speed-insights/script.js`
+  - Note: No data collection in development mode
+
+#### Privacy Protection
+- Uses `beforeSend` to filter sensitive routes:
+  - Excludes `/admin` paths
+  - Redacts URLs containing `?token=` or `&token=`
+- No personally identifiable information (PII) is collected
+- Data collection is limited to production deployments
+
+#### Plausible Integration
+- Running alongside Vercel Analytics for complementary insights
+- Privacy-focused visitor analytics
+- No cookies or persistent identifiers
 
 ### Step 5 — A11y & Design Polish
 - Skip link for keyboard users and main content landmark
@@ -188,6 +215,32 @@ npm run dev
   - `RESEND_API_KEY=dummy`
   - `CONTACT_TO=test@example.com`
 - On e2e failure, the Playwright report is uploaded as a build artifact.
+
+## 🚀 Deployment
+
+### Vercel
+
+1. **Connect your GitHub repository** to Vercel
+2. **Set up environment variables** in the Vercel dashboard:
+   - `RESEND_API_KEY` - Your Resend API key for sending emails
+   - `CONTACT_TO` - The destination email for contact form submissions
+   - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` - Your Plausible domain for analytics (or leave empty to disable)
+   - `UPSTASH_REDIS_REST_URL` - Required for rate limiting
+   - `UPSTASH_REDIS_REST_TOKEN` - Required for rate limiting
+
+   You can set these in the Vercel dashboard or use the Vercel CLI:
+   ```bash
+   vercel env add RESEND_API_KEY production
+   vercel env add CONTACT_TO production
+   vercel env add NEXT_PUBLIC_PLAUSIBLE_DOMAIN production
+   vercel env add UPSTASH_REDIS_REST_URL production
+   vercel env add UPSTASH_REDIS_REST_TOKEN production
+   ```
+
+3. **Push to deploy** - Vercel will automatically build and deploy your site on every push to the main branch
+
+### Environment Variables
+Make sure all required environment variables are set in your Vercel project settings for both Production and Preview environments.
 
 ## 🤖 AI Usage (so far)
 

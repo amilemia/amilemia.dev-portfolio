@@ -12,6 +12,9 @@ import { Toaster } from "sonner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Plausible } from "@/components/analytics/Plausible";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { beforeSend } from "@/lib/analytics-config";
 
 // Navigation items
 const navItems = [
@@ -145,6 +148,9 @@ export function ClientLayout({ children }: { children: ReactNode }) {
       <Footer />
       <Toaster position="top-center" />
       <Plausible />
+      {/* @ts-expect-error - Vercel Analytics types are not properly exported */}
+      <Analytics beforeSend={beforeSend} />
+      <SpeedInsights />
     </ThemeProvider>
   );
 }
