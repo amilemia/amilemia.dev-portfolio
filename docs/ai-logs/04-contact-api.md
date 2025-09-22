@@ -2,7 +2,7 @@
 
 **Date (Africa/Casablanca):** 2025-09-19 — time: 03:02 AM 
 **Branch:** dev  
-**Tool:** Windsurf (SWE-1) + Terminal (pnpm)  
+**Tool:** Windsurf (SWE-1) + Terminal (npm)  
 **Commit(s):** 1266f44 (HEAD -> dev, origin/dev) feat(contact): add validated contact API and UI
 
 ## Prompt (verbatim)
@@ -80,9 +80,9 @@ Rate limiting:
 ## Terminal (key commands & outputs)
 Commands:
 ```powershell
-pnpm dev
+npm run dev
 # (later)
-pnpm add @upstash/ratelimit @upstash/redis
+npm install @upstash/ratelimit @upstash/redis
 git add -A
 git commit -m "feat(contact): add validated contact API and UI
   POST /api/contact accepts name, email, message and returns 202 with messageId, or
@@ -137,7 +137,7 @@ Packages installed:
 - `docs/ENV_SETUP.md` — environment variable setup & notes
 - `docs/RATE_LIMITING.md` — Upstash documentation & envs
 - `README.md` — updated Setup & Run (env), Features Implemented (Step 4), AI Usage
-- `package.json` / `pnpm-lock.yaml` — reflect dependency and script updates
+- `package.json` / `package-lock.json` — reflect dependency and script updates
 
 > Get the exact file list after committing with:
 > `git show --name-status --oneline 1266f44`
@@ -145,8 +145,8 @@ Packages installed:
 ## Verification
 Commands run:
 ```bash
-pnpm dev
-# (optional) pnpm build
+npm run dev
+# (optional) npm run build
 ```
 
 UI checks:

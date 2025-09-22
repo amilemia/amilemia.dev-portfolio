@@ -97,7 +97,7 @@ Added:
 ## Verification
 Commands run:
 ```bash
-pnpm dev
+npm run dev
 ```
 Manual checks:
 - **Skip link**: On first `Tab` from page top, “Skip to main content” appears; `Enter` moves focus to main. ✅  
@@ -130,7 +130,7 @@ AI Usage update:
 - Tiny a11y improvements (skip link, focus rings) have outsized UX impact for keyboard users.
 - Custom `.prose` styles were sufficient; avoided new dependencies (typography plugin).
 - Good to gate motion via `prefers-reduced-motion` and keep outlines consistent with theme `--ring` token.
-- On Windows, pnpm/git line-endings and IDE warnings are common; local `.vscode` config and CRLF awareness help.
+- On Windows, npm install + git line-endings and IDE warnings are common; local `.vscode` config and CRLF awareness help.
 - Changes were kept small and reviewable with clear verification steps.
 
 ---

@@ -46,3 +46,5 @@ next-env.d.ts
 # Contentlayer cache/types
 .contentlayer
 
+# Playwright
+test-results/

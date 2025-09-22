@@ -59,7 +59,7 @@ export default function ContactPage() {
         throw new Error(data.message || 'Failed to send message');
       }
 
-      toast.success('Message sent successfully!');
+      toast.success('Message sent!');
       form.reset();
       // Optional: Scroll to top of form
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -166,7 +166,7 @@ export default function ContactPage() {
           {isSubmitting 
             ? 'Sending your message...' 
             : form.formState.isSubmitSuccessful 
-              ? 'Message sent successfully!' 
+              ? 'Message sent!' 
               : ''}
         </div>
 
