@@ -189,6 +189,32 @@ npm run dev
   - `CONTACT_TO=test@example.com`
 - On e2e failure, the Playwright report is uploaded as a build artifact.
 
+## 🚀 Deployment
+
+### Vercel
+
+1. **Connect your GitHub repository** to Vercel
+2. **Set up environment variables** in the Vercel dashboard:
+   - `RESEND_API_KEY` - Your Resend API key for sending emails
+   - `CONTACT_TO` - The destination email for contact form submissions
+   - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` - Your Plausible domain for analytics (or leave empty to disable)
+   - `UPSTASH_REDIS_REST_URL` - Required for rate limiting
+   - `UPSTASH_REDIS_REST_TOKEN` - Required for rate limiting
+
+   You can set these in the Vercel dashboard or use the Vercel CLI:
+   ```bash
+   vercel env add RESEND_API_KEY production
+   vercel env add CONTACT_TO production
+   vercel env add NEXT_PUBLIC_PLAUSIBLE_DOMAIN production
+   vercel env add UPSTASH_REDIS_REST_URL production
+   vercel env add UPSTASH_REDIS_REST_TOKEN production
+   ```
+
+3. **Push to deploy** - Vercel will automatically build and deploy your site on every push to the main branch
+
+### Environment Variables
+Make sure all required environment variables are set in your Vercel project settings for both Production and Preview environments.
+
 ## 🤖 AI Usage (so far)
 
 - **Windsurf (SWE-1):** implemented typed API route, env runtime validation, and client wiring with a11y feedback and error handling.
