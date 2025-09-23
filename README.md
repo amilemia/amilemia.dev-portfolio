@@ -239,6 +239,44 @@ npm run dev
 
 3. **Push to deploy** - Vercel will automatically build and deploy your site on every push to the main branch
 
+## 🌐 SEO Configuration
+
+The portfolio includes comprehensive SEO optimizations out of the box:
+
+### Core SEO Features
+
+- **Global Metadata**: Properly configured in `app/layout.tsx` with title templates, descriptions, and OpenGraph/Twitter cards
+- **Canonical URLs**: Automatically generated to prevent duplicate content issues
+- **Structured Data**: JSON-LD schema for Person and Project types
+- **Sitemap**: Dynamic sitemap at `/sitemap.xml` including all projects
+- **Robots.txt**: Configured at `/robots.txt` with sitemap reference
+- **OpenGraph Images**: Auto-generated social sharing images for both the homepage and individual projects
+
+### Environment Variables
+
+Create a `.env.local` file with the following variables:
+
+```env
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://amilemia.dev
+```
+
+### Verifying SEO Implementation
+
+1. **Metadata**: Check page source for proper meta tags and structured data
+2. **Sitemap**: Visit `/sitemap.xml` to ensure all pages are listed
+3. **Robots.txt**: Verify at `/robots.txt`
+4. **OpenGraph Images**:
+   - Homepage: `https://amilemia.dev/opengraph-image`
+   - Project pages: `https://amilemia.dev/projects/[slug]/opengraph-image`
+5. **Structured Data**: Use [Google's Rich Results Test](https://search.google.com/test/rich-results)
+
+### Adding New Projects
+
+1. Create a new MDX file in `content/projects/`
+2. The sitemap will automatically include the new project
+3. OpenGraph images are generated on-demand for each project
+
 ### Environment Variables
 Make sure all required environment variables are set in your Vercel project settings for both Production and Preview environments.
 
