@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "./badge";
@@ -16,7 +18,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ slug, title, summary, coverImage, role, tags }: ProjectCardProps) {
   return (
-    <Card 
+    <Card
       className="flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:outline-none group"
       data-testid="project-card"
     >
@@ -34,8 +36,8 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags }: Pr
       <CardHeader>
         <div className="flex justify-between items-start gap-4">
           <CardTitle className="text-xl">
-            <Link 
-              href={`/projects/${slug}`} 
+            <Link
+              href={`/projects/${slug}`}
               className="hover:underline focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background focus:rounded-sm"
               onClick={() => track('project_view', { project: slug })}
             >
@@ -51,8 +53,8 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags }: Pr
         {tags && tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <Badge 
-                key={tag} 
+              <Badge
+                key={tag}
                 variant="secondary"
                 className="transition-colors group-hover:bg-accent/50"
                 data-testid="project-tag"
@@ -67,17 +69,16 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags }: Pr
         <p className="text-muted-foreground">{summary}</p>
       </CardContent>
       <CardFooter className="mt-auto">
-        <Button 
-          asChild 
-          variant="link" 
+        <Button
+          asChild
+          variant="link"
           className="p-0 text-foreground/70 hover:text-foreground group-hover:translate-x-1 transition-transform duration-300"
         >
           <Link href={`/projects/${slug}`}>
-            View details <span className="ml-1">→</span>
+            View details <span className="ml-1">-&gt;</span>
           </Link>
         </Button>
       </CardFooter>
     </Card>
   );
 }
-

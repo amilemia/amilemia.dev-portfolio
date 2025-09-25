@@ -4,7 +4,7 @@ import { getProjects } from "@/lib/content";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ProjectCard } from "@/components/ui/project-card";
-import { track } from "@/lib/analytics/track";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 
 export default async function Home() {
   const projects = (await getProjects()).slice(0, 3);
@@ -20,31 +20,25 @@ export default async function Home() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
             <span className="sr-only">Current availability: </span>
-            <span>Available: 1 slot this month — Africa/Casablanca</span>
+            <span>Available: 1 slot this month - Africa/Casablanca</span>
           </div>
           
           <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
             I build fast, accessible web apps.
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">
-            Freelance web developer turning product ideas into shipped features—on time and tested.
+            Freelance web developer turning product ideas into shipped features - on time and tested.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="px-6">
-              <Link 
-                href="/contact" 
-                onClick={() => track('CTA: Start a project', { location: 'hero' })}
-              >
+              <TrackedLink href="/contact" eventName="CTA: Start a project" eventData={{ location: 'hero' }}>
                 Start a project
-              </Link>
+              </TrackedLink>
             </Button>
             <Button asChild variant="outline" size="lg" className="px-6">
-              <Link 
-                href="/projects"
-                onClick={() => track('CTA: View work', { location: 'hero' })}
-              >
+              <TrackedLink href="/projects" eventName="CTA: View work" eventData={{ location: 'hero' }}>
                 View work
-              </Link>
+              </TrackedLink>
             </Button>
           </div>
           
@@ -70,14 +64,14 @@ export default async function Home() {
           <h2 className="text-2xl font-bold">Recent Projects</h2>
           <Button asChild variant="ghost">
             <Link href="/projects" className="text-sm">
-              View all projects →
+              View all projects &rarr;
             </Link>
           </Button>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <ProjectCard 
+            <ProjectCard
               key={project.slug}
               slug={project.slug}
               title={project.title}
