@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -19,6 +19,7 @@ import { ContactSchema, type ContactInput } from '@/lib/validation/contact';
 import { postContact } from '@/lib/api/client';
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
+import { track } from '@/lib/analytics/track';
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,6 +55,8 @@ export default function ContactPage() {
 
       toast.success('Message sent!');
       form.reset();
+      // Track successful submission
+      track('Contact: Submitted', { messageLength: values.message.length });
       // Optional: Scroll to top of form
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {

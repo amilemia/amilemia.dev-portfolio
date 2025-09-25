@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/content";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
+import { ProjectCard } from "@/components/ui/project-card";
+import { track } from "@/lib/analytics/track";
 
 export default async function Home() {
   const projects = (await getProjects()).slice(0, 3);
@@ -31,10 +31,20 @@ export default async function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="px-6">
-              <Link href="/contact">Start a project</Link>
+              <Link 
+                href="/contact" 
+                onClick={() => track('CTA: Start a project', { location: 'hero' })}
+              >
+                Start a project
+              </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="px-6">
-              <Link href="/projects">View work</Link>
+              <Link 
+                href="/projects"
+                onClick={() => track('CTA: View work', { location: 'hero' })}
+              >
+                View work
+              </Link>
             </Button>
           </div>
           
@@ -67,60 +77,18 @@ export default async function Home() {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <Card 
-              key={project.slug} 
-              className="flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:outline-none group"
-              data-testid="project-card"
-            >
-              <CardHeader>
-                <div className="flex justify-between items-start gap-4">
-                  <CardTitle className="text-xl">
-                    <Link 
-                      href={`/projects/${project.slug}`} 
-                      className="hover:underline focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background focus:rounded-sm"
-                    >
-                      {project.title}
-                    </Link>
-                  </CardTitle>
-                  {project.role && (
-                    <span className="inline-flex items-center rounded-md bg-accent/50 px-2 py-1 text-xs font-medium text-accent-foreground ring-1 ring-inset ring-accent/30">
-                      {project.role}
-                    </span>
-                  )}
-                </div>
-                {project.tags && (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge 
-                        key={tag} 
-                        variant="secondary"
-                        className="transition-colors group-hover:bg-accent/50"
-                        data-testid="project-tag"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p className="text-muted-foreground">{project.summary}</p>
-              </CardContent>
-              <CardFooter className="mt-auto">
-                <Button 
-                  asChild 
-                  variant="link" 
-                  className="p-0 text-foreground/70 hover:text-foreground group-hover:translate-x-1 transition-transform duration-300"
-                >
-                  <Link href={`/projects/${project.slug}`}>
-                    Read more <span className="ml-1">→</span>
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
+            <ProjectCard 
+              key={project.slug}
+              slug={project.slug}
+              title={project.title}
+              summary={project.summary}
+              coverImage={project.cover}
+              role={project.role}
+              tags={project.tags}
+            />
           ))}
         </div>
-        </Container>
+      </Container>
       </Section>
     </>
   );

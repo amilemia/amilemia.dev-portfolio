@@ -4,11 +4,13 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { useMDXComponent } from "next-contentlayer2/hooks";
 import type { Project } from "contentlayer/generated";
+import { useEffect } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
+import { track } from "@/lib/analytics/track";
 
 type ProjectContentProps = {
   project: Project;
@@ -16,6 +18,14 @@ type ProjectContentProps = {
 
 export function ProjectContent({ project }: ProjectContentProps) {
   const MDXContent = useMDXComponent(project?.body?.code || '');
+
+  // Track project view on mount
+  useEffect(() => {
+    track('Project: View', {
+      slug: project.slug,
+      title: project.title,
+    });
+  }, [project.slug, project.title]);
 
   return (
     <Section>

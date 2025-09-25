@@ -24,7 +24,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - **Testing:** Vitest, @testing-library/react, Playwright
 - **Quality:** ESLint, Prettier, TypeScript strict
 - **CI/CD:** GitHub Actions (lint, typecheck, test, build, e2e)
-- **Analytics:** Plausible (lightweight, privacy-friendly), Vercel Web Analytics, and Speed Insights
+- **Analytics:** Plausible (lightweight, privacy-friendly), Vercel Web Analytics, and Speed Insights with custom event tracking
 - **Hosting & Domain:** Vercel + `amilemia.dev` (optionally `portfolio.amilemia.dev`)
 - **Assets:** next/image with optimized local images
 
@@ -41,6 +41,28 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - **Sample prompts:**  
   - *“Create a `ProjectCard` component using shadcn/ui Card + Tailwind. Props must match this Zod schema. Include keyboard focus styles, ARIA where needed, and a Vitest + Testing Library spec. Provide a usage example in MDX.”*  
   - *“Generate `/app/api/contact/route.ts` with Zod validation `{ name: string; email: string; message: string; }`. On success send via Resend, else return typed error. Include unit tests for the validator and a Playwright e2e for happy/invalid cases.”*
+
+## 🎯 Analytics & Tracking
+
+### Events Tracked
+
+- **Home Page**
+  - `CTA: Start a project` - When clicking the main CTA button
+  - `CTA: View work` - When clicking the secondary CTA button
+  
+- **Projects**
+  - `Project: View` - When viewing a project detail page (includes slug and title)
+  - `Projects: Filter` - When filtering projects by tag (debounced 300ms)
+  
+- **Contact**
+  - `Contact: Submitted` - When successfully submitting the contact form (includes message length)
+
+### Implementation Details
+
+- All tracking is client-side only and gracefully degrades if Plausible is blocked
+- No personal or sensitive data is tracked
+- Uses a centralized `track()` utility for consistent event naming and properties
+- Preconnects to Plausible for improved performance
 
 ### Testing Support
 - **Unit/Component (Vitest + Testing Library):** Ask AI to cover render states, props, a11y roles/labels, and edge cases driven by Zod schemas.  
@@ -88,6 +110,18 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Added `@vercel/analytics` package
 - Rendered `<Analytics />` in the root layout
 - Verify in production/preview: Look for requests to `/_vercel/insights/view`
+
+### Performance Optimizations
+
+- **Images**:
+  - All images use Next.js Image component with proper aspect ratios
+  - Responsive `sizes` attribute for optimal loading
+  - Placeholder UI for images while loading
+  
+- **Layout Stability**:
+  - Fixed aspect ratio containers prevent layout shifts
+  - Properly sized images prevent reflows
+  - Consistent spacing and grid layouts
 
 #### Vercel Speed Insights
 - Enable in Vercel dashboard
