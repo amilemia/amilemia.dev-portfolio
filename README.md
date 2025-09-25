@@ -103,6 +103,10 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Server returns field-level errors on 400 (mirrored in the UI)
 - Rate limiting (3 requests/minute per IP) using Upstash Redis
 
+### Services
+- New /services page with 3 packages (Portfolio MVP, Startup Site, Retainer)
+- Process and FAQ sections; CTAs deep-link to Contact with subject preset
+
 ### Analytics & Performance
 
 #### Vercel Web Analytics 
