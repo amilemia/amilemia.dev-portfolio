@@ -7,7 +7,7 @@ import { track } from '@/lib/analytics/track';
 
 type TagFilterProps = {
   tags: string[];
-  selectedTag?: string | null;
+  selectedTag?: string | null | string[];
 };
 
 export function TagFilter({ tags, selectedTag }: TagFilterProps) {
@@ -25,7 +25,8 @@ export function TagFilter({ tags, selectedTag }: TagFilterProps) {
     
     const timeoutId = setTimeout(() => {
       if (selectedTag) {
-        track('Projects: Filter', { tag: selectedTag });
+        const tag = Array.isArray(selectedTag) ? selectedTag[0] : selectedTag;
+        track('Projects: Filter', { tag });
       }
     }, 300);
     

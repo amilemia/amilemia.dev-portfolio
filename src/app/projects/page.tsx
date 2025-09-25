@@ -4,15 +4,18 @@ import { Section } from "@/components/Section";
 import { ProjectCard } from "@/components/ui/project-card";
 import { TagFilter } from "@/components/projects/tag-filter";
 
-type ProjectsPageProps = {
-  searchParams: {
-    tag?: string;
-  };
-};
+interface PageProps {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-export default async function ProjectsPage({ searchParams }: ProjectsPageProps) {
+export default async function ProjectsPage({ searchParams }: PageProps) {
   const projects = await getProjects();
-  const selectedTag = searchParams.tag || null;
+  
+  // Handle case where tag could be a string or string array
+  const selectedTag = Array.isArray(searchParams.tag) 
+    ? searchParams.tag[0] || null 
+    : searchParams.tag || null;
   
   // Get all unique tags from projects
   const allTags = Array.from(
@@ -21,7 +24,7 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
   
   // Filter projects by selected tag
   const filteredProjects = selectedTag
-    ? projects.filter(project => project.tags?.includes(selectedTag))
+    ? projects.filter(project => project.tags?.includes(selectedTag as string))
     : projects;
 
   return (
