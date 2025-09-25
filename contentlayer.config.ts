@@ -50,6 +50,16 @@ export const Project = defineDocumentType(() => ({
         }
       } 
     },
+
+    testimonial: {
+      type: 'json',
+      required: false,
+      fields: {
+        quote: { type: 'string', required: true },
+        author: { type: 'string', required: true },
+        role: { type: 'string', required: false },
+      }
+    },
   },
   computedFields: {
     url: {
