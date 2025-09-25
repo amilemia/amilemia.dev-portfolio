@@ -3,9 +3,9 @@
  * @param name - The name of the event
  * @param props - Optional properties to include with the event
  */
-export function track(name: string, props?: Record<string, any>) {
-  if (typeof window !== "undefined" && (window as any).plausible) {
-    (window as any).plausible(name, props ? { props } : undefined);
+export function track(name: string, props?: Record<string, unknown>) {
+  if (typeof window !== 'undefined' && window.plausible) {
+    window.plausible(name, props ? { props } : undefined);
   }
 }
 
