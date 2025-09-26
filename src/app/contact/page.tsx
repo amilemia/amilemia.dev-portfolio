@@ -1,170 +1,22 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { toast } from 'sonner';
-import { ContactSchema, type ContactInput } from '@/lib/validation/contact';
-import { postContact } from '@/lib/api/client';
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
-import { track } from '@/lib/analytics/track';
+import { BriefWizard } from '@/components/contact/BriefWizard';
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const form = useForm<ContactInput>({
-    resolver: zodResolver(ContactSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      message: '',
-    },
-  });
-
-  async function onSubmit(values: ContactInput) {
-    try {
-      setIsSubmitting(true);
-      
-      const result = await postContact(values);
-
-      if (!result.ok) {
-        // Handle field validation errors
-        if (result.fieldErrors) {
-          Object.entries(result.fieldErrors).forEach(([field, messages]) => {
-            form.setError(field as keyof ContactInput, {
-              type: 'manual',
-              message: messages.join(', '),
-            });
-          });
-          return;
-        }
-        throw new Error(result.error || 'Failed to send message');
-      }
-
-      toast.success('Message sent!');
-      form.reset();
-      // Track successful submission
-      track('Contact: Submitted', { messageLength: values.message.length });
-      // Optional: Scroll to top of form
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } catch (error) {
-      console.error('Submission error:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
-
   return (
     <Section>
       <Container className="max-w-2xl">
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight">Get in Touch</h1>
           <p className="text-muted-foreground">
-            Have a question or want to work together? Send me a message and I&apos;ll get back to you as
-            soon as possible.
+            Have a project in mind? Walk through the brief to help me understand your goals and I&apos;ll
+            be in touch soon.
           </p>
         </div>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid gap-6 sm:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Your name"
-                        data-testid="name-input"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="your.email@example.com"
-                        data-testid="email-input"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Message</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Your message here..."
-                      className="min-h-[150px]"
-                      data-testid="message-input"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex justify-end">
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full sm:w-auto"
-                data-testid="submit-button"
-                disabled={isSubmitting}
-                aria-disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
-            </div>
-          </form>
-        </Form>
-
-        {/* Form status region for screen readers */}
-        <div 
-          role="status" 
-          aria-live="polite"
-          className="sr-only"
-        >
-          {isSubmitting 
-            ? 'Sending your message...' 
-            : form.formState.isSubmitSuccessful 
-              ? 'Message sent!' 
-              : ''}
-        </div>
+        <BriefWizard />
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2">
           <div>

@@ -55,7 +55,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
   - `Projects: Filter` - When filtering projects by tag (debounced 300ms)
   
 - **Contact**
-  - `Contact: Submitted` - When successfully submitting the contact form (includes message length)
+  - `Contact: Brief Submitted` - When successfully submitting the brief wizard (includes budget and desired timeline)
 
 ### Implementation Details
 
@@ -94,7 +94,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Projects index with responsive grid and project cards
 - Project detail pages rendering MDX content by slug (Contentlayer2 + App Router)
 - About page with bio and highlights
-- Contact page (UI only) with client-side Zod validation and inline errors
+- Contact page upgraded to a multi-step project brief wizard with per-step Zod validation, accessible focus management, and inline feedback
 
 ### Step 4 — Contact API
 - POST `/api/contact` with Zod validation and Resend integration
@@ -103,15 +103,11 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Server returns field-level errors on 400 (mirrored in the UI)
 - Rate limiting (3 requests/minute per IP) using Upstash Redis
 
-### Services
-- New /services page with 3 packages (Portfolio MVP, Startup Site, Retainer)
-- Process and FAQ sections; CTAs deep-link to Contact with subject preset
-
-### Case Studies
-- Project detail pages now include a case study header with metrics, role/stack badges, and optional testimonial
-
-### Social Proof
-- Accessible testimonials carousel (CSS scroll-snap) on Home and Services
+### Services & Case Studies
+- `/services` page with clear packages, process, and FAQ
+- Case study header on project pages: role/stack badges, metrics, optional testimonial
+- Accessible testimonials carousel (CSS scroll-snap)
+- Multi-step “Project Brief” wizard that posts to `/api/contact`
 
 ### Analytics & Performance
 
