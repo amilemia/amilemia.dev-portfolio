@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
+import { Carousel } from "@/components/testimonials/Carousel";
+import { testimonials } from "@/data/testimonials";
 import {
   ServiceCardList,
   type ServicePackage,
@@ -141,6 +143,8 @@ export default function ServicesPage() {
           </div>
           <ServiceCardList services={services} />
         </section>
+
+        <Carousel items={testimonials} />
 
         <section aria-labelledby="process-heading" className="space-y-6">
           <h2 id="process-heading" className="text-2xl font-semibold">

@@ -5,6 +5,8 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ProjectCard } from "@/components/ui/project-card";
 import { TrackedLink } from "@/components/analytics/tracked-link";
+import { Carousel } from "@/components/testimonials/Carousel";
+import { testimonials } from "@/data/testimonials";
 
 export default async function Home() {
   const projects = (await getProjects()).slice(0, 3);
@@ -54,6 +56,13 @@ export default async function Home() {
               <div className="h-8 w-24 bg-muted rounded" aria-hidden="true"></div>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      {/* Testimonials */}
+      <Section>
+        <Container>
+          <Carousel items={testimonials} />
         </Container>
       </Section>
 

@@ -107,6 +107,12 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - New /services page with 3 packages (Portfolio MVP, Startup Site, Retainer)
 - Process and FAQ sections; CTAs deep-link to Contact with subject preset
 
+### Case Studies
+- Project detail pages now include a case study header with metrics, role/stack badges, and optional testimonial
+
+### Social Proof
+- Accessible testimonials carousel (CSS scroll-snap) on Home and Services
+
 ### Analytics & Performance
 
 #### Vercel Web Analytics 
