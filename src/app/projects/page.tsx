@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { ProjectCard } from "@/components/ui/project-card";
 import { TagFilter } from "@/components/projects/tag-filter";
+import { SectionHeading } from "@/components/SectionHeading";
 
 type SearchParams = Record<string, string | string[] | undefined>;
 type PageProps = {
@@ -27,20 +28,17 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
     : projects;
 
   return (
-    <Section>
-      <Container>
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight">Projects</h1>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
-            A collection of my recent work and contributions.
-          </p>
-        </div>
+    <Section size="lg">
+      <Container className="space-y-10">
+        <SectionHeading
+          title="Projects"
+          description="Selected launches across product, marketing, and experimentation. Each project shipped with measurable outcomes, rigorous QA, and a clear handoff."
+          align="center"
+        />
 
-        {allTags.length > 0 && (
-          <div className="mb-8">
-            <TagFilter tags={allTags} selectedTag={selectedTag || undefined} />
-          </div>
-        )}
+        {allTags.length > 0 ? (
+          <TagFilter tags={allTags} selectedTag={selectedTag || undefined} />
+        ) : null}
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project) => (

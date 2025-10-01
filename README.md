@@ -90,6 +90,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 
 ### Step 3 — Pages & Routing
 - App layout with accessible header navigation and footer
+- Theme toggle with Light/Dark/System options, persistence, and analytics tracking
 - Home page with hero, CTAs, and "Recent projects" (top 3 from Contentlayer2)
 - Projects index with responsive grid and project cards
 - Project detail pages rendering MDX content by slug (Contentlayer2 + App Router)
@@ -152,6 +153,8 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Skip link for keyboard users and main content landmark
 - Consistent layout primitives: `Container` and `Section`
 - Global focus-visible outlines using theme ring token
+- Shared section spacing + typography tokens via `Section` variants and a reusable `SectionHeading` component
+- Header/footer alignment unified around the shared container with an accessible mobile navigation overlay
 - Minimal prose-like MDX styles (light/dark) without extra plugins
 - Reduced-motion support
 - External link safety (`rel="noopener noreferrer"`)
@@ -328,3 +331,4 @@ Make sure all required environment variables are set in your Vercel project sett
 - **Windsurf (SWE-1):** produced small diffs for a11y polish (skip link, focus styles) and reusable layout primitives without adding dependencies.
 - **Windsurf (SWE-1):** small, test-safe UI uplift focused on conversion (no new deps, selectors stable).
 - **Codex CLI:** scaffolded test config and representative tests & generated Conventional Commit messages and PR summaries.
+

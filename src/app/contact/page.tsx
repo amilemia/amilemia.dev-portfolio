@@ -3,22 +3,39 @@
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
 import { BriefWizard } from '@/components/contact/BriefWizard';
+import { SectionHeading } from '@/components/SectionHeading';
 
 export default function ContactPage() {
   return (
-    <Section>
-      <Container className="max-w-2xl">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight">Get in Touch</h1>
-          <p className="text-muted-foreground">
-            Have a project in mind? Walk through the brief to help me understand your goals and I&apos;ll
-            be in touch soon.
-          </p>
+    <Section size="lg">
+      <Container className="max-w-3xl space-y-16">
+        <SectionHeading
+          title="Get in touch"
+          description="Share the goals, audience, and deadline for your next launch. I will review your brief within one business day and reply with availability, next steps, and a suggested kickoff date."
+          align="center"
+        />
+
+        <div className="rounded-2xl border border-border/60 bg-card/60 p-6 text-sm text-muted-foreground shadow-sm backdrop-blur-sm">
+          <h2 className="text-base font-semibold text-foreground">What happens after you submit</h2>
+          <ol className="mt-3 space-y-2">
+            <li className="flex items-start gap-2">
+              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+              I review your brief and confirm fit, timeline, and any open questions.
+            </li>
+            <li className="flex items-start gap-2">
+              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+              We schedule a 30-minute intro call to align on metrics, stakeholders, and scope.
+            </li>
+            <li className="flex items-start gap-2">
+              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+              You receive a proposal outlining deliverables, investment, and kickoff date.
+            </li>
+          </ol>
         </div>
 
         <BriefWizard />
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-2">
           <div>
             <h3 className="mb-4 text-lg font-semibold">Contact Information</h3>
             <div className="space-y-2 text-muted-foreground">

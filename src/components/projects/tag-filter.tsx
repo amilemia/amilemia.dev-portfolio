@@ -49,12 +49,12 @@ export function TagFilter({ tags, selectedTag }: TagFilterProps) {
   if (tags.length === 0) return null;
 
   return (
-    <div className="mb-8 flex flex-wrap justify-center gap-2">
+    <div className="flex flex-wrap justify-center gap-2">
       <Button
         variant={!selectedTag ? 'default' : 'outline'}
         size="sm"
         onClick={() => {
-          router.push(`${pathname}?${createQueryString('tag', '')}`, { scroll: false });
+          router.push(pathname, { scroll: false });
         }}
       >
         All
