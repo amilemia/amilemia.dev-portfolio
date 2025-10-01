@@ -4,34 +4,34 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SectionHeading } from "@/components/SectionHeading";
 
-const frontendSkills = [
-  "React & Next.js",
-  "TypeScript & JavaScript",
-  "Tailwind CSS",
-  "Accessibility-first UI",
+const focusAreas = [
+  "Revenue-focused UX: onboarding, pricing, lifecycle, and checkout flows",
+  "Marketing systems: conversion-first landing pages and modular content hubs",
+  "Design systems and component libraries that scale across teams",
+  "Accessibility, performance, and testing baked into every release",
 ];
 
-const backendSkills = [
-  "Node.js & Edge runtimes",
-  "REST & GraphQL APIs",
-  "Authentication & security",
-  "Database design & ORMs",
+const toolset = [
+  "React, Next.js, TypeScript, and Edge runtimes",
+  "Contentlayer, MDX, and modern CMS integrations",
+  "Playwright, Vitest, and automated QA pipelines",
+  "Upstash, Resend, and analytics platforms like Plausible",
 ];
 
 const experience = [
   {
     title: "Senior Frontend Developer",
-    place: "Acme Corp",
+    place: "Relay CRM",
     timeframe: "2022 - Present",
     summary:
-      "Lead accessible, performant product initiatives using React, Next.js, and design systems.",
+      "Led revenue-critical onboarding, pricing, and reporting flows that increased trial-to-paid conversions by 28 percent while standardising accessibility and testing.",
   },
   {
-    title: "Full Stack Developer",
-    place: "Globex",
+    title: "Product Engineer",
+    place: "Launchpad Studio",
     timeframe: "2019 - 2022",
     summary:
-      "Shipped end-to-end web features across modern JavaScript stacks and cloud infrastructure.",
+      "Partnered with marketing and product leads to ship high-volume experimentation, reducing time-to-launch for campaigns from weeks to days.",
   },
 ];
 
@@ -40,33 +40,37 @@ export default function AboutPage() {
     <Section size="lg">
       <Container className="space-y-12">
         <SectionHeading
-          title="About me"
-          description="A product-focused developer building resilient, inclusive digital experiences with modern web tooling."
+          title="Intentional builds, measurable outcomes"
+          description="I am Amilemia — a full-stack product partner who helps teams translate strategy into launches that move the right metrics."
           align="center"
         />
 
-        <div className="prose dark:prose-invert mx-auto">
-          <p className="text-lg">
-            Hello! I&apos;m Amilemia, a full-stack developer who loves shaping thoughtful web experiences.
-            I lean on robust TypeScript foundations, intentional design systems, and data-informed
-            feedback loops to move from ideas to dependable products.
+        <div className="rounded-3xl border border-border/60 bg-card/60 p-6 shadow-sm backdrop-blur-sm">
+          <p className="text-lg text-muted-foreground">
+            From the first discovery call through launch, I focus on what success looks like for your business. That means pairing thoughtful UX with pragmatic engineering, running accessibility and performance sweeps before we ship, and leaving behind the documentation your team needs to iterate.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <section>
-            <h2 className="mb-3 text-lg font-semibold">Frontend</h2>
-            <ul className="space-y-2 text-muted-foreground">
-              {frontendSkills.map((skill) => (
-                <li key={skill}>{skill}</li>
+          <section className="rounded-2xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur-sm">
+            <h2 className="mb-4 text-lg font-semibold">What I focus on</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {focusAreas.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+                  {item}
+                </li>
               ))}
             </ul>
           </section>
-          <section>
-            <h2 className="mb-3 text-lg font-semibold">Backend</h2>
-            <ul className="space-y-2 text-muted-foreground">
-              {backendSkills.map((skill) => (
-                <li key={skill}>{skill}</li>
+          <section className="rounded-2xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur-sm">
+            <h2 className="mb-4 text-lg font-semibold">Tooling that keeps momentum</h2>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {toolset.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+                  {item}
+                </li>
               ))}
             </ul>
           </section>
@@ -88,9 +92,12 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex flex-wrap justify-center gap-3">
           <Button asChild size="lg">
-            <Link href="/contact">Get in touch</Link>
+            <Link href="/contact">Book project intro</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="mailto:hi@amilemia.dev">Email hi@amilemia.dev</Link>
           </Button>
         </div>
       </Container>

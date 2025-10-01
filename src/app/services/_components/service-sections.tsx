@@ -14,14 +14,28 @@ import {
 } from "@/components/ui/card";
 import { track } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils";
+import type { ServiceTier } from "@/data/services";
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+
+function formatTierPrice(tier: ServiceTier): string {
+  const formatted = currencyFormatter.format(tier.price);
+  return tier.billingSuffix ? `${formatted}${tier.billingSuffix}` : formatted;
+}
 
 export type ServicePackage = {
   name: string;
   pitch: string;
   deliverables: string[];
   timeline: string;
-  priceRange: string;
   href: string;
+  tiers: ServiceTier[];
+  idealFor: string;
+  badge?: string;
 };
 
 type ServiceCardListProps = {
@@ -39,6 +53,11 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
         return (
           <Card key={service.name} data-testid="service-card" className="h-full">
             <CardHeader>
+              {service.badge ? (
+                <span className="mb-3 inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                  {service.badge}
+                </span>
+              ) : null}
               <CardTitle className="text-2xl" id={titleId}>
                 {service.name}
               </CardTitle>
@@ -48,6 +67,9 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
+                <p className="rounded-md bg-muted/40 px-3 py-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Best for {service.idealFor}
+                </p>
                 <section aria-labelledby={deliverablesId}>
                   <h3
                     id={deliverablesId}
@@ -64,16 +86,28 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
                     ))}
                   </ul>
                 </section>
-                <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
-                  <div>
-                    <dt className="font-semibold text-foreground">Timeline</dt>
-                    <dd className="text-muted-foreground">{service.timeline}</dd>
+                <section className="space-y-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                    Starter & plus options
+                  </h3>
+                  <div className="space-y-2">
+                    {service.tiers.map((tier) => (
+                      <div
+                        key={`${service.name}-${tier.name}`}
+                        className="rounded-2xl border border-border/70 bg-background/70 p-4"
+                      >
+                        <div className="flex items-center justify-between text-sm font-semibold text-foreground">
+                          <span>{tier.name}</span>
+                          <span>{formatTierPrice(tier)}</span>
+                        </div>
+                        <p className="mt-2 text-sm text-muted-foreground">{tier.description}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div>
-                    <dt className="font-semibold text-foreground">Typical budget</dt>
-                    <dd className="text-muted-foreground">{service.priceRange}</dd>
-                  </div>
-                </dl>
+                  <p className="text-xs text-muted-foreground">
+                    Typical project timeline: {service.timeline}
+                  </p>
+                </section>
               </div>
             </CardContent>
             <CardFooter>

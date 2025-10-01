@@ -75,7 +75,7 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags }: Pr
           className="p-0 text-foreground/70 hover:text-foreground group-hover:translate-x-1 transition-transform duration-300"
         >
           <Link href={`/projects/${slug}`}>
-            View details <span className="ml-1">-&gt;</span>
+            View case study <span className="ml-1">&rarr;</span>
           </Link>
         </Button>
       </CardFooter>

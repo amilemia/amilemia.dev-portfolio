@@ -98,7 +98,7 @@ function Header() {
           <div className="flex items-center gap-2">
             <div className="hidden md:block">
               <Button asChild size="sm">
-                <Link href="/contact">Hire me</Link>
+                <Link href="/contact">Book intro</Link>
               </Button>
             </div>
             <ThemeToggle />
@@ -117,20 +117,20 @@ function Header() {
       </header>
       {/* Mobile CTA */}
       <div className="fixed bottom-6 right-6 z-40 md:hidden">
-        <Button
-          asChild
-          size="lg"
-          className="rounded-full w-14 h-14 p-0 shadow-lg animate-in fade-in-0 zoom-in-95 duration-200"
-        >
-          <Link
-            href="/contact"
-            className="flex items-center justify-center text-lg font-medium"
-            aria-label="Hire me"
-          >
-            <span className="sr-only">Hire me</span>
-            <span aria-hidden="true">&#128640;</span>
-          </Link>
-        </Button>
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full w-14 h-14 p-0 shadow-lg animate-in fade-in-0 zoom-in-95 duration-200"
+              >
+                <Link
+                  href="/contact"
+                  className="flex items-center justify-center text-lg font-medium"
+                  aria-label="Book project intro"
+                >
+                  <span className="sr-only">Book project intro</span>
+                  <span aria-hidden="true">&#128640;</span>
+                </Link>
+              </Button>
       </div>
       <MobileNavigation open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
@@ -158,7 +158,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
         </nav>
         <div className="mt-6">
           <Button asChild className="w-full">
-            <Link href="/contact">Hire me</Link>
+            <Link href="/contact">Book intro</Link>
           </Button>
         </div>
       </div>
@@ -184,6 +184,20 @@ function Footer() {
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/amilemia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:hi@amilemia.dev"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            hi@amilemia.dev
           </a>
         </div>
       </Container>

@@ -11,9 +11,27 @@ export default function ContactPage() {
       <Container className="max-w-3xl space-y-16">
         <SectionHeading
           title="Get in touch"
-          description="Have a project in mind? Walk through the brief to help me understand your goals and I will follow up soon."
+          description="Share the goals, audience, and deadline for your next launch. I will review your brief within one business day and reply with availability, next steps, and a suggested kickoff date."
           align="center"
         />
+
+        <div className="rounded-2xl border border-border/60 bg-card/60 p-6 text-sm text-muted-foreground shadow-sm backdrop-blur-sm">
+          <h2 className="text-base font-semibold text-foreground">What happens after you submit</h2>
+          <ol className="mt-3 space-y-2">
+            <li className="flex items-start gap-2">
+              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+              I review your brief and confirm fit, timeline, and any open questions.
+            </li>
+            <li className="flex items-start gap-2">
+              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+              We schedule a 30-minute intro call to align on metrics, stakeholders, and scope.
+            </li>
+            <li className="flex items-start gap-2">
+              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+              You receive a proposal outlining deliverables, investment, and kickoff date.
+            </li>
+          </ol>
+        </div>
 
         <BriefWizard />
 

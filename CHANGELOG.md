@@ -1,3 +1,9 @@
+# Unreleased
+
+### Features
+
+* **website:** refresh conversion copy, dynamic availability, and add starter/plus tiers for service packages
+
 # 0.1.0 (2025-10-01)
 
 
@@ -25,6 +31,3 @@
 * **services:** add packages, process, FAQ; nav link + sitemap ([089f07e](https://github.com/amilemia/amilemia.dev-portfolio/commit/089f07e2aeff350f771b787697573916ba53bc74))
 * **testimonials:** add accessible scroll-snap carousel + events ([f080485](https://github.com/amilemia/amilemia.dev-portfolio/commit/f080485b0599f9d5204a68a61f41f8b068aa9949))
 * **ui:** uplift hire-me hero and cards ([fe882fd](https://github.com/amilemia/amilemia.dev-portfolio/commit/fe882fded61b1de7f9648619d266d8a9899b04b0))
-
-
-

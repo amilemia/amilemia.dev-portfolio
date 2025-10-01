@@ -32,7 +32,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
       <Container className="space-y-10">
         <SectionHeading
           title="Projects"
-          description="A collection of recent launches and product iterations."
+          description="Selected launches across product, marketing, and experimentation. Each project shipped with measurable outcomes, rigorous QA, and a clear handoff."
           align="center"
         />
 
