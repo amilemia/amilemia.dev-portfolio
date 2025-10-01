@@ -2,107 +2,20 @@
 
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
-import { track } from '@/lib/analytics/track';
+import { BriefWizard } from '@/components/contact/BriefWizard';
+import { SectionHeading } from '@/components/SectionHeading';
 
 export default function ContactPage() {
   return (
-    <Section>
-      <Container className="max-w-2xl">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight">Get in Touch</h1>
-          <p className="text-muted-foreground">
-            Have a question or want to work together? Send me a message and I&apos;ll get back to you as
-            soon as possible.
-          </p>
-        </div>
+    <Section size="lg">
+      <Container className="max-w-3xl space-y-16">
+        <SectionHeading
+          title="Get in touch"
+          description="Have a project in mind? Walk through the brief to help me understand your goals and I will follow up soon."
+          align="center"
+        />
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid gap-6 sm:grid-cols-2">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Your name"
-                        data-testid="name-input"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="your.email@example.com"
-                        data-testid="email-input"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Message</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Your message here..."
-                      className="min-h-[150px]"
-                      data-testid="message-input"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex justify-end">
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full sm:w-auto"
-                data-testid="submit-button"
-                disabled={isSubmitting}
-                aria-disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
-            </div>
-          </form>
-        </Form>
-
-        {/* Form status region for screen readers */}
-        <div 
-          role="status" 
-          aria-live="polite"
-          className="sr-only"
-        >
-          {isSubmitting 
-            ? 'Sending your message...' 
-            : form.formState.isSubmitSuccessful 
-              ? 'Message sent!' 
-              : ''}
-        </div>
+        <BriefWizard />
 
         <div className="grid gap-8 sm:grid-cols-2">
           <div>
