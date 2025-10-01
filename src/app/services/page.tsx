@@ -10,6 +10,7 @@ import {
   FaqList,
   type FaqItem,
 } from "./_components/service-sections";
+import { SectionHeading } from "@/components/SectionHeading";
 
 const rawServices = [
   {
@@ -124,32 +125,28 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <Section>
+    <Section size="xl">
       <Container className="space-y-16">
-        <header className="max-w-2xl space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-wide text-primary">Services</p>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Work that ships.</h1>
-          <p className="text-lg text-muted-foreground">{pageDescription}</p>
-        </header>
+        <SectionHeading
+          eyebrow="Services"
+          title="Work that ships."
+          description={pageDescription}
+        />
 
         <section aria-labelledby="packages-heading" className="space-y-8">
-          <div className="flex items-center justify-between gap-4">
-            <h2 id="packages-heading" className="text-2xl font-semibold">
-              Packages built for momentum
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Every engagement includes accessibility, analytics, and launch support.
-            </p>
-          </div>
+          <SectionHeading
+            title="Packages built for momentum"
+            description="Every engagement includes accessibility, analytics, and launch support."
+            className="max-w-xl"
+            id="packages-heading"
+          />
           <ServiceCardList services={services} />
         </section>
 
         <Carousel items={testimonials} />
 
-        <section aria-labelledby="process-heading" className="space-y-6">
-          <h2 id="process-heading" className="text-2xl font-semibold">
-            The process
-          </h2>
+        <section aria-labelledby="process-heading" className="space-y-8">
+          <SectionHeading title="The process" className="max-w-xl" id="process-heading" />
           <ol className="grid gap-6 sm:grid-cols-2">
             {processSteps.map((step, index) => (
               <li
@@ -168,10 +165,8 @@ export default function ServicesPage() {
           </ol>
         </section>
 
-        <section aria-labelledby="faq-heading" className="space-y-6">
-          <h2 id="faq-heading" className="text-2xl font-semibold">
-            Frequently asked
-          </h2>
+        <section aria-labelledby="faq-heading" className="space-y-8">
+          <SectionHeading title="Frequently asked" className="max-w-xl" id="faq-heading" />
           <FaqList items={faqs} />
         </section>
       </Container>

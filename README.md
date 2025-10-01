@@ -55,7 +55,7 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
   - `Projects: Filter` - When filtering projects by tag (debounced 300ms)
   
 - **Contact**
-  - `Contact: Submitted` - When successfully submitting the contact form (includes message length)
+  - `Contact: Brief Submitted` - When successfully submitting the brief wizard (includes budget and desired timeline)
 
 ### Implementation Details
 
@@ -90,11 +90,12 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 
 ### Step 3 — Pages & Routing
 - App layout with accessible header navigation and footer
+- Theme toggle with Light/Dark/System options, persistence, and analytics tracking
 - Home page with hero, CTAs, and "Recent projects" (top 3 from Contentlayer2)
 - Projects index with responsive grid and project cards
 - Project detail pages rendering MDX content by slug (Contentlayer2 + App Router)
 - About page with bio and highlights
-- Contact page (UI only) with client-side Zod validation and inline errors
+- Contact page upgraded to a multi-step project brief wizard with per-step Zod validation, accessible focus management, and inline feedback
 
 ### Step 4 — Contact API
 - POST `/api/contact` with Zod validation and Resend integration
@@ -103,15 +104,11 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Server returns field-level errors on 400 (mirrored in the UI)
 - Rate limiting (3 requests/minute per IP) using Upstash Redis
 
-### Services
-- New /services page with 3 packages (Portfolio MVP, Startup Site, Retainer)
-- Process and FAQ sections; CTAs deep-link to Contact with subject preset
-
-### Case Studies
-- Project detail pages now include a case study header with metrics, role/stack badges, and optional testimonial
-
-### Social Proof
-- Accessible testimonials carousel (CSS scroll-snap) on Home and Services
+### Services & Case Studies
+- `/services` page with clear packages, process, and FAQ
+- Case study header on project pages: role/stack badges, metrics, optional testimonial
+- Accessible testimonials carousel (CSS scroll-snap)
+- Multi-step “Project Brief” wizard that posts to `/api/contact`
 
 ### Analytics & Performance
 
@@ -156,6 +153,8 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Skip link for keyboard users and main content landmark
 - Consistent layout primitives: `Container` and `Section`
 - Global focus-visible outlines using theme ring token
+- Shared section spacing + typography tokens via `Section` variants and a reusable `SectionHeading` component
+- Header/footer alignment unified around the shared container with an accessible mobile navigation overlay
 - Minimal prose-like MDX styles (light/dark) without extra plugins
 - Reduced-motion support
 - External link safety (`rel="noopener noreferrer"`)
@@ -332,3 +331,4 @@ Make sure all required environment variables are set in your Vercel project sett
 - **Windsurf (SWE-1):** produced small diffs for a11y polish (skip link, focus styles) and reusable layout primitives without adding dependencies.
 - **Windsurf (SWE-1):** small, test-safe UI uplift focused on conversion (no new deps, selectors stable).
 - **Codex CLI:** scaffolded test config and representative tests & generated Conventional Commit messages and PR summaries.
+

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
+import { SectionHeading } from "@/components/SectionHeading";
 
 const frontendSkills = [
   "React & Next.js",
@@ -36,15 +37,13 @@ const experience = [
 
 export default function AboutPage() {
   return (
-    <Section>
-      <Container className="max-w-3xl">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight">About Me</h1>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
-            A product-focused developer building resilient, inclusive digital experiences with
-            modern web tooling.
-          </p>
-        </div>
+    <Section size="lg">
+      <Container className="space-y-12">
+        <SectionHeading
+          title="About me"
+          description="A product-focused developer building resilient, inclusive digital experiences with modern web tooling."
+          align="center"
+        />
 
         <div className="prose dark:prose-invert mx-auto">
           <p className="text-lg">
@@ -54,7 +53,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <section>
             <h2 className="mb-3 text-lg font-semibold">Frontend</h2>
             <ul className="space-y-2 text-muted-foreground">
@@ -73,8 +72,8 @@ export default function AboutPage() {
           </section>
         </div>
 
-        <div className="mt-12 space-y-8">
-          <h2 className="text-2xl font-bold">Experience</h2>
+        <div className="space-y-8">
+          <h2 className="text-2xl font-semibold">Experience</h2>
           {experience.map((role) => (
             <article
               key={role.title}
@@ -89,7 +88,7 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className="flex justify-center">
           <Button asChild size="lg">
             <Link href="/contact">Get in touch</Link>
           </Button>
