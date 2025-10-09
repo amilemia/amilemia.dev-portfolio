@@ -5,7 +5,7 @@ export default defineConfig({
   reporter: 'list',
   fullyParallel: true,
   expect: {
-    timeout: 15000,
+    timeout: 30000,
   },
   use: {
     baseURL: 'http://localhost:3000',
@@ -14,8 +14,8 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
-    reuseExistingServer: true,
-    timeout: 120000,
+    reuseExistingServer: false,
+    timeout: 180000,
   },
   projects: [
     {

@@ -9,8 +9,15 @@ test('contact brief validates and submits', async ({ page }) => {
     });
   });
 
-  await page.goto('/contact');
+  await page.goto('/en/contact');
 
+  // Touch fields to trigger validation styling on blur
+  await page.getByTestId('name-input').focus();
+  await page.getByTestId('name-input').blur();
+  await page.getByTestId('email-input').focus();
+  await page.getByTestId('email-input').blur();
+
+  // Also click next to run form.trigger on the current step
   await page.getByTestId('brief-next').click();
 
   await expect(page.getByTestId('name-input')).toHaveAttribute('aria-invalid', 'true');

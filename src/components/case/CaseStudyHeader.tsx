@@ -1,8 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ArrowUpRight, Github } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import type { Messages } from "@/i18n";
+import { interpolate } from "@/i18n/interpolate";
 
 import { Metric } from "./Metric";
 
@@ -23,6 +25,7 @@ type CaseStudyHeaderProps = {
   stack?: string;
   metrics?: CaseStudyMetric[];
   links?: CaseStudyLinks;
+  messages: Messages["common"]["caseStudy"];
 };
 
 const extractStackItems = (stack?: string) => {
@@ -43,6 +46,7 @@ export function CaseStudyHeader({
   stack,
   metrics,
   links,
+  messages,
 }: CaseStudyHeaderProps) {
   const hasLinks = Boolean(links?.live || links?.repo);
   const stackItems = extractStackItems(stack);
@@ -58,7 +62,7 @@ export function CaseStudyHeader({
       <div className="space-y-10 p-8 sm:p-10 lg:p-12">
         <header className="space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/70">
-            Case Study
+            {messages.label}
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             {title}
@@ -73,7 +77,7 @@ export function CaseStudyHeader({
             {role && (
               <div>
                 <Badge
-                  aria-label={`Role: ${role}`}
+                  aria-label={interpolate(messages.roleLabel, { role })}
                   className="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide"
                   variant="secondary"
                 >
@@ -84,7 +88,7 @@ export function CaseStudyHeader({
             {hasStack && (
               <div className="flex flex-wrap gap-2">
                 {stackItems.map((item) => (
-                  <Badge key={item} aria-label={`Stack: ${item}`} variant="outline">
+                  <Badge key={item} aria-label={interpolate(messages.stackLabel, { item })} variant="outline">
                     {item}
                   </Badge>
                 ))}
@@ -96,7 +100,7 @@ export function CaseStudyHeader({
         {hasMetrics && (
           <div className="space-y-4">
             <h2 className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-              Impact metrics
+              {messages.impactMetrics}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {metrics?.map((metric) => (
@@ -111,7 +115,7 @@ export function CaseStudyHeader({
             {links?.live && (
               <Button asChild size="lg">
                 <Link href={links.live} rel="noopener noreferrer" target="_blank">
-                  Visit live site
+                  {messages.visitSite}
                   <ArrowUpRight aria-hidden="true" className="size-4" />
                 </Link>
               </Button>
@@ -120,7 +124,7 @@ export function CaseStudyHeader({
               <Button asChild size="lg" variant="outline">
                 <Link href={links.repo} rel="noopener noreferrer" target="_blank">
                   <Github aria-hidden="true" className="size-4" />
-                  View source
+                  {messages.viewSource}
                 </Link>
               </Button>
             )}

@@ -7,6 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics/track";
+import type { Messages } from "@/i18n";
+import { interpolate } from "@/i18n/interpolate";
 
 export type TestimonialItem = {
   quote: string;
@@ -17,9 +19,10 @@ export type TestimonialItem = {
 
 type CarouselProps = {
   items: TestimonialItem[];
+  messages: Messages["common"]["testimonials"];
 };
 
-export function Carousel({ items }: CarouselProps) {
+export function Carousel({ items, messages }: CarouselProps) {
   const trackRef = React.useRef<HTMLDivElement>(null);
   const slideRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   const scrollFrame = React.useRef<number | null>(null);
@@ -58,12 +61,14 @@ export function Carousel({ items }: CarouselProps) {
   }, []);
 
   const getInitials = React.useCallback((name: string) => {
-    return name
-      .split(/\s+/)
-      .filter(Boolean)
-      .map((part) => part[0]?.toUpperCase())
-      .slice(0, 2)
-      .join("") || "?";
+    return (
+      name
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((part) => part[0]?.toUpperCase())
+        .slice(0, 2)
+        .join("") || "?"
+    );
   }, []);
 
   const scrollToIndex = React.useCallback(
@@ -126,25 +131,22 @@ export function Carousel({ items }: CarouselProps) {
   React.useEffect(() => {
     if (!trackRef.current || !totalSlides) return;
 
-    handleScroll();
+    const container = trackRef.current;
+    container.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
   }, [handleScroll, totalSlides]);
 
   const handlePrevious = React.useCallback(() => {
-    const nextIndex = Math.max(0, activeIndex - 1);
-
-    if (nextIndex === activeIndex) return;
-
-    track("Testimonials: NextPrev", { index: nextIndex });
-    scrollToIndex(nextIndex, { focus: true });
+    track("Testimonials: NextPrev", { index: Math.max(0, activeIndex - 1) });
+    scrollToIndex(activeIndex - 1);
   }, [activeIndex, scrollToIndex]);
 
   const handleNext = React.useCallback(() => {
-    const nextIndex = Math.min(totalSlides - 1, activeIndex + 1);
-
-    if (nextIndex === activeIndex) return;
-
-    track("Testimonials: NextPrev", { index: nextIndex });
-    scrollToIndex(nextIndex, { focus: true });
+    track("Testimonials: NextPrev", { index: Math.min(totalSlides - 1, activeIndex + 1) });
+    scrollToIndex(activeIndex + 1);
   }, [activeIndex, scrollToIndex, totalSlides]);
 
   const handleSlideKeyDown = React.useCallback(
@@ -178,18 +180,18 @@ export function Carousel({ items }: CarouselProps) {
 
   const canGoBack = activeIndex > 0;
   const canGoForward = activeIndex < totalSlides - 1;
+  const counterLabel = interpolate(messages.counter, {
+    current: activeIndex + 1,
+    total: totalSlides,
+  });
 
   return (
-    <section
-      className="space-y-6"
-      aria-label="Testimonials"
-      data-testid="testimonial-carousel"
-    >
+    <section className="space-y-6" aria-label={messages.ariaLabel} data-testid="testimonial-carousel">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-1">
-          <h2 className="text-xl font-semibold">Testimonials</h2>
+          <h2 className="text-xl font-semibold">{messages.heading}</h2>
           <p className="text-sm text-muted-foreground" aria-live="polite" aria-atomic="true">
-            Testimonial {activeIndex + 1} of {totalSlides}
+            {counterLabel}
           </p>
         </div>
         {totalSlides > 1 && (
@@ -200,7 +202,7 @@ export function Carousel({ items }: CarouselProps) {
               size="icon"
               onClick={handlePrevious}
               disabled={!canGoBack}
-              aria-label="View previous testimonial"
+              aria-label={messages.previous}
               aria-controls={trackId}
             >
               <ChevronLeft className="size-4" aria-hidden="true" />
@@ -211,7 +213,7 @@ export function Carousel({ items }: CarouselProps) {
               size="icon"
               onClick={handleNext}
               disabled={!canGoForward}
-              aria-label="View next testimonial"
+              aria-label={messages.next}
               aria-controls={trackId}
             >
               <ChevronRight className="size-4" aria-hidden="true" />

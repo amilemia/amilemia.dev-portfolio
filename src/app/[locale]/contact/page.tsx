@@ -1,58 +1,62 @@
-'use client';
+﻿"use client";
 
-import { Container } from '@/components/Container';
-import { Section } from '@/components/Section';
-import { BriefWizard } from '@/components/contact/BriefWizard';
-import { SectionHeading } from '@/components/SectionHeading';
+import { useParams } from "next/navigation";
+
+import { Container } from "@/components/Container";
+import { Section } from "@/components/Section";
+import { BriefWizard } from "@/components/contact/BriefWizard";
+import { SectionHeading } from "@/components/SectionHeading";
+import { getMessages, type Locale } from "@/i18n";
+import { fallbackLocale, isLocale } from "@/i18n/locales";
 
 export default function ContactPage() {
+  const params = useParams<{ locale: string }>();
+  const rawLocale = params?.locale;
+  const locale: Locale = rawLocale && isLocale(rawLocale) ? rawLocale : fallbackLocale;
+  const messages = getMessages(locale);
+  const contact = messages.contact;
+
   return (
     <Section size="lg">
       <Container className="max-w-3xl space-y-16">
         <SectionHeading
-          title="Get in touch"
-          description="Share the goals, audience, and deadline for your next launch. I will review your brief within one business day and reply with availability, next steps, and a suggested kickoff date."
+          title={contact.heading.title}
+          description={contact.heading.description}
           align="center"
         />
 
         <div className="rounded-2xl border border-border/60 bg-card/60 p-6 text-sm text-muted-foreground shadow-sm backdrop-blur-sm">
-          <h2 className="text-base font-semibold text-foreground">What happens after you submit</h2>
+          <h2 className="text-base font-semibold text-foreground">{contact.steps.title}</h2>
           <ol className="mt-3 space-y-2">
-            <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
-              I review your brief and confirm fit, timeline, and any open questions.
-            </li>
-            <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
-              We schedule a 30-minute intro call to align on metrics, stakeholders, and scope.
-            </li>
-            <li className="flex items-start gap-2">
-              <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
-              You receive a proposal outlining deliverables, investment, and kickoff date.
-            </li>
+            {contact.steps.items.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+                {item}
+              </li>
+            ))}
           </ol>
         </div>
 
-        <BriefWizard />
+        <BriefWizard locale={locale} messages={contact.form} />
 
         <div className="grid gap-8 sm:grid-cols-2">
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Contact Information</h3>
+            <h3 className="mb-4 text-lg font-semibold">{contact.info.title}</h3>
             <div className="space-y-2 text-muted-foreground">
-              <p>Email: hi@amilemia.dev</p>
-              <p>Location: Remote</p>
+              <p>{contact.info.emailLabel}: {contact.info.emailValue}</p>
+              <p>{contact.info.locationLabel}: {contact.info.locationValue}</p>
             </div>
           </div>
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Connect With Me</h3>
-            <div className="flex gap-4">
+            <h3 className="mb-4 text-lg font-semibold">{contact.info.connectTitle}</h3>
+            <div className="flex gap-4 text-muted-foreground">
               <a
                 href="https://github.com/amilemia"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="transition-colors hover:text-foreground"
               >
-                <span className="sr-only">GitHub</span>
+                <span className="sr-only">{contact.info.social.github}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -73,9 +77,9 @@ export default function ContactPage() {
                 href="https://twitter.com/amilemia"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="transition-colors hover:text-foreground"
               >
-                <span className="sr-only">Twitter</span>
+                <span className="sr-only">{contact.info.social.twitter}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -95,9 +99,9 @@ export default function ContactPage() {
                 href="https://linkedin.com/in/amilemia"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="transition-colors hover:text-foreground"
               >
-                <span className="sr-only">LinkedIn</span>
+                <span className="sr-only">{contact.info.social.linkedin}</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

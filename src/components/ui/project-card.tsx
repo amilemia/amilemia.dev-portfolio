@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
+
 import { Badge } from "./badge";
 import { Button } from "./button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./card";
 import { track } from "@/lib/analytics/track";
+import type { Messages } from "@/i18n";
+import type { Locale } from "@/i18n";
+import { interpolate } from "@/i18n/interpolate";
 
 type ProjectCardProps = {
   slug: string;
@@ -14,19 +18,22 @@ type ProjectCardProps = {
   coverImage?: string;
   role?: string;
   tags?: string[];
+  messages: Messages["common"]["projectCard"];
+  locale: Locale;
 };
 
-export function ProjectCard({ slug, title, summary, coverImage, role, tags }: ProjectCardProps) {
+export function ProjectCard({ slug, title, summary, coverImage, role, tags, messages, locale }: ProjectCardProps) {
+  const detailHref = `/${locale}/projects/${slug}`;
   return (
     <Card
-      className="flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:outline-none group"
+      className="group flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2"
       data-testid="project-card"
     >
       {coverImage && (
         <div className="relative aspect-[16/9] overflow-hidden">
           <Image
             src={coverImage}
-            alt={`${title} cover image`}
+            alt={interpolate(messages.coverAlt, { title })}
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
@@ -34,11 +41,11 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags }: Pr
         </div>
       )}
       <CardHeader>
-        <div className="flex justify-between items-start gap-4">
+        <div className="flex items-start justify-between gap-4">
           <CardTitle className="text-xl">
             <Link
-              href={`/projects/${slug}`}
-              className="hover:underline focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background focus:rounded-sm"
+              href={detailHref}
+              className="focus:ring-offset-background hover:underline focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:rounded-sm"
               onClick={() => track('project_view', { project: slug })}
             >
               {title}
@@ -72,10 +79,10 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags }: Pr
         <Button
           asChild
           variant="link"
-          className="p-0 text-foreground/70 hover:text-foreground group-hover:translate-x-1 transition-transform duration-300"
+          className="p-0 text-foreground/70 transition-transform duration-300 hover:text-foreground group-hover:translate-x-1"
         >
-          <Link href={`/projects/${slug}`}>
-            View case study <span className="ml-1">&rarr;</span>
+          <Link href={detailHref}>
+            {messages.viewCaseStudy} <span className="ml-1">&rarr;</span>
           </Link>
         </Button>
       </CardFooter>
