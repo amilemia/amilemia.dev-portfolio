@@ -1,4 +1,4 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getProjectBySlug, getProjects } from '@/lib/content';
 import { ProjectContent } from './project-content';
@@ -23,7 +23,9 @@ type ProjectPageProps = {
   params: Promise<ProjectPageParams>;
 };
 
-type GenerateMetadataProps = ProjectPageProps;
+type GenerateMetadataProps = {
+  params: Promise<ProjectPageParams>;
+};
 
 // Generate metadata for the project page
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
@@ -78,7 +80,6 @@ export default async function Page({ params }: ProjectPageProps) {
   if (!slug) {
     notFound();
   }
-
   // Fetch the project data
   const project = await getProjectBySlug(slug);
 
@@ -88,4 +89,3 @@ export default async function Page({ params }: ProjectPageProps) {
 
   return <ProjectContent project={project} />;
 }
-
