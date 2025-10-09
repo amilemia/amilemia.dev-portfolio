@@ -79,15 +79,32 @@ export default async function Home() {
                 </li>
               </ul>
 
+              <p className="text-sm text-muted-foreground">
+                Want to see pricing?{' '}
+                <TrackedLink
+                  href="/services"
+                  eventName="CTA: View services"
+                  eventData={{ location: 'hero-copy' }}
+                  className="font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  Explore services packages →
+                </TrackedLink>
+              </p>
+
               <div className="flex flex-wrap gap-3 sm:justify-center lg:justify-start">
                 <Button asChild size="lg" className="px-6">
                   <TrackedLink href="/contact" eventName="CTA: Start a project" eventData={{ location: "hero" }}>
                     Book project intro
                   </TrackedLink>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="px-6">
-                  <TrackedLink href="/services" eventName="CTA: View services" eventData={{ location: "hero" }}>
-                    See services
+                <Button variant="outline" size="lg" className="px-6" asChild>
+                  <TrackedLink
+                    href="/projects"
+                    eventName="CTA: View work"
+                    eventData={{ location: "hero" }}
+                    aria-label="View work"
+                  >
+                    View work
                   </TrackedLink>
                 </Button>
               </div>

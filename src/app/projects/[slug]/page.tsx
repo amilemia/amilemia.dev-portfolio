@@ -1,4 +1,4 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getProjectBySlug, getProjects } from '@/lib/content';
 import { ProjectContent } from './project-content';
@@ -17,13 +17,17 @@ export async function generateStaticParams() {
   }));
 }
 
+type Awaitable<T> = T | Promise<T>;
+
 type ProjectPageParams = { slug: string };
 
 type ProjectPageProps = {
-  params: Promise<ProjectPageParams>;
+  params: Awaitable<ProjectPageParams>;
 };
 
-type GenerateMetadataProps = ProjectPageProps;
+type GenerateMetadataProps = {
+  params: Awaitable<ProjectPageParams>;
+};
 
 // Generate metadata for the project page
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
