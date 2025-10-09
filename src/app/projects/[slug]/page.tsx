@@ -17,21 +17,19 @@ export async function generateStaticParams() {
   }));
 }
 
-type Awaitable<T> = T | Promise<T>;
-
 type ProjectPageParams = { slug: string };
 
 type ProjectPageProps = {
-  params: Awaitable<ProjectPageParams>;
+  params: ProjectPageParams;
 };
 
 type GenerateMetadataProps = {
-  params: Awaitable<ProjectPageParams>;
+  params: ProjectPageParams;
 };
 
 // Generate metadata for the project page
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug } = params;
   const project = await getProjectBySlug(slug);
 
   if (!project) {
@@ -76,13 +74,12 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
 
 // This is the actual page component
 export default async function Page({ params }: ProjectPageProps) {
-  const { slug } = await params;
+  const { slug } = params;
 
   // Validate the slug
   if (!slug) {
     notFound();
   }
-
   // Fetch the project data
   const project = await getProjectBySlug(slug);
 
@@ -92,4 +89,3 @@ export default async function Page({ params }: ProjectPageProps) {
 
   return <ProjectContent project={project} />;
 }
-
