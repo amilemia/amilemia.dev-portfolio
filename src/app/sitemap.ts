@@ -1,53 +1,45 @@
-import { MetadataRoute } from 'next';
+﻿import { MetadataRoute } from 'next';
+
 import { absoluteUrl } from '@/lib/site';
-import { allProjects } from 'contentlayer/generated';
+import { getProjects } from '@/lib/content';
+import { locales, fallbackLocale } from '@/i18n/locales';
+
+const staticPaths = [
+  '',
+  '/projects',
+  '/services',
+  '/about',
+  '/contact',
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Get all static pages
-  const staticPages = [
-    {
-      url: absoluteUrl('/'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 1,
-    },
-    {
-      url: absoluteUrl('/projects'),
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: absoluteUrl('/services'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.75,
-    },
-    {
-      url: absoluteUrl('/about'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: absoluteUrl('/contact'),
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-  ];
+  const entries: MetadataRoute.Sitemap = [];
 
-  // Get all projects
-  const projects = allProjects.map((project) => ({
-    url: absoluteUrl(`/projects/${project.slug}`),
-    lastModified: project.dates?.end 
-      ? new Date(project.dates.end) 
-      : project.dates?.start 
-        ? new Date(project.dates.start) 
-        : new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }));
+  for (const locale of locales) {
+    const prefix = locale === fallbackLocale ? '' : `/${locale}`;
 
-  return [...staticPages, ...projects];
+    staticPaths.forEach((path) => {
+      const urlPath = `${prefix}${path}` || '/';
+      entries.push({
+        url: absoluteUrl(urlPath),
+        lastModified: new Date(),
+        changeFrequency: path === '' ? 'monthly' : 'weekly',
+        priority: path === '' ? 1 : path === '/projects' ? 0.8 : 0.7,
+      });
+    });
+
+    const projects = await getProjects(locale);
+    projects.forEach((project) => {
+      const urlPath = `${prefix}/projects/${project.slug}`;
+      const modifiedDate = project.dates?.end ? new Date(project.dates.end) : project.dates?.start ? new Date(project.dates.start) : new Date();
+      entries.push({
+        url: absoluteUrl(urlPath),
+        lastModified: modifiedDate,
+        changeFrequency: 'weekly',
+        priority: 0.9,
+      });
+    });
+  }
+
+  return entries;
 }

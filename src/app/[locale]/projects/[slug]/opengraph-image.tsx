@@ -1,11 +1,12 @@
 import { ImageResponse } from 'next/og';
-import { getProjectBySlug } from '@/lib/content';
 
-// Route segment config
-export const runtime = 'edge';
+import { getProjectBySlug } from '@/lib/content';
+import { fallbackLocale, isLocale, type Locale } from '@/i18n/locales';
+
+export const runtime = 'nodejs';
 
 type Props = {
-  params: { slug: string };
+  params: { locale: string; slug: string };
 };
 
 export const size = {
@@ -15,9 +16,9 @@ export const size = {
 
 export const contentType = 'image/png';
 
-// Image generation
 export default async function Image({ params }: Props) {
-  const project = await getProjectBySlug(params.slug);
+  const locale: Locale = isLocale(params.locale) ? params.locale : fallbackLocale;
+  const project = await getProjectBySlug(params.slug, locale);
 
   if (!project) {
     return new Response('Not Found', { status: 404 });
@@ -50,7 +51,7 @@ export default async function Image({ params }: Props) {
         >
           {project.title}
         </h1>
-        
+
         {project.summary && (
           <p
             style={{
@@ -97,16 +98,12 @@ export default async function Image({ params }: Props) {
             justifyContent: 'flex-end',
           }}
         >
-          {`amilemia.dev/projects/${params.slug}`}
+          {`amilemia.dev${locale === fallbackLocale ? '' : `/${locale}`}/projects/${params.slug}`}
         </div>
       </div>
     ),
     {
       ...size,
-      // Using system fonts for better performance
-      // No need to specify fonts array when using system fonts
     }
   );
 }
-
-

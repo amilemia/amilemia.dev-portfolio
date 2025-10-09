@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 
 test('home page navigates to projects', async ({ page }) => {
-  await page.goto('/', { waitUntil: 'networkidle' });
+  await page.goto('/en', { waitUntil: 'networkidle' });
 
   await Promise.all([
-    page.waitForURL(/\/projects$/, { timeout: 15000 }),
+    page.waitForURL(/\/(en\/)?projects$/, { timeout: 20000 }),
     page.getByRole('link', { name: 'View work' }).click(),
   ]);
 

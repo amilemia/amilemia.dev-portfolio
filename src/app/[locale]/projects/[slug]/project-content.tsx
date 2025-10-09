@@ -13,12 +13,24 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { track } from "@/lib/analytics/track";
+import type { Messages, Locale } from "@/i18n";
+import { getDateFnsLocale } from "@/i18n/date";
+
+export type ProjectContentMessages = {
+  backToProjects: string;
+  timeline: {
+    present: string;
+  };
+};
 
 type ProjectContentProps = {
   project: Project;
+  locale: Locale;
+  messages: ProjectContentMessages;
+  caseStudyMessages: Messages["common"]["caseStudy"];
 };
 
-export function ProjectContent({ project }: ProjectContentProps) {
+export function ProjectContent({ project, locale, messages, caseStudyMessages }: ProjectContentProps) {
   const MDXContent = useMDXComponent(project?.body?.code || "");
 
   useEffect(() => {
@@ -32,11 +44,22 @@ export function ProjectContent({ project }: ProjectContentProps) {
     ? project.stack.join(", ")
     : project.stack;
 
+  const dateLocale = getDateFnsLocale(locale);
+  const formatDate = (value?: string | null) => {
+    if (!value) return null;
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return value;
+    return format(parsed, "MMM yyyy", { locale: dateLocale });
+  };
+
+  const startDate = formatDate(project.dates?.start);
+  const endDate = project.dates?.end ? formatDate(project.dates.end) : messages.timeline.present;
+
   return (
     <Section>
       <Container className="space-y-12 py-12">
         <Button asChild variant="ghost" className="-ml-4 w-fit">
-          <Link href="/projects" className="flex items-center gap-2">
+          <Link href={`/${locale}/projects`} className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -51,7 +74,7 @@ export function ProjectContent({ project }: ProjectContentProps) {
               <path d="m12 19-7-7 7-7" />
               <path d="M19 12H5" />
             </svg>
-            Back to projects
+            {messages.backToProjects}
           </Link>
         </Button>
 
@@ -62,14 +85,15 @@ export function ProjectContent({ project }: ProjectContentProps) {
           stack={stackAsString}
           metrics={project.metrics}
           links={project.links}
+          messages={caseStudyMessages}
         />
 
         <div className="space-y-4">
-          {(project.dates?.start || project.dates?.end) && (
+          {(startDate || endDate) && (
             <p className="text-sm uppercase tracking-wide text-muted-foreground">
-              {project.dates?.start && format(new Date(project.dates.start), "MMM yyyy")} -
-              {" "}
-              {project.dates?.end ? format(new Date(project.dates.end), "MMM yyyy") : "Present"}
+              {startDate}
+              {startDate && " – "}
+              {endDate}
             </p>
           )}
 

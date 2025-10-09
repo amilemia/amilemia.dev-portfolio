@@ -2,12 +2,13 @@ import { expect, test } from '@playwright/test';
 
 test.describe('theme toggle', () => {
   test('applies selection, persists, and respects system preference', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/en');
 
     const htmlHasDark = () => page.evaluate(() => document.documentElement.classList.contains('dark'));
 
     // Enable dark mode and ensure the html element reflects it.
     await page.getByTestId('theme-toggle').click();
+    await expect(page.getByTestId('theme-dark')).toBeVisible();
     await page.getByTestId('theme-dark').click();
     await expect.poll(htmlHasDark).toBeTruthy();
 

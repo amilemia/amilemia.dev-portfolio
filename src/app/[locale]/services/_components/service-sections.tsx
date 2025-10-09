@@ -14,35 +14,32 @@ import {
 } from "@/components/ui/card";
 import { track } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils";
-import type { ServiceTier } from "@/data/services";
+import type { LocalizedServicePackage, ServiceTier } from "@/data/services";
+import type { Locale, Messages } from "@/i18n";
+import { interpolate } from "@/i18n/interpolate";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  maximumFractionDigits: 0,
-});
+function formatCurrency(locale: Locale) {
+  const formatter = new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
 
-function formatTierPrice(tier: ServiceTier): string {
-  const formatted = currencyFormatter.format(tier.price);
-  return tier.billingSuffix ? `${formatted}${tier.billingSuffix}` : formatted;
+  return (value: number, suffix?: string) => {
+    const base = formatter.format(value);
+    return suffix ? `${base}${suffix}` : base;
+  };
 }
 
-export type ServicePackage = {
-  name: string;
-  pitch: string;
-  deliverables: string[];
-  timeline: string;
-  href: string;
-  tiers: ServiceTier[];
-  idealFor: string;
-  badge?: string;
-};
-
 type ServiceCardListProps = {
-  services: ServicePackage[];
+  services: Array<LocalizedServicePackage & { href: string }>;
+  locale: Locale;
+  messages: Messages["services"]["labels"];
 };
 
-export function ServiceCardList({ services }: ServiceCardListProps) {
+export function ServiceCardList({ services, locale, messages }: ServiceCardListProps) {
+  const formatTierPrice = formatCurrency(locale);
+
   return (
     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {services.map((service) => {
@@ -51,7 +48,7 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
         const deliverablesId = `${baseId}-deliverables`;
 
         return (
-          <Card key={service.name} data-testid="service-card" className="h-full">
+          <Card key={service.id} data-testid="service-card" className="h-full">
             <CardHeader>
               {service.badge ? (
                 <span className="mb-3 inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -68,14 +65,14 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
             <CardContent>
               <div className="space-y-4">
                 <p className="rounded-md bg-muted/40 px-3 py-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  Best for {service.idealFor}
+                  {interpolate(messages.bestFor, { audience: service.idealFor })}
                 </p>
                 <section aria-labelledby={deliverablesId}>
                   <h3
                     id={deliverablesId}
                     className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground"
                   >
-                    What you get
+                    {messages.deliverablesHeading}
                   </h3>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     {service.deliverables.map((item) => (
@@ -88,24 +85,15 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
                 </section>
                 <section className="space-y-3">
                   <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                    Starter & plus options
+                    {messages.tiersHeading}
                   </h3>
                   <div className="space-y-2">
                     {service.tiers.map((tier) => (
-                      <div
-                        key={`${service.name}-${tier.name}`}
-                        className="rounded-2xl border border-border/70 bg-background/70 p-4"
-                      >
-                        <div className="flex items-center justify-between text-sm font-semibold text-foreground">
-                          <span>{tier.name}</span>
-                          <span>{formatTierPrice(tier)}</span>
-                        </div>
-                        <p className="mt-2 text-sm text-muted-foreground">{tier.description}</p>
-                      </div>
+                      <ServiceTierCard key={`${service.id}-${tier.id}`} tier={tier} formatPrice={formatTierPrice} />
                     ))}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Typical project timeline: {service.timeline}
+                    {interpolate(messages.timeline, { timeline: service.timeline })}
                   </p>
                 </section>
               </div>
@@ -116,19 +104,31 @@ export function ServiceCardList({ services }: ServiceCardListProps) {
                 className="w-full"
                 onClick={() => track("Services: Start", { package: service.name })}
               >
-                <Link
-                  href={service.href}
-                  className={cn(
-                    "inline-flex h-10 w-full items-center justify-center rounded-md font-semibold"
-                  )}
-                >
-                  Start a project
+                <Link href={service.href} className="inline-flex h-10 w-full items-center justify-center rounded-md font-semibold">
+                  {messages.cta}
                 </Link>
               </Button>
             </CardFooter>
           </Card>
         );
       })}
+    </div>
+  );
+}
+
+type ServiceTierCardProps = {
+  tier: ServiceTier;
+  formatPrice: (value: number, suffix?: string) => string;
+};
+
+function ServiceTierCard({ tier, formatPrice }: ServiceTierCardProps) {
+  return (
+    <div className="rounded-2xl border border-border/70 bg-background/70 p-4">
+      <div className="flex items-center justify-between text-sm font-semibold text-foreground">
+        <span>{tier.name}</span>
+        <span>{formatPrice(tier.price, tier.billingSuffix)}</span>
+      </div>
+      <p className="mt-2 text-sm text-muted-foreground">{tier.description}</p>
     </div>
   );
 }
@@ -172,15 +172,7 @@ function FaqDisclosure({ item }: FaqDisclosureProps) {
         onClick={() => setOpen((prev) => !prev)}
       >
         <span>{item.question}</span>
-        <span
-          aria-hidden="true"
-          className={cn(
-            "transition-transform",
-            open ? "rotate-45" : "rotate-0"
-          )}
-        >
-          +
-        </span>
+        <span aria-hidden="true" className={cn("transition-transform", open ? "rotate-45" : "rotate-0")}>+</span>
       </button>
       <div
         id={contentId}

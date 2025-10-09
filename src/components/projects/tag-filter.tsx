@@ -1,22 +1,23 @@
-'use client';
+﻿'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { track } from '@/lib/analytics/track';
+import type { Messages } from '@/i18n';
 
 type TagFilterProps = {
   tags: string[];
   selectedTag?: string | null | string[];
+  messages: Messages['common']['tagFilter'];
 };
 
-export function TagFilter({ tags, selectedTag }: TagFilterProps) {
+export function TagFilter({ tags, selectedTag, messages }: TagFilterProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isMounted, setIsMounted] = useState(false);
   
-  // Track filter changes with debounce
   useEffect(() => {
     if (!isMounted) {
       setIsMounted(true);
@@ -57,7 +58,7 @@ export function TagFilter({ tags, selectedTag }: TagFilterProps) {
           router.push(pathname, { scroll: false });
         }}
       >
-        All
+        {messages.all}
       </Button>
       {tags.map((tag) => (
         <Button

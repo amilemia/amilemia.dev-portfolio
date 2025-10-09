@@ -259,6 +259,67 @@ npm run dev
   - `CONTACT_TO=test@example.com`
 - On e2e failure, the Playwright report is uploaded as a build artifact.
 
+---
+
+## 🌍 Internationalization (i18n) & Routing — Recent Changes
+
+- **Localized app structure**: All pages live under `src/app/[locale]/...` with static params from `src/i18n/locales.ts`.
+- **Root layout split**:
+  - `src/app/layout.tsx` is now the root layout providing `<html>` and `<body>` with `suppressHydrationWarning` and fonts.
+  - `src/app/[locale]/layout.tsx` is a nested layout. It wraps pages with `ThemeProvider` and `ClientLayout` and exports `generateMetadata()` using the active locale.
+- **Root redirect**: `src/app/page.tsx` redirects `/` to `/${fallbackLocale}`.
+- **Middleware safety net**: `middleware.ts` still redirects non-localized inbound requests (e.g., `/projects`) to the fallback locale (e.g., `/en/projects`). Client-side links are now localized so middleware rarely triggers.
+
+### Linking Guidelines (Important)
+
+- Always link to localized routes in client code. Prefer `/${locale}/...` over `/...`.
+- `ClientLayout` (`src/app/[locale]/client-layout.tsx`) ensures:
+  - Brand link points to `/${locale}`
+  - `NavLink` computes `localizedHref` internally
+  - All header/mobile CTAs use localized paths
+- Components generating links must accept `locale` when needed:
+  - `ProjectCard` (`src/components/ui/project-card.tsx`) now accepts `locale` and builds `/${locale}/projects/${slug}`.
+  - Callers updated (home and projects pages) to pass `locale`.
+- Pages updated to use localized links:
+  - Home: `src/app/[locale]/page.tsx`
+  - Projects: `src/app/[locale]/projects/page.tsx`
+  - Project details back-link: `src/app/[locale]/projects/[slug]/project-content.tsx`
+  - Services: `src/app/[locale]/services/page.tsx`
+  - About: `src/app/[locale]/about/page.tsx`
+  - Not-found: `src/app/[locale]/not-found.tsx`
+
+### Hydration & Extensions
+
+- We added `suppressHydrationWarning` on both `<html>` and `<body>` in the root layout to avoid warnings from browser extensions (e.g., Grammarly) modifying the DOM before hydration.
+
+---
+
+## 🧪 Testing Updates
+
+- **Playwright stability improvements**:
+  - Home navigation: tolerate `/en/projects` vs `/projects` and slightly longer wait.
+  - Projects: after clicking a card, wait for URL change and assert that an H1 is visible; optionally verify the strict URL via the clicked `href`.
+  - Contact: explicitly trigger validation (focus/blur + next) before asserting `aria-invalid`.
+  - Theme toggle: wait for dropdown items (`data-testid`) before clicking.
+
+---
+
+## ⚙️ Development Notes (Windows)
+
+- Contentlayer on Windows may warn about `contentlayer/generated` imports. Two options:
+  1) Add a path alias in `tsconfig.json`:
+     ```json
+     {
+       "compilerOptions": {
+         "baseUrl": ".",
+         "paths": {
+           "contentlayer/generated": [".contentlayer/generated"]
+         }
+       }
+     }
+     ```
+  2) Or set `disableImportAliasWarning: true` in `contentlayer.config.ts`.
+
 ## 🚀 Deployment
 
 ### Vercel
@@ -311,7 +372,7 @@ NEXT_PUBLIC_SITE_URL=https://amilemia.dev
 3. **Robots.txt**: Verify at `/robots.txt`
 4. **OpenGraph Images**:
    - Homepage: `https://amilemia.dev/opengraph-image`
-   - Project pages: `https://amilemia.dev/projects/[slug]/opengraph-image`
+   - Project pages: `https://amilemia.dev/{locale}/projects/[slug]/opengraph-image`
 5. **Structured Data**: Use [Google's Rich Results Test](https://search.google.com/test/rich-results)
 
 ### Adding New Projects

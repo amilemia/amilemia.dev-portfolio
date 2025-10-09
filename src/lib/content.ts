@@ -1,4 +1,7 @@
-import { Project as ProjectType } from 'contentlayer/generated';
+﻿import type { Project as ProjectType } from 'contentlayer/generated';
+
+import type { Locale } from '@/i18n';
+import { fallbackLocale } from '@/i18n';
 
 function getProjectTimestamp(project: ProjectType): number {
   const rawDate = project.dates?.end ?? project.dates?.start;
@@ -21,12 +24,43 @@ async function getProjectsData(): Promise<ProjectType[]> {
   }
 }
 
-export async function getProjects(): Promise<ProjectType[]> {
-  const projects = await getProjectsData();
-  return sortProjects(projects);
+function groupProjectsBySlug(projects: ProjectType[]): Map<string, Partial<Record<Locale, ProjectType>>> {
+  const grouped = new Map<string, Partial<Record<Locale, ProjectType>>>();
+
+  projects.forEach((project) => {
+    const locale = (project.locale ?? fallbackLocale) as Locale;
+    const slug = project.slug;
+    const bucket = grouped.get(slug) ?? {};
+    bucket[locale] = project;
+    grouped.set(slug, bucket);
+  });
+
+  return grouped;
 }
 
-export async function getProjectBySlug(slug: string): Promise<ProjectType | undefined> {
+function selectLocalizedProjects(grouped: Map<string, Partial<Record<Locale, ProjectType>>>, locale: Locale): ProjectType[] {
+  const selected: ProjectType[] = [];
+
+  grouped.forEach((entry) => {
+    const match = entry[locale] ?? entry[fallbackLocale];
+    if (match) {
+      selected.push(match);
+    }
+  });
+
+  return selected;
+}
+
+export async function getProjects(locale: Locale): Promise<ProjectType[]> {
   const projects = await getProjectsData();
-  return projects.find((project) => project.slug === slug);
+  const grouped = groupProjectsBySlug(projects);
+  return sortProjects(selectLocalizedProjects(grouped, locale));
+}
+
+export async function getProjectBySlug(slug: string, locale: Locale): Promise<ProjectType | undefined> {
+  const projects = await getProjectsData();
+  const grouped = groupProjectsBySlug(projects);
+  const entry = grouped.get(slug);
+  if (!entry) return undefined;
+  return entry[locale] ?? entry[fallbackLocale];
 }
