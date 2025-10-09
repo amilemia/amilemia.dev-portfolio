@@ -20,16 +20,16 @@ export async function generateStaticParams() {
 type ProjectPageParams = { slug: string };
 
 type ProjectPageProps = {
-  params: ProjectPageParams;
+  params: Promise<ProjectPageParams>;
 };
 
 type GenerateMetadataProps = {
-  params: ProjectPageParams;
+  params: Promise<ProjectPageParams>;
 };
 
 // Generate metadata for the project page
 export async function generateMetadata({ params }: GenerateMetadataProps): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
   if (!project) {
@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
 
 // This is the actual page component
 export default async function Page({ params }: ProjectPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Validate the slug
   if (!slug) {
