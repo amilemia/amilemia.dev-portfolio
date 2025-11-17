@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { format } from "date-fns";
-import { useMDXComponent } from "next-contentlayer2/hooks";
 import type { Project } from "contentlayer/generated";
 import { useEffect } from "react";
 
 import { CaseStudyHeader } from "@/components/case/CaseStudyHeader";
+import { CaseStudyContent } from "@/components/case/CaseStudyContent";
 import { Testimonial } from "@/components/case/Testimonial";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -31,8 +31,6 @@ type ProjectContentProps = {
 };
 
 export function ProjectContent({ project, locale, messages, caseStudyMessages }: ProjectContentProps) {
-  const MDXContent = useMDXComponent(project?.body?.code || "");
-
   useEffect(() => {
     track("Project: View", {
       slug: project.slug,
@@ -116,9 +114,9 @@ export function ProjectContent({ project, locale, messages, caseStudyMessages }:
           />
         )}
 
-        <div className="prose max-w-none dark:prose-invert">
-          {project.body && <MDXContent />}
-        </div>
+        {project.body?.code && (
+          <CaseStudyContent code={project.body.code} />
+        )}
       </Container>
     </Section>
   );

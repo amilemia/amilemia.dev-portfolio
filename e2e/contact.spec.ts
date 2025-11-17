@@ -33,10 +33,10 @@ test('contact brief validates and submits', async ({ page }) => {
 
   await page.getByTestId('brief-next').click();
 
-  await expect(page.getByText('Select at least one project scope')).toBeVisible();
+  await expect(page.getByText('Select at least one option')).toBeVisible();
   await expect(page.getByTestId('message-input')).toHaveAttribute('aria-invalid', 'true');
 
-  const projectScopeGroup = page.getByRole('group', { name: 'Project scope' });
+  const projectScopeGroup = page.getByRole('group', { name: 'What do you need?' });
   await expect(projectScopeGroup).toBeVisible();
 
   await projectScopeGroup.getByRole('checkbox', { name: 'Portfolio site' }).check();
@@ -45,12 +45,12 @@ test('contact brief validates and submits', async ({ page }) => {
   await page.getByTestId('brief-next').click();
 
   await page.getByTestId('start-date-input').fill('2025-06-01');
-  await page.getByLabel('Timing notes').fill('We would like to launch in Q3.');
+  await page.getByLabel('Any timing constraints?').fill('We would like to launch in Q3.');
 
   await page.getByTestId('brief-next').click();
 
   await page.getByTestId('submit-button').click();
 
-  const toast = page.getByRole('region', { name: 'Notifications alt+T' }).getByText('Brief sent!');
+  const toast = page.getByRole('region', { name: 'Notifications alt+T' }).getByText("Message sent! I'll respond within 1 business day.");
   await expect(toast).toBeVisible();
 });

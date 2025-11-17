@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
+
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ProjectCard } from "@/components/ui/project-card";
 import { TagFilter } from "@/components/projects/tag-filter";
 import { getProjects } from "@/lib/content";
+import { generateHreflangAlternates } from "@/lib/metadata";
 import { getMessages, type Locale } from "@/i18n";
 import { fallbackLocale, isLocale } from "@/i18n/locales";
 
@@ -13,6 +16,20 @@ type PageProps = {
   params: Promise<{ locale: string }>;
   searchParams?: Promise<SearchParams>;
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = isLocale(rawLocale) ? rawLocale : fallbackLocale;
+  const messages = getMessages(locale);
+
+  const alternates = generateHreflangAlternates('/projects', locale);
+
+  return {
+    title: messages.projects.heading.title,
+    description: messages.ads.metaDescriptions.projects,
+    alternates,
+  } satisfies Metadata;
+}
 
 export default async function ProjectsPage({ params, searchParams }: PageProps) {
   const { locale: rawLocale } = await params;

@@ -2,7 +2,7 @@
 
 import { absoluteUrl } from '@/lib/site';
 import { getProjects } from '@/lib/content';
-import { locales, fallbackLocale } from '@/i18n/locales';
+import { locales } from '@/i18n/locales';
 
 const staticPaths = [
   '',
@@ -16,10 +16,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const locale of locales) {
-    const prefix = locale === fallbackLocale ? '' : `/${locale}`;
+    // Always include explicit locale prefix for all locales
+    const prefix = `/${locale}`;
 
     staticPaths.forEach((path) => {
-      const urlPath = `${prefix}${path}` || '/';
+      const urlPath = `${prefix}${path}`;
       entries.push({
         url: absoluteUrl(urlPath),
         lastModified: new Date(),

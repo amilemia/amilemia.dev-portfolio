@@ -7,30 +7,44 @@ function normalizePathname(pathname: string): string {
 }
 
 export function stripLocaleFromPathname(pathname: string, locale: Locale): string {
-  const normalized = normalizePathname(pathname);
+  // Separate pathname from query params and hash
+  const queryIndex = pathname.indexOf('?');
+  const hashIndex = pathname.indexOf('#');
+  
+  let basePath = pathname;
+  let queryAndHash = '';
+  
+  if (queryIndex !== -1) {
+    basePath = pathname.slice(0, queryIndex);
+    queryAndHash = pathname.slice(queryIndex);
+  } else if (hashIndex !== -1) {
+    basePath = pathname.slice(0, hashIndex);
+    queryAndHash = pathname.slice(hashIndex);
+  }
+  
+  const normalized = normalizePathname(basePath);
   const prefix = `/${locale}`;
 
   if (locale === defaultLocale && !normalized.startsWith(`${prefix}/`) && normalized !== prefix) {
-    return normalized;
+    return normalized + queryAndHash;
   }
 
   if (normalized === prefix) {
-    return "/";
+    return "/" + queryAndHash;
   }
 
   if (normalized.startsWith(`${prefix}/`)) {
     const nextPath = normalized.slice(prefix.length);
-    return nextPath.startsWith("/") ? nextPath : `/${nextPath}`;
+    const cleanPath = nextPath.startsWith("/") ? nextPath : `/${nextPath}`;
+    return cleanPath + queryAndHash;
   }
 
-  return normalized;
+  return normalized + queryAndHash;
 }
 
 export function buildLocalizedPathname(pathname: string, locale: Locale): string {
   const base = normalizePathname(pathname);
-  if (locale === defaultLocale) {
-    return base;
-  }
+  // Always include locale prefix for both EN and FR to ensure reliable switching
   if (base === "/") {
     return `/${locale}`;
   }

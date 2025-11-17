@@ -15,6 +15,7 @@ export type TestimonialItem = {
   author: string;
   role?: string;
   avatarUrl?: string;
+  metric?: string;
 };
 
 type CarouselProps = {
@@ -246,9 +247,16 @@ export function Carousel({ items, messages }: CarouselProps) {
               )}
             >
               <figure className="flex h-full flex-col justify-between gap-6 rounded-3xl border bg-background/80 p-8 shadow-sm backdrop-blur-sm">
-                <blockquote className="text-lg font-medium leading-relaxed text-foreground sm:text-xl">
-                  &ldquo;{item.quote}&rdquo;
-                </blockquote>
+                <div className="space-y-4">
+                  <blockquote className="text-lg font-medium leading-relaxed text-foreground sm:text-xl">
+                    &ldquo;{item.quote}&rdquo;
+                  </blockquote>
+                  {item.metric && (
+                    <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
+                      {item.metric}
+                    </div>
+                  )}
+                </div>
                 <figcaption className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
                   <span className="flex size-12 items-center justify-center overflow-hidden rounded-full border border-border bg-muted text-base font-semibold text-foreground">
                     {item.avatarUrl ? (
