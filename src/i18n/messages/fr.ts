@@ -6,7 +6,7 @@ export const frMessages: Messages = {
     site: {
       name: "amilemia.dev",
       title: "Amilemia – Développeuse web",
-      description: "Développeuse web freelance qui crée des expériences web rapides et accessibles.",
+      description: "Développeuse web freelance spécialisée dans la création de sites rapides et accessibles.",
       jobTitle: "Développeuse web",
       openGraphLocale: "fr_FR",
     },
@@ -20,18 +20,20 @@ export const frMessages: Messages = {
         { key: "about", label: "À propos", href: "/about" },
         { key: "contact", label: "Contact", href: "/contact" },
       ],
-      cta: "Réserver un appel découverte",
-      mobileCtaLabel: "Réserver un appel projet",
-      open: "Ouvrir la navigation",
-      close: "Fermer la navigation",
+      cta: "Démarrer un projet",
+      mobileCtaLabel: "Démarrer un projet",
+      open: "Ouvrir le menu",
+      close: "Fermer le menu",
     },
     footer: {
       rights: "Tous droits réservés.",
+      tagline: "Création de sites rapides et accessibles qui convertissent. Disponible pour de nouveaux projets.",
       email: "hi@amilemia.dev",
       emailLabel: "E-mail",
       locationLabel: "Localisation",
-      locationValue: "À distance",
-      connectLabel: "Réseaux",
+      locationValue: "Télétravail (UTC+1)",
+      connectLabel: "Me suivre",
+      contactLabel: "Contact",
       social: {
         github: "GitHub",
         twitter: "Twitter",
@@ -39,14 +41,14 @@ export const frMessages: Messages = {
       },
     },
     actions: {
-      bookIntro: "Réserver un appel projet",
-      viewWork: "Voir les projets",
-      viewAllServices: "Voir tous les services",
+      bookIntro: "Prendre rendez-vous",
+      viewWork: "Voir mes réalisations",
+      viewAllServices: "Découvrir les services",
       viewAllProjects: "Voir tous les projets",
-      viewCaseStudies: "Voir les études de cas",
-      exploreServices: "Découvrir les offres de services",
-      startProject: "Lancer un projet",
-      emailDirect: "Envoyer un e-mail à hi@amilemia.dev",
+      viewCaseStudies: "Consulter les études de cas",
+      exploreServices: "Découvrir les offres",
+      startProject: "Démarrer un projet",
+      emailDirect: "M'envoyer un e-mail",
     },
     themeToggle: {
       ariaLabel: "Changer de thème",
@@ -88,134 +90,144 @@ export const frMessages: Messages = {
     hero: {
       availability: {
         srLabel: "Disponibilité actuelle :",
-        template: "1 créneau projet ouvert pour {{period}} – À distance (UTC+1)",
+        template: "1 place disponible pour {{period}} – Télétravail (UTC+1)",
       },
-      headline: "Lancez et améliorez votre site avec une partenaire solo fiable.",
+      headline: "Lancez plus vite avec une développeuse qui maîtrise stratégie, design et code.",
       description:
-        "J'accompagne les fondatrices et petites équipes pour planifier, concevoir et livrer des expériences web rapides et accessibles — sans ralentir votre cadence ni perdre le contexte.",
+        "J'aide les fondateurs et petites équipes à lancer des sites performants en quelques semaines. De la découverte au déploiement, vous travaillez avec une seule personne qui comprend vos objectifs et livre une qualité prête pour la production.",
       bulletPoints: [
-        "Stratégie, design et développement Next.js gérés de bout en bout par une seule personne.",
-        "Mises à jour asynchrones chaque semaine, préproductions et objectifs clairs à chaque sprint.",
-        "Accessibilité, performance et tests anticipés avant la mise en ligne.",
+        "Stratégie, design et développement Next.js—sans transfert entre spécialistes.",
+        "Points d'avancement hebdomadaires avec prévisualisations pour suivre les résultats en temps réel.",
+        "Accessibilité, performance et SEO intégrés dès le départ, pas ajoutés après coup.",
       ],
-      pricingPrompt: "Envie de connaître les tarifs ?",
-      clientsIntro: "De la confiance chez",
+      pricingPrompt: "Découvrir les offres",
+      clientsIntro: "Ils me font confiance",
       clients: ["Relay CRM", "Launchpad Studio", "Stellar Labs"],
+      trustIndicators: {
+        wcagCompliant: "Conforme WCAG AA",
+        lighthouse90Plus: "Scores Lighthouse 90+",
+        postLaunchSupport: "Support 14 jours post-lancement",
+      },
       insights: {
-        title: "Comment se déroule la collaboration",
+        title: "Notre méthode de travail",
         description:
-          "Nous alignons l'objectif, cadrons l'expérience et livrons selon un planning sans intermédiaires. Vous restez concentré·e sur la stratégie pendant que je gère l'exécution.",
+          "Nous partons de votre objectif business, cartographions l'expérience utilisateur et livrons dans les délais. Vous vous concentrez sur la stratégie pendant que je m'occupe du design et du développement.",
         items: [
           {
-            title: "Fenêtre de livraison",
-            description: "Mise en ligne pilote en 2 à 6 semaines selon la préparation du périmètre.",
+            title: "Livraison rapide",
+            description: "La plupart des projets sont en ligne en 2 à 6 semaines avec des jalons clairs et sans surprise.",
           },
           {
-            title: "Scorecard de lancement",
-            description: "Accessibilité, performance, QA et analytics contrôlés avant la mise en production.",
+            title: "Qualité production",
+            description: "Chaque livraison passe les audits d'accessibilité, les tests de performance et la QA avant la mise en ligne.",
           },
           {
-            title: "Collaboration",
-            description: "Mises à jour asynchrones, vidéos Loom et backlog partagé pour garder tout le monde aligné.",
+            title: "Transparence totale",
+            description: "Points hebdomadaires asynchrones, vidéos explicatives et tableau de tâches partagé pour rester informé sans réunions.",
           },
         ],
       },
     },
     servicesPreview: {
       heading: {
-        title: "Des services pensés pour le lancement",
-        description: "Des offres packagées pour passer du cadrage à la mise en ligne sans surprises.",
+        title: "Des services qui livrent des résultats",
+        description: "Forfaits à périmètre fixe conçus pour lancer rapidement avec des livrables, délais et résultats clairs.",
       },
-      viewAll: "Voir tous les services",
+      viewAll: "Découvrir les services",
     },
     recentProjects: {
       heading: {
-        title: "Projets récents",
-        description: "Des études de cas mêlant UX soignée et gains mesurables en conversion, activation et rétention.",
+        title: "Réalisations récentes",
+        description: "Projets réels avec résultats mesurables—de +28% de conversion à des sites lancés en 3 semaines.",
       },
       viewAll: "Voir tous les projets",
+    },
+    finalCta: {
+      headline: "Prêt à lancer votre prochain projet ?",
+      description: "Partagez vos objectifs et votre calendrier. Je réviserai votre brief et vous répondrai sous un jour ouvrable avec les prochaines étapes et ma disponibilité.",
+      responseTime: "Réponse sous 1 jour ouvrable • Démarrage en 2-3 semaines",
     },
   },
   services: {
     labels: {
       bestFor: "Idéal pour {{audience}}",
-      deliverablesHeading: "Ce que vous obtenez",
-      tiersHeading: "Options Starter et Plus",
-      timeline: "Durée typique du projet : {{timeline}}",
-      cta: "Lancer un projet",
+      deliverablesHeading: "Ce qui est inclus",
+      tiersHeading: "Choisissez votre formule",
+      timeline: "Délai : {{timeline}}",
+      cta: "Démarrer",
     },
     packages: {
       launchEssentials: {
-        name: "Lancement essentiel",
-        pitch: "Concevoir et livrer un site marketing soigné qui inspire confiance dès le premier jour.",
+        name: "Lancement Express",
+        pitch: "Passez de l'idée au site en ligne en quelques semaines avec une présence marketing soignée et prête à convertir.",
         deliverables: [
-          "Atelier de cadrage pour clarifier l'offre, la cible et le critère de succès",
-          "Page d'accueil, services et parcours de contact responsives construits avec Next.js",
-          "Fondations SEO, analytics et vérifications d'accessibilité",
-          "Saisie de contenu et relecture pour jusqu'à cinq sections",
-          "Checklist de mise en ligne, walkthrough vidéo et notes de passation",
+          "Appel découverte pour définir votre offre, votre audience et vos indicateurs de succès",
+          "Page d'accueil, page services et formulaire de contact responsive développés avec Next.js",
+          "Configuration SEO, intégration analytics et conformité accessibilité",
+          "Migration de contenu et révision de textes pour jusqu'à 5 sections",
+          "Checklist de lancement, vidéo explicative et documentation de passation",
         ],
         timeline: "2 à 3 semaines après le démarrage",
-        idealFor: "Fondatrices ou petites équipes qui lancent leur premier site",
-        badge: "Accessible",
-        tiers: {
-          starter: {
-            name: "Starter",
-            description: "Site monopage couvrant votre offre, vos preuves et un parcours de contact clair.",
-          },
-          plus: {
-            name: "Plus",
-            description: "Jusqu'à cinq sections avec capture de leads, prise de rendez-vous et emplacements prêts pour un CMS.",
-          },
-        },
-      },
-      conversionRefresh: {
-        name: "Relance conversion",
-        pitch: "Haussez le niveau d'un site existant avec un message plus clair, des performances accrues et des CTA plus forts.",
-        deliverables: [
-          "Audit de la performance actuelle, de l'accessibilité et du contenu",
-          "Refonte du hero, des services et des preuves centrée sur la conversion",
-          "Bibliothèque de composants légère pour des sections réutilisables",
-          "Améliorations de performance et d'accessibilité avec rapport avant/après",
-          "Revue des événements analytics et recommandations",
-        ],
-        timeline: "3 à 4 semaines, itérations incluses",
-        idealFor: "PME en croissance qui veulent un site plus performant",
+        idealFor: "les fondateurs et petites équipes qui lancent leur premier site professionnel",
         badge: "Le plus populaire",
         tiers: {
           starter: {
             name: "Starter",
-            description: "Refresh orienté conversion pour trois sections clés avec mise à jour du copywriting.",
+            description: "Site une page avec votre offre, vos preuves sociales et un parcours de contact clair.",
           },
           plus: {
             name: "Plus",
-            description: "Inclut amélioration des composants, optimisation des temps de chargement, refonte des événements analytics et support QA pour la mise en ligne.",
+            description: "Site multi-pages avec formulaires de capture de leads, réservation de rendez-vous et contenu prêt pour CMS.",
+          },
+        },
+      },
+      conversionRefresh: {
+        name: "Refonte Conversion",
+        pitch: "Transformez votre site existant en machine à convertir avec un message plus percutant et des performances optimales.",
+        deliverables: [
+          "Audit complet de la performance, de l'accessibilité et de l'efficacité du message",
+          "Refonte des sections hero, services et preuves sociales optimisée pour la conversion",
+          "Bibliothèque de composants réutilisables pour un design cohérent et maintenable",
+          "Optimisation des performances avec rapport de métriques avant/après",
+          "Revue analytics avec recommandations de tracking d'événements",
+        ],
+        timeline: "3 à 4 semaines, révisions incluses",
+        idealFor: "les entreprises en croissance qui ont besoin de générer plus de leads",
+        badge: "Meilleur rapport qualité-prix",
+        tiers: {
+          starter: {
+            name: "Starter",
+            description: "Refonte de 3 sections clés avec textes et design orientés conversion.",
+          },
+          plus: {
+            name: "Plus",
+            description: "Refonte complète avec bibliothèque de composants, optimisation de vitesse, configuration analytics et QA.",
           },
         },
       },
       growthSupport: {
-        name: "Support croissance",
-        pitch: "Un accompagnement continu en design et dev pour continuer à expédier pages et améliorations.",
+        name: "Accompagnement Continu",
+        pitch: "Continuez à livrer expérimentations, landing pages et améliorations produit sans embaucher à temps plein.",
         deliverables: [
-          "Session de planification mensuelle pour prioriser expériences et correctifs",
-          "Jusqu'à 20 heures de design + développement par mois",
-          "Itérations de landing pages, polish de fonctionnalités ou dette technique",
-          "Mises à jour asynchrones, walkthroughs Loom et backlog partagé",
-          "Les heures non utilisées sont reportées un mois de plus pour ne rien perdre",
+          "Appel de planification mensuel pour prioriser les expérimentations et améliorations techniques",
+          "Jusqu'à 20 heures de design et développement par mois",
+          "Création de landing pages, itérations de fonctionnalités ou nettoyage de dette technique",
+          "Points hebdomadaires asynchrones, vidéos explicatives et tableau de tâches partagé",
+          "Les heures non utilisées sont reportées d'un mois—aucun budget gaspillé",
         ],
-        timeline: "Engagement mensuel renouvelable",
-        idealFor: "Petites équipes qui veulent un renfort flexible sans recruter",
-        badge: "Meilleur ratio",
+        timeline: "Mensuel, résiliable à tout moment",
+        idealFor: "les équipes qui ont besoin d'un support développement continu sans embauche à temps plein",
+        badge: "Flexible",
         tiers: {
           starter: {
             name: "Starter",
             billingSuffix: " / mois",
-            description: "Jusqu'à 10 heures pour des itérations rapides, des ajustements de landing ou des correctifs.",
+            description: "10 heures par mois pour itérations rapides, landing pages ou corrections de bugs.",
           },
           plus: {
             name: "Plus",
             billingSuffix: " / mois",
-            description: "Jusqu'à 20 heures avec priorité de réponse, support d'expérimentations et heures reportées.",
+            description: "20 heures par mois avec support prioritaire, création d'expérimentations et report d'heures.",
           },
         },
       },
@@ -224,62 +236,62 @@ export const frMessages: Messages = {
       meta: {
         title: "Services",
         description:
-          "Des offres claires pour lancer un nouveau site, revitaliser l'existant ou sécuriser un accompagnement continu. Partagez vos objectifs, choisissez l'option adaptée et nous démarrons rapidement.",
+          "Forfaits à périmètre fixe pour lancer des sites, améliorer les conversions ou obtenir un support développement continu. Livrables clairs, délais précis et tarifs transparents—démarrez en quelques semaines, pas en mois.",
       },
       hero: {
         eyebrow: "Services",
-        title: "Des projets qui sortent vraiment.",
+        title: "Lancez plus vite, convertissez mieux.",
         description:
-          "Des offres claires pour lancer un nouveau site, revitaliser l'existant ou sécuriser un accompagnement continu. Partagez vos objectifs, choisissez l'option adaptée et nous démarrons rapidement.",
+          "Forfaits à périmètre fixe pour lancer de nouveaux sites, rafraîchir l'existant ou réserver un accompagnement continu. Choisissez une formule, partagez vos objectifs et démarrez en quelques semaines.",
         highlights: [
-          "Livrables prêts pour la mise en ligne avec accessibilité, performance et tests intégrés.",
-          "Collaboration asynchrone : walkthroughs Loom hebdomadaires et backlog partagé.",
-          "Tarifs, délais et prochaines étapes transparents pour valider rapidement.",
+          "Chaque projet inclut audits d'accessibilité, optimisation des performances et tests QA.",
+          "Points d'avancement hebdomadaires avec vidéos explicatives—vous savez toujours où on en est.",
+          "Tarifs et délais clairs pour obtenir l'approbation interne rapidement.",
         ],
       },
       packages: {
-        title: "Des forfaits pensés pour garder l'élan",
-        description: "Chaque mission inclut accessibilité, analytics et support de mise en ligne.",
+        title: "Choisissez votre formule",
+        description: "Chaque formule inclut conformité accessibilité, configuration analytics et support post-lancement.",
       },
       differentiators: {
-        title: "Pourquoi les équipes font appel à moi",
+        title: "Pourquoi les équipes choisissent de travailler avec moi",
         items: [
           {
-            title: "Orienté résultats",
-            body: "Nous commençons par l'objectif à atteindre — plus de demandes, un message plus clair ou de meilleures performances — et tout le travail s'aligne dessus.",
+            title: "Focus sur les résultats",
+            body: "Nous partons de votre objectif business—plus de leads, meilleures conversions, temps de chargement plus rapides—et construisons la solution autour de ce résultat.",
           },
           {
-            title: "Partenaire impliquée",
-            body: "Vous travaillez avec une seule personne du cadrage à la mise en ligne. Moins de friction, pas de perte d'information et une vision claire de l'avancement.",
+            title: "Un seul interlocuteur, du début à la fin",
+            body: "Vous travaillez avec une seule personne de la découverte au lancement. Pas de transferts, pas de perte de contexte et accès direct à l'avancement.",
           },
           {
-            title: "Livraison transparente",
-            body: "Updates asynchrones, walkthroughs Loom et backlog partagé pour que tout le monde sache ce qui vient de sortir et ce qui arrive.",
+            title: "Toujours informé",
+            body: "Points hebdomadaires, vidéos explicatives et tableau de tâches partagé pour toujours savoir ce qui est fait et ce qui vient.",
           },
         ],
       },
       process: {
-        title: "La démarche",
+        title: "Comment ça marche",
         steps: [
           {
-            title: "Découvrir",
+            title: "Découverte",
             description:
-              "Des ateliers de lancement pour clarifier la cible, le message et le KPI visé. Vous repartez avec un brief concret et des critères de réussite.",
+              "Nous commençons par un appel de lancement pour clarifier votre audience, vos objectifs et vos indicateurs de succès. Vous obtenez un brief clair et un calendrier.",
           },
           {
-            title: "Planifier",
+            title: "Planification",
             description:
-              "Je traduis le cadrage en wireflows, planning de livraison et jalons. Vous validez le périmètre, les checkpoints et les exigences de mise en ligne.",
+              "Je cartographie les structures de pages, les parcours utilisateurs et les jalons de livraison. Vous approuvez le périmètre et les exigences de lancement avant qu'on construise.",
           },
           {
-            title: "Construire",
+            title: "Construction",
             description:
-              "Design et développement avancent en parallèle. Walkthroughs vidéo, préproductions et checklists pour analytics, SEO et accessibilité.",
+              "Design et développement avancent ensemble. Vous recevez des points hebdomadaires, des prévisualisations de staging et des checklists pour SEO, analytics et accessibilité.",
           },
           {
-            title: "Lancer",
+            title: "Lancement",
             description:
-              "Déploiement, vérification du tracking et documentation pour garder l'élan. Le support post-lancement couvre correctifs, expérimentations et prochaine itération.",
+              "Nous déployons, vérifions le tracking et transférons la documentation. Vous bénéficiez de 14 jours de support post-lancement pour les corrections et questions.",
           },
         ],
       },
@@ -288,84 +300,84 @@ export const frMessages: Messages = {
         items: [
           {
             id: "start",
-            question: "Quand pouvons-nous démarrer ?",
+            question: "Dans combien de temps peut-on démarrer ?",
             answer:
-              "La plupart des projets démarrent sous deux à trois semaines. Indiquez votre échéance dans le brief et je confirme la première date de lancement disponible sous un jour ouvré.",
+              "La plupart des projets démarrent sous 2 à 3 semaines. Partagez votre calendrier quand vous me contactez, et je confirme ma disponibilité sous un jour ouvré.",
           },
           {
             id: "brand-guidelines",
-            question: "Pouvez-vous travailler avec nos guidelines et notre design system ?",
+            question: "Pouvez-vous travailler avec notre charte graphique existante ?",
             answer:
-              "Oui. Je commence par auditer vos bases et ne les étends que si nécessaire. S'il manque des briques, je propose des patterns légers qui s'intègrent à votre système.",
+              "Oui. Je travaille dans le cadre de vos guidelines et ne les étends que si nécessaire. Si vous n'avez pas encore de charte, je crée des patterns légers qui correspondent à votre vision.",
           },
           {
             id: "scope",
-            question: "Et si nous avons besoin de plus de pages ou d'itérations après la mise en ligne ?",
+            question: "Et si nous avons besoin de modifications après le lancement ?",
             answer:
-              "Tout est livré de manière modulaire, documenté et prêt pour les évolutions. Vous pouvez poursuivre avec moi en forfait ou confier les mises à jour à votre équipe interne.",
+              "Tout est construit de manière modulaire et documenté pour faciliter les mises à jour. Vous pouvez continuer à travailler avec moi via l'Accompagnement Continu ou transférer à votre équipe interne.",
           },
           {
             id: "tools",
-            question: "Comment travaille-t-on au quotidien ?",
+            question: "Comment restons-nous synchronisés ?",
             answer:
-              "Updates asynchrones dans Notion, walkthroughs Loom pour les jalons importants et fil Slack ou e-mail partagé pour les décisions rapides. Vous savez toujours ce qui est en cours.",
+              "Vous recevez des points hebdomadaires asynchrones par e-mail ou Slack, des vidéos explicatives pour les jalons majeurs et un tableau de tâches partagé. Pas de surprises, pas de devinettes.",
           },
           {
             id: "post-launch",
             question: "Proposez-vous un support après le lancement ?",
             answer:
-              "Oui. Chaque projet inclut 14 jours de support post-lancement pour les correctifs et questions. Les expérimentations et optimisations continues basculent sur la formule d'accompagnement.",
+              "Oui. Chaque projet inclut 14 jours de support post-lancement pour les corrections de bugs et questions. Le travail continu peut se poursuivre via la formule Accompagnement Continu.",
           },
         ],
       },
       cta: {
-        title: "Prêt·e pour la prochaine mise en ligne ?",
+        title: "Prêt à démarrer ?",
         description:
-          "Parlez-moi de votre planning et de vos objectifs. Je vous réponds sous un jour ouvré avec les prochaines étapes et une date de démarrage proposée.",
+          "Partagez vos objectifs et votre calendrier. Je révise votre brief et vous réponds sous un jour ouvré avec les prochaines étapes et ma disponibilité.",
       },
     },
   },
   about: {
     heading: {
-      title: "Des livraisons intentionnelles, des résultats mesurés",
-      description: "Je suis Amilemia – partenaire produit full-stack qui transforme la stratégie en lancements qui bougent les bons indicateurs.",
+      title: "Créer des sites qui convertissent, pas seulement qui ont l'air bien",
+      description: "Je suis Amilemia—développeuse full-stack qui aide les fondateurs et petites équipes à livrer des expériences web performantes qui génèrent de vrais résultats business.",
     },
     introduction:
-      "De la première visio jusqu'à la mise en production, je cadre le succès selon vos objectifs. UX réfléchie, ingénierie pragmatique, audits d'accessibilité et de performance avant lancement, puis la documentation pour que votre équipe puisse continuer sans friction.",
+      "De la découverte au déploiement, je me concentre sur ce qui fait avancer votre business. Cela signifie combiner une UX réfléchie avec une ingénierie solide, effectuer des vérifications d'accessibilité et de performance avant le lancement, et livrer une documentation que votre équipe peut réellement utiliser.",
     focusAreas: {
-      title: "Ce sur quoi je me concentre",
+      title: "Mes spécialités",
       items: [
-        "UX orientée revenu : onboarding, tarification, lifecycle et tunnels de conversion",
-        "Mécanique marketing : landing pages orientées conversion et hubs de contenus modulaires",
-        "Design systems et bibliothèques de composants scalables",
-        "Accessibilité, performance et tests intégrés à chaque livraison",
+        "Parcours orientés conversion : onboarding, pages de tarification, tunnel d'achat et capture de leads",
+        "Sites marketing : landing pages et hubs de contenu conçus pour générer des leads",
+        "Design systems : bibliothèques de composants réutilisables qui évoluent avec votre équipe",
+        "Qualité production : accessibilité, performance et tests intégrés dès le départ",
       ],
     },
     toolset: {
-      title: "Des outils qui gardent le rythme",
+      title: "Stack technique",
       items: [
-        "React, Next.js, TypeScript et runtimes Edge",
-        "Contentlayer, MDX et intégrations CMS modernes",
-        "Playwright, Vitest et pipelines de QA automatisés",
-        "Upstash, Resend et analytics comme Plausible",
+        "React, Next.js, TypeScript et Vercel Edge",
+        "Contentlayer, MDX et intégrations CMS headless",
+        "Playwright, Vitest et pipelines de tests automatisés",
+        "Upstash, Resend et outils analytics comme Plausible",
       ],
     },
     experience: {
-      title: "Expériences",
+      title: "Parcours",
       roles: [
         {
           title: "Senior Frontend Developer",
           place: "Relay CRM",
           timeframe: "2022 - Aujourd'hui",
           summary:
-            "Pilotage des parcours onboarding, tarification et reporting critiques revenus (+28 % de conversion essai → payant) tout en standardisant accessibilité et tests.",
+            "Création de parcours d'onboarding et de tarification critiques pour le revenu qui ont augmenté les conversions essai-payant de 28% tout en établissant les standards d'accessibilité et de tests.",
         },
         {
           title: "Product Engineer",
           place: "Launchpad Studio",
           timeframe: "2019 - 2022",
           summary:
-            "Collaboration avec marketing et produit pour accélérer l'expérimentation à haut volume, faisant passer le time-to-launch de plusieurs semaines à quelques jours.",
+            "Livraison d'expérimentations marketing rapides et de landing pages, réduisant le temps de lancement de campagne de plusieurs semaines à quelques jours grâce à des composants réutilisables et des workflows optimisés.",
         },
       ],
     },
@@ -374,31 +386,31 @@ export const frMessages: Messages = {
     heading: {
       title: "Projets",
       description:
-        "Sélection de lancements produit, marketing et expérimentation. Chaque projet associe résultats mesurables, QA rigoureux et passation claire.",
+        "Travail réel avec résultats réels. Chaque projet inclut des résultats mesurables, une QA approfondie et une documentation complète.",
     },
   },
   contact: {
     heading: {
-      title: "Entrons en contact",
+      title: "Parlons de votre projet",
       description:
-        "Partagez les objectifs, la cible et votre échéance pour le prochain lancement. Je relis votre brief sous un jour ouvré et vous réponds avec mes disponibilités et les prochaines étapes.",
+        "Partagez vos objectifs, votre calendrier et ce que vous souhaitez construire. Je révise votre brief et vous réponds sous un jour ouvré avec les prochaines étapes.",
     },
     steps: {
-      title: "Ce qui se passe après l'envoi",
+      title: "Prochaines étapes",
       items: [
-        "Je relis votre brief et confirme l'adéquation, le planning et les questions ouvertes.",
-        "Nous planifions un appel d'introduction de 30 minutes pour aligner métriques, parties prenantes et périmètre.",
-        "Vous recevez une proposition détaillant livrables, investissement et date de démarrage.",
+        "Je révise votre brief et confirme si nous sommes alignés sur votre calendrier et vos objectifs.",
+        "Nous planifions un appel d'introduction de 30 minutes pour discuter du périmètre, des indicateurs et de l'approche.",
+        "Vous recevez une proposition avec les livrables, le tarif et une date de démarrage suggérée.",
       ],
     },
     form: {
       steps: {
-        titles: ["À propos de vous", "Périmètre du projet", "Budget et planning", "Relire et envoyer"],
+        titles: ["Vos coordonnées", "Détails du projet", "Budget et calendrier", "Vérification et envoi"],
         descriptions: [
-          "Dites-moi comment vous joindre.",
-          "Sélectionnez ce dont vous avez besoin et partagez vos objectifs.",
-          "Précisez budget et attentes de planning.",
-          "Vérifiez tout avant l'envoi.",
+          "Comment puis-je vous contacter ?",
+          "Que souhaitez-vous construire ?",
+          "Quel est votre budget et votre calendrier ?",
+          "Vérifiez avant d'envoyer.",
         ],
       },
       fields: {
@@ -409,28 +421,28 @@ export const frMessages: Messages = {
         },
         email: {
           label: "E-mail",
-          placeholder: "votre.email@example.com",
-          errors: { invalid: "Merci d'indiquer une adresse e-mail valide" },
+          placeholder: "votre.email@exemple.com",
+          errors: { invalid: "Veuillez saisir une adresse e-mail valide" },
         },
         projectScope: {
-          label: "Périmètre du projet",
+          label: "De quoi avez-vous besoin ?",
           options: [
             { value: "portfolio-site", label: "Site portfolio" },
             { value: "marketing-site", label: "Site marketing" },
             { value: "app-features", label: "Fonctionnalités d'application" },
           ],
-          errors: { min: "Sélectionnez au moins un périmètre" },
+          errors: { min: "Sélectionnez au moins une option" },
         },
         goals: {
-          label: "Objectifs du projet",
-          placeholder: "Partagez objectifs, métriques, audience ou tout contexte utile.",
+          label: "Parlez-moi de votre projet",
+          placeholder: "Qu'essayez-vous d'accomplir ? Qui est votre audience ? À quoi ressemble le succès ?",
           errors: {
-            min: "Merci d'ajouter un peu plus de détails (10 caractères minimum)",
-            max: "Les objectifs doivent faire moins de 2000 caractères",
+            min: "Veuillez partager un peu plus de détails (au moins 10 caractères)",
+            max: "Veuillez rester sous les 2000 caractères",
           },
         },
         budgetRange: {
-          label: "Budget estimé",
+          label: "Fourchette budgétaire",
           placeholder: "Sélectionnez un budget",
           options: [
             { value: "under-5k", label: "Moins de 5 k$" },
@@ -440,71 +452,71 @@ export const frMessages: Messages = {
           ],
         },
         startDate: {
-          label: "Date de démarrage souhaitée",
+          label: "Quand souhaitez-vous démarrer ?",
           placeholder: "Choisissez une date",
           errors: {
-            required: "Indiquez une date de démarrage",
-            invalid: "Merci de saisir une date valide",
+            required: "Veuillez sélectionner une date de démarrage",
+            invalid: "Veuillez sélectionner une date valide",
           },
         },
         timelineNotes: {
-          label: "Contraintes de planning",
-          placeholder: "Indiquez les jalons, dates de lancement ou tout contexte timing.",
-          errors: { max: "Merci de rester sous les 500 caractères" },
+          label: "Contraintes de calendrier ?",
+          placeholder: "Dates limites de lancement, événements ou autres détails sensibles au temps.",
+          errors: { max: "Veuillez rester sous les 500 caractères" },
         },
       },
       review: {
         sectionTitles: {
-          about: "À propos de vous",
-          scope: "Périmètre du projet",
-          budget: "Budget et planning",
+          about: "Coordonnées",
+          scope: "Détails du projet",
+          budget: "Budget et calendrier",
         },
         edit: "Modifier",
         fields: {
           name: "Nom",
           email: "E-mail",
-          scope: "Périmètre",
-          goals: "Objectifs",
+          scope: "Type",
+          goals: "Détails",
           budget: "Budget",
-          startDate: "Démarrage souhaité",
-          notes: "Notes de planning",
+          startDate: "Date de démarrage",
+          notes: "Notes de calendrier",
         },
-        notProvided: "Non renseigné",
+        notProvided: "Non fourni",
       },
       buttons: {
         back: "Retour",
-        next: "Suivant",
-        submit: "Envoyer le brief",
-        submitting: "Envoi en cours...",
+        next: "Continuer",
+        submit: "Envoyer le message",
+        submitting: "Envoi...",
       },
       status: {
-        sending: "Envoi de votre brief...",
+        sending: "Envoi...",
         step: "Étape {{current}} sur {{total}}",
       },
       notifications: {
-        success: "Brief envoyé !",
-        error: "Échec de l'envoi du message. Merci de réessayer.",
+        success: "Message envoyé ! Je vous réponds sous 1 jour ouvré.",
+        error: "Une erreur s'est produite. Veuillez réessayer ou m'écrire à hi@amilemia.dev",
       },
       messageTemplate: {
-        intro: "Nouveau brief projet envoyé via l'assistant de contact :",
-        scope: "Périmètre du projet : {{scope}}",
-        goals: "Objectifs : {{goals}}",
-        budget: "Budget estimé : {{budget}}",
-        desiredStart: "Démarrage souhaité : {{start}}",
-        timingNotes: "Notes de planning : {{notes}}",
-        fallbackNotes: "Non précisé",
+        intro: "Nouvelle demande de projet via le formulaire de contact :",
+        scope: "Type de projet : {{scope}}",
+        goals: "Détails du projet : {{goals}}",
+        budget: "Budget : {{budget}}",
+        desiredStart: "Date de démarrage : {{start}}",
+        timingNotes: "Notes de calendrier : {{notes}}",
+        fallbackNotes: "Non fourni",
       },
       formatting: {
-        dateNotSpecified: "Non renseigné",
+        dateNotSpecified: "Non spécifié",
       },
     },
     info: {
-      title: "Informations de contact",
+      title: "Coordonnées",
       emailLabel: "E-mail",
       emailValue: "hi@amilemia.dev",
       locationLabel: "Localisation",
-      locationValue: "À distance",
-      connectTitle: "On reste en contact",
+      locationValue: "Télétravail",
+      connectTitle: "Restons en contact",
       social: {
         github: "GitHub",
         twitter: "Twitter",
@@ -526,20 +538,98 @@ export const frMessages: Messages = {
   shared: {
     testimonials: [
       {
-        quote: "Amina a transformé des demandes produit floues en une version impeccable, et ses revues d'accessibilité nous ont évité plusieurs cycles de QA.",
+        quote: "Amina a transformé des exigences produit vagues en une version soignée. Ses audits d'accessibilité ont détecté des problèmes qui nous auraient coûté des semaines en QA. Nous avons constaté une augmentation de 28% des conversions essai-payant après le lancement.",
         author: "Lisa Dunn",
         role: "Head of Product, Relay CRM",
+        metric: "+28% de conversions",
       },
       {
-        quote: "Elle a livré notre site marketing en trois semaines avec l'analytics branché et une documentation que l'équipe utilise encore.",
+        quote: "Notre site marketing a été lancé en 3 semaines avec analytics, documentation et zéro problème post-lancement. La meilleure expérience freelance qu'on ait eue. Le temps de chargement est passé de 4,2s à 1,1s.",
         author: "Carlos Mendes",
         role: "Fondateur, Launchpad Studio",
+        metric: "Lancement en 3 semaines, 74% plus rapide",
       },
       {
-        quote: "Attendez-vous à des questions pertinentes, des décisions pragmatiques et des points d'avancement avant même de devoir les demander.",
+        quote: "Elle pose les bonnes questions, prend des décisions intelligentes et envoie des points d'avancement avant même qu'on ait à demander. Exactement ce qu'on attend d'une développeuse. Nos soumissions de formulaire ont augmenté de 42% après la refonte.",
         author: "Naomi Chen",
         role: "COO, Stellar Labs",
+        metric: "+42% de leads",
       },
     ],
+  },
+  ads: {
+    headlines: {
+      primary: "Lancez votre site en 3 semaines",
+      secondary: "Développement web rapide",
+      tertiary: "Sites qui convertissent",
+      conversion: "+28% de conversions",
+      speed: "Livraison en semaines",
+      quality: "Qualité production",
+    },
+    descriptions: {
+      short: "Développeuse Next.js. Lancements rapides, sites accessibles, résultats mesurables. Prenez rendez-vous.",
+      medium: "Lancez votre site marketing en 2-3 semaines. Accessibilité, performance et SEO intégrés. Une seule développeuse, du début à la fin.",
+      long: "J'aide les fondateurs à lancer des sites performants rapidement. Stratégie, design et développement Next.js avec un seul interlocuteur. Points hebdomadaires, prévisualisations et qualité production. Prenez rendez-vous.",
+      conversion: "Augmentez vos conversions avec des sites plus rapides. Audits d'accessibilité, optimisation des performances et design orienté conversion. Lancements en 3 semaines.",
+      speed: "Lancez votre site en quelques semaines avec une développeuse qui maîtrise stratégie, design et code. Pas de transferts, pas de retards. Prenez rendez-vous.",
+    },
+    socialProof: {
+      clientCount: "15+ startups me font confiance",
+      projectCount: "30+ sites lancés",
+      conversionStat: "+28% de conversions en moyenne",
+      speedStat: "Lancement en 3 semaines en moyenne",
+      satisfactionStat: "100% de satisfaction client",
+      clients: ["Relay CRM", "Launchpad Studio", "Stellar Labs", "Quantum Analytics", "Bright Path"],
+    },
+    urgency: {
+      availability: "1 place disponible pour {{period}}",
+      limitedSlots: "Seulement 2 projets par mois",
+      bookingSoon: "Prochaine disponibilité : {{date}}",
+      responseTime: "Réponse sous 1 jour ouvré",
+      fastStart: "Démarrage sous 2-3 semaines",
+    },
+    metaDescriptions: {
+      home: "Développeuse Next.js freelance créant des sites rapides et accessibles qui convertissent. Lancez en 3 semaines avec stratégie, design et développement. Prenez rendez-vous.",
+      services: "Forfaits de développement web à périmètre fixe. Lancez des sites en 2-3 semaines, optimisez pour les conversions ou réservez un accompagnement continu. Tarifs clairs, livraison rapide, résultats mesurables.",
+      projects: "Projets réels avec résultats réels. Consultez les études de cas avec augmentations de conversions, améliorations de performance et lancements en 3 semaines. Expertise Next.js, accessibilité et SEO.",
+      about: "Développeuse full-stack spécialisée dans les sites orientés conversion. +28% de conversions en moyenne, lancements en 3 semaines, accessibilité et performance intégrées. Voir les réalisations.",
+      contact: "Prenez rendez-vous pour un appel découverte. Partagez vos objectifs et votre calendrier. Recevez une proposition avec livrables, tarif et date de démarrage sous 1 jour ouvré.",
+    },
+    callouts: {
+      fastDelivery: "La plupart des projets lancent en 2-3 semaines",
+      noHandoffs: "Une seule développeuse, du début à la fin",
+      weeklyUpdates: "Points d'avancement hebdomadaires inclus",
+      accessibilityFirst: "Conformité WCAG AA garantie",
+      performanceOptimized: "Scores Lighthouse 90+",
+      seoReady: "Configuration SEO et analytics incluse",
+      postLaunchSupport: "14 jours de support post-lancement",
+      transparentPricing: "Tarifs fixes, pas de surprises",
+    },
+    valueProps: {
+      speed: {
+        headline: "Livraison rapide",
+        body: "La plupart des projets lancent en 2-3 semaines avec des jalons clairs et sans retards.",
+      },
+      quality: {
+        headline: "Qualité production",
+        body: "Audits d'accessibilité, optimisation des performances et tests QA avant chaque livraison.",
+      },
+      results: {
+        headline: "Résultats mesurables",
+        body: "+28% de conversions en moyenne et chargements 74% plus rapides sur les projets clients.",
+      },
+      transparency: {
+        headline: "Toujours informé",
+        body: "Points hebdomadaires, prévisualisations et tableau de tâches partagé—vous savez toujours où on en est.",
+      },
+      expertise: {
+        headline: "Expertise complète",
+        body: "Stratégie, design et développement Next.js avec un seul interlocuteur qui comprend vos objectifs.",
+      },
+      support: {
+        headline: "Support continu",
+        body: "14 jours de support post-lancement inclus. Continuez avec des forfaits mensuels flexibles.",
+      },
+    },
   },
 };

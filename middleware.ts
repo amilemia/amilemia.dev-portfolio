@@ -30,6 +30,10 @@ export function middleware(req: NextRequest) {
   if (!first) {
     const url = req.nextUrl.clone();
     url.pathname = `/${fallbackLocale}`;
+    // Preserve query parameters (hash fragments are client-side only)
+    if (search) {
+      url.search = search;
+    }
     return NextResponse.redirect(url);
   }
 
@@ -41,8 +45,10 @@ export function middleware(req: NextRequest) {
   // Otherwise, prefix the path with the fallback locale
   const url = req.nextUrl.clone();
   url.pathname = `/${fallbackLocale}${pathname}`;
-  // preserve search params
-  url.search = search;
+  // Preserve query parameters (hash fragments are client-side only)
+  if (search) {
+    url.search = search;
+  }
   return NextResponse.redirect(url);
 }
 

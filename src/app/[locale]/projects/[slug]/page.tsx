@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ProjectContent } from './project-content';
 import { getProjectBySlug, getProjects } from '@/lib/content';
 import { absoluteUrl } from '@/lib/site';
+import { generateHreflangAlternates } from '@/lib/metadata';
 import { getMessages, type Messages, type Locale } from '@/i18n';
 import { locales, fallbackLocale, isLocale } from '@/i18n/locales';
 
@@ -37,16 +38,17 @@ export async function generateStaticParams() {
 function buildMetadata(projectTitle: string, projectSummary: string, slug: string, messages: Messages, locale: Locale): Metadata {
   const title = `${projectTitle} | ${messages.common.site.name}`;
   const description = projectSummary;
-  const path = locale === fallbackLocale ? `/projects/${slug}` : `/${locale}/projects/${slug}`;
+  const path = `/${locale}/projects/${slug}`;
   const url = absoluteUrl(path);
   const ogImageUrl = absoluteUrl(`${path}/opengraph-image`);
+
+  // Generate hreflang alternates for this project
+  const alternates = generateHreflangAlternates(`/projects/${slug}`, locale);
 
   return {
     title,
     description,
-    alternates: {
-      canonical: url,
-    },
+    alternates,
     openGraph: {
       title,
       description,

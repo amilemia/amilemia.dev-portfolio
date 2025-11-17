@@ -6,9 +6,11 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Carousel } from "@/components/testimonials/Carousel";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Button } from "@/components/ui/button";
-import { ServiceCardList, FaqList } from "./_components/service-sections";
+import { ServiceCard } from "@/components/ui/service-card";
+import { FaqList } from "./_components/service-sections";
 import { getLocalizedServicePackages } from "@/data/services";
 import { getTestimonials } from "@/data/testimonials";
+import { generateHreflangAlternates } from "@/lib/metadata";
 import { getMessages, type Locale } from "@/i18n";
 import { fallbackLocale, isLocale } from "@/i18n/locales";
 
@@ -29,9 +31,12 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
   const locale = isLocale(rawLocale) ? rawLocale : fallbackLocale;
   const messages = getMessages(locale);
 
+  const alternates = generateHreflangAlternates('/services', locale);
+
   return {
     title: messages.services.page.meta.title,
-    description: messages.services.page.meta.description,
+    description: messages.ads.metaDescriptions.services,
+    alternates,
   } satisfies Metadata;
 }
 
@@ -87,7 +92,16 @@ export default async function ServicesPage({ params }: PageProps) {
             className="max-w-xl"
             id="packages-heading"
           />
-          <ServiceCardList services={packages} locale={locale} messages={messages.services.labels} />
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {packages.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                locale={locale}
+                messages={messages.services.labels}
+              />
+            ))}
+          </div>
         </section>
 
         <Carousel items={testimonials} messages={messages.common.testimonials} />

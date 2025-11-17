@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import React from "react";
+import { Geist, Geist_Mono } from 'next/font/google';
 
 import "../globals.css";
 
@@ -9,6 +10,18 @@ import { absoluteUrl, site } from "@/lib/site";
 import { getMessages, locales, fallbackLocale } from "@/i18n";
 import type { Locale } from "@/i18n";
 import { isLocale } from "@/i18n/locales";
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const viewport: Viewport = {
   themeColor: [
@@ -27,8 +40,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const messages = getMessages(locale);
   const siteCopy = messages.common.site;
 
-  const basePath = locale === fallbackLocale ? "" : `/${locale}`;
+  const basePath = `/${locale}`;
   const ogImageUrl = absoluteUrl("/opengraph-image");
+
+  // Build hreflang alternates for all locales
+  const languages: Record<string, string> = {};
+  locales.forEach((loc) => {
+    languages[loc] = absoluteUrl(`/${loc}`);
+  });
 
   return {
     metadataBase: new URL(site.url),
@@ -36,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       default: siteCopy.title,
       template: `%s | ${siteCopy.name}`,
     },
-    description: siteCopy.description,
+    description: messages.ads.metaDescriptions.home,
     applicationName: siteCopy.name,
     referrer: "origin-when-cross-origin",
     keywords: [
@@ -56,14 +75,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       telephone: false,
     },
     alternates: {
-      canonical: basePath || "/",
+      canonical: basePath,
+      languages,
     },
     openGraph: {
       type: "website",
       locale: siteCopy.openGraphLocale,
       url: site.url,
       title: siteCopy.title,
-      description: siteCopy.description,
+      description: messages.ads.metaDescriptions.home,
       siteName: siteCopy.name,
       images: [
         {
@@ -77,7 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: "summary_large_image",
       title: siteCopy.title,
-      description: siteCopy.description,
+      description: messages.ads.metaDescriptions.home,
       images: [ogImageUrl],
       creator: "@amilemia",
     },
@@ -124,10 +144,17 @@ export default async function LocaleLayout({ children, params }: RootLayoutProps
   const messages = getMessages(locale);
 
   return (
-    <ThemeProvider>
-      <ClientLayout locale={locale} messages={messages}>
-        {children}
-      </ClientLayout>
-    </ThemeProvider>
+    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider>
+          <ClientLayout locale={locale} messages={messages}>
+            {children}
+          </ClientLayout>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

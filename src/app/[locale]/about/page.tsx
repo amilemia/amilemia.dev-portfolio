@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
+import { generateHreflangAlternates } from "@/lib/metadata";
 import { getMessages, type Locale } from "@/i18n";
 import { fallbackLocale, isLocale } from "@/i18n/locales";
 
@@ -14,6 +16,20 @@ type PageParams = {
 type PageProps = {
   params: Promise<PageParams>;
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = isLocale(rawLocale) ? rawLocale : fallbackLocale;
+  const messages = getMessages(locale);
+
+  const alternates = generateHreflangAlternates('/about', locale);
+
+  return {
+    title: messages.about.heading.title,
+    description: messages.ads.metaDescriptions.about,
+    alternates,
+  } satisfies Metadata;
+}
 
 export default async function AboutPage({ params }: PageProps) {
   const { locale: rawLocale } = await params;

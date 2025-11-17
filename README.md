@@ -261,16 +261,30 @@ npm run dev
 
 ---
 
-## 🌍 Internationalization (i18n) & Routing — Recent Changes
+## 🌍 Internationalization (i18n) & Routing
+
+### Core i18n Architecture
 
 - **Localized app structure**: All pages live under `src/app/[locale]/...` with static params from `src/i18n/locales.ts`.
 - **Root layout split**:
   - `src/app/layout.tsx` is now the root layout providing `<html>` and `<body>` with `suppressHydrationWarning` and fonts.
   - `src/app/[locale]/layout.tsx` is a nested layout. It wraps pages with `ThemeProvider` and `ClientLayout` and exports `generateMetadata()` using the active locale.
 - **Root redirect**: `src/app/page.tsx` redirects `/` to `/${fallbackLocale}`.
-- **Middleware safety net**: `middleware.ts` still redirects non-localized inbound requests (e.g., `/projects`) to the fallback locale (e.g., `/en/projects`). Client-side links are now localized so middleware rarely triggers.
+- **Middleware safety net**: `middleware.ts` redirects non-localized inbound requests (e.g., `/projects`) to the fallback locale (e.g., `/en/projects`).
 
-### Linking Guidelines (Important)
+### Query Parameter Preservation
+
+The locale switching system now preserves query parameters and hash fragments when switching languages:
+- UTM parameters (e.g., `?utm_source=google&utm_campaign=spring`) are maintained
+- Hash fragments (e.g., `#pricing`) are preserved
+- Service context parameters (e.g., `?subject=landing-page`) persist across locale changes
+
+This ensures:
+- Marketing attribution tracking remains intact
+- Deep links work correctly after language switches
+- User context is never lost during navigation
+
+### Linking Guidelines
 
 - Always link to localized routes in client code. Prefer `/${locale}/...` over `/...`.
 - `ClientLayout` (`src/app/[locale]/client-layout.tsx`) ensures:
@@ -294,13 +308,38 @@ npm run dev
 
 ---
 
-## 🧪 Testing Updates
+## 🧪 Testing
 
-- **Playwright stability improvements**:
-  - Home navigation: tolerate `/en/projects` vs `/projects` and slightly longer wait.
-  - Projects: after clicking a card, wait for URL change and assert that an H1 is visible; optionally verify the strict URL via the clicked `href`.
-  - Contact: explicitly trigger validation (focus/blur + next) before asserting `aria-invalid`.
-  - Theme toggle: wait for dropdown items (`data-testid`) before clicking.
+### Test Coverage
+
+- **Unit/Component Tests**: Vitest + Testing Library with jsdom setup
+- **E2E Tests**: Playwright with comprehensive coverage:
+  - `e2e/home.spec.ts` - Home page navigation and interactions
+  - `e2e/contact.spec.ts` - Contact form validation and submission
+  - `e2e/services.spec.ts` - Services page, locale switching with query params
+  - `e2e/accessibility.spec.ts` - WCAG compliance checks across all pages
+
+### Accessibility Testing
+
+The `e2e/accessibility.spec.ts` suite validates:
+- Proper HTML `lang` attribute for each locale
+- Skip link visibility and functionality
+- Main landmark with proper `tabindex="-1"`
+- Language and theme toggles with proper `aria-label`
+- All images have alt text or are properly marked decorative
+- All buttons and links have accessible names
+- Keyboard navigation through interactive elements
+- Screen reader announcements via `aria-live` regions
+
+Tests run for both English and French locales to ensure i18n accessibility.
+
+### Playwright Stability
+
+- Home navigation: tolerates `/en/projects` vs `/projects` with appropriate wait times
+- Projects: waits for URL change and H1 visibility after card clicks
+- Contact: explicitly triggers validation before asserting `aria-invalid`
+- Theme toggle: waits for dropdown items before clicking
+- Services: tests locale switching with query parameter preservation
 
 ---
 
@@ -384,6 +423,25 @@ NEXT_PUBLIC_SITE_URL=https://amilemia.dev
 ### Environment Variables
 Make sure all required environment variables are set in your Vercel project settings for both Production and Preview environments.
 
+## 📝 Marketing & Ad Copy
+
+The portfolio includes comprehensive ad-optimized copy for client acquisition campaigns. See `docs/AD_COPY_GUIDE.md` for:
+
+- **Headlines**: Character-limited variants for Google Ads, Facebook, LinkedIn
+- **Descriptions**: Benefit-focused copy in multiple lengths
+- **Social Proof**: Specific metrics and client testimonials with conversion data
+- **Urgency Elements**: Availability indicators and response time promises
+- **Meta Descriptions**: SEO-optimized descriptions for all pages
+- **Callouts**: Quick benefit statements for ad extensions
+- **Value Propositions**: Structured messaging with headlines and supporting copy
+
+All copy is available in both English and French with culturally adapted phrasing. The guide includes step-by-step instructions for:
+- Testing copy variants locally
+- Creating ad campaigns (Google, Facebook, LinkedIn)
+- A/B testing different messaging
+- Tracking performance with analytics
+- Exporting copy for marketing teams
+
 ## 🤖 AI Usage (so far)
 
 - **Windsurf (SWE-1):** implemented typed API route, env runtime validation, and client wiring with a11y feedback and error handling.
@@ -391,5 +449,6 @@ Make sure all required environment variables are set in your Vercel project sett
 - Changes delivered as small, reviewable diffs with verification steps and README notes.
 - **Windsurf (SWE-1):** produced small diffs for a11y polish (skip link, focus styles) and reusable layout primitives without adding dependencies.
 - **Windsurf (SWE-1):** small, test-safe UI uplift focused on conversion (no new deps, selectors stable).
+- **Windsurf (SWE-1):** added comprehensive i18n improvements including query parameter preservation, accessibility testing, and ad-optimized marketing copy.
 - **Codex CLI:** scaffolded test config and representative tests & generated Conventional Commit messages and PR summaries.
 

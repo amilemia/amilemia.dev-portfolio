@@ -127,14 +127,37 @@ export default async function Home({ params }: PageProps) {
                 </Button>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground sm:justify-center lg:justify-start">
-                <span className="font-semibold text-foreground">{messages.home.hero.clientsIntro}</span>
-                {messages.home.hero.clients.map((client) => (
-                  <span key={client} className="flex items-center gap-2">
-                    <span className="size-2 rounded-full bg-muted" aria-hidden />
-                    {client}
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground sm:justify-center lg:justify-start">
+                  <span className="font-semibold text-foreground">{messages.home.hero.clientsIntro}</span>
+                  {messages.home.hero.clients.map((client) => (
+                    <span key={client} className="flex items-center gap-2">
+                      <span className="size-2 rounded-full bg-muted" aria-hidden />
+                      {client}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-muted-foreground sm:justify-center lg:justify-start">
+                  <span className="flex items-center gap-2">
+                    <svg className="size-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                    <span>{messages.home.hero.trustIndicators.wcagCompliant}</span>
                   </span>
-                ))}
+                  <span className="flex items-center gap-2">
+                    <svg className="size-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                    <span>{messages.home.hero.trustIndicators.lighthouse90Plus}</span>
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <svg className="size-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                    <span>{messages.home.hero.trustIndicators.postLaunchSupport}</span>
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -267,6 +290,44 @@ export default async function Home({ params }: PageProps) {
                 locale={locale}
               />
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section size="lg">
+        <Container>
+          <div className="rounded-3xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 md:p-12 lg:p-16">
+            <div className="mx-auto max-w-2xl text-center space-y-6">
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+                {messages.home.finalCta.headline}
+              </h2>
+              <p className="text-base text-muted-foreground sm:text-lg">
+                {messages.home.finalCta.description}
+              </p>
+              <div className="flex flex-wrap justify-center gap-3 pt-4">
+                <Button asChild size="lg" className="px-8">
+                  <TrackedLink 
+                    href={`/${locale}/contact`} 
+                    eventName="CTA: Final section" 
+                    eventData={{ location: 'final-cta' }}
+                  >
+                    {messages.common.actions.bookIntro}
+                  </TrackedLink>
+                </Button>
+                <Button variant="outline" size="lg" className="px-8" asChild>
+                  <TrackedLink
+                    href={`/${locale}/services`}
+                    eventName="CTA: View services final"
+                    eventData={{ location: 'final-cta' }}
+                  >
+                    {messages.common.actions.viewAllServices}
+                  </TrackedLink>
+                </Button>
+              </div>
+              <p className="text-sm text-muted-foreground pt-2">
+                {messages.home.finalCta.responseTime}
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
