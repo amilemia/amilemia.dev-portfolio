@@ -155,6 +155,7 @@ export const enMessages = {
       tiersHeading: "Choose your scope",
       timeline: "Timeline: {{timeline}}",
       cta: "Get started",
+      startingAt: "Starting at",
     },
     packages: {
       launchEssentials: {
@@ -529,6 +530,50 @@ export const enMessages = {
     timeline: {
       present: "Present",
     },
+    cta: {
+      heading: "Start Your Project",
+      description: "Ready to achieve similar results? Let's discuss how I can help bring your vision to life.",
+      button: "Get in Touch",
+    },
+  },
+  resources: {
+    meta: {
+      title: "Free Resources",
+      description: "Free guides, checklists, and templates to help you build better websites. Download instantly, no strings attached.",
+    },
+    hero: {
+      eyebrow: "Free Resources",
+      title: "Guides and tools to help you ship better sites",
+      description: "Practical resources for founders and developers. Download instantly—no strings attached.",
+    },
+    grid: {
+      title: "Available Resources",
+      description: "Everything you need to build faster, more accessible, and higher-converting websites.",
+    },
+    card: {
+      downloadCount: "{{count}} downloads",
+      rating: "{{rating}}/5 rating",
+      download: "Download Free",
+      category: {
+        checklist: "Checklist",
+        guide: "Guide",
+        template: "Template",
+        toolkit: "Toolkit",
+      },
+    },
+    contentUpgrade: {
+      eyebrow: "Free Resource",
+      title: "Want the detailed guide?",
+      description: "Get the complete {{title}} with step-by-step instructions and code examples.",
+      cta: "Download Free Guide",
+    },
+    featured: {
+      eyebrow: "Free Resource",
+      title: "Get the {{title}}",
+      description: "{{description}}",
+      cta: "Download Free",
+      socialProof: "{{count}}+ downloads",
+    },
   },
   notFound: {
     title: "Page not found",
@@ -540,19 +585,28 @@ export const enMessages = {
       {
         quote: "Amina turned vague product requirements into a polished release. Her accessibility audits caught issues that would have cost us weeks in QA. We saw a 28% increase in trial-to-paid conversions after launch.",
         author: "Lisa Dunn",
-        role: "Head of Product, Relay CRM",
+        fullName: "Lisa Dunn",
+        role: "Head of Product",
+        company: "Relay CRM",
+        companyLogo: "/images/clients/relay-crm-logo.svg",
         metric: "28% conversion increase",
       },
       {
         quote: "Our marketing site launched in 3 weeks with analytics, documentation, and zero post-launch fires. Best freelance experience we've had. Page load time dropped from 4.2s to 1.1s.",
         author: "Carlos Mendes",
-        role: "Founder, Launchpad Studio",
+        fullName: "Carlos Mendes",
+        role: "Founder",
+        company: "Launchpad Studio",
+        companyLogo: "/images/clients/launchpad-studio-logo.svg",
         metric: "3-week launch, 74% faster",
       },
       {
         quote: "She asks the right questions, makes smart decisions, and sends updates before you have to ask. Exactly what you want in a developer. Our contact form submissions increased 42% after the refresh.",
         author: "Naomi Chen",
-        role: "COO, Stellar Labs",
+        fullName: "Naomi Chen",
+        role: "COO",
+        company: "Stellar Labs",
+        companyLogo: "/images/clients/stellar-labs-logo.svg",
         metric: "42% more leads",
       },
     ],

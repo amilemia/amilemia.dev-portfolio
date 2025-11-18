@@ -47,7 +47,7 @@ export default async function ServicesPage({ params }: PageProps) {
 
   const packages = getLocalizedServicePackages(messages.services.packages).map((service) => ({
     ...service,
-    href: `/${locale}/contact?subject=${encodeURIComponent(service.name)}`,
+    href: `/${locale}/contact?service=${encodeURIComponent(service.name)}`,
   }));
   const testimonials = getTestimonials(messages.shared.testimonials);
 

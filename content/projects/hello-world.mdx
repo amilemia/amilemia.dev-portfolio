@@ -30,6 +30,48 @@ testimonial:
   quote: "Amil shipped ahead of schedule and improved conversions."
   author: "Happy Client"
   role: Founder, ACME
+caseStudy:
+  problem: "ACME's product landing page was built with a legacy CMS that made updates slow and error-prone. The marketing team couldn't iterate quickly on messaging, developers spent hours on simple content changes, and the site's performance was suffering with a 3.8s LCP. The lack of type safety led to frequent production bugs that damaged user trust."
+  solution: "Migrated to a modern JAMstack architecture using Next.js 15 and Contentlayer2 for type-safe content management. Created a Git-based workflow where marketing could edit MDX files with instant preview, while developers maintained full control over components and styling. Implemented comprehensive E2E testing with Playwright to catch regressions before deployment."
+  implementation: "Built the site using Next.js 15 App Router with React Server Components for optimal performance. Contentlayer2 automatically generates TypeScript types from MDX frontmatter, eliminating runtime errors from content changes. Tailwind CSS provides utility-first styling with a custom design system. Playwright tests cover critical user journeys including form submissions, navigation, and responsive layouts across devices."
+  results:
+    - "Conversion rate increased 42% due to faster iteration on messaging"
+    - "LCP improved from 3.8s to 1.9s (50% faster)"
+    - "Production defects reduced by 30% through type safety and automated testing"
+    - "Content update time reduced from 2 hours to 10 minutes"
+    - "Marketing team can now deploy changes independently without developer involvement"
+beforeAfter:
+  - type: "metric"
+    before: "3.8s LCP"
+    after: "1.9s LCP"
+    caption: "Page Load Performance"
+  - type: "metric"
+    before: "2.1% conversion rate"
+    after: "3.0% conversion rate"
+    caption: "Landing Page Conversion"
+  - type: "metric"
+    before: "2 hours per content update"
+    after: "10 minutes per content update"
+    caption: "Content Velocity"
+technicalDeepDive:
+  architecture: "The site leverages Next.js 15's hybrid rendering model. Marketing pages use Static Site Generation (SSG) for maximum performance, while dynamic user-specific pages use Server-Side Rendering (SSR). Contentlayer2 runs at build time to transform MDX files into type-safe TypeScript objects, enabling IDE autocomplete and compile-time validation. The build pipeline includes automated Lighthouse CI checks that fail builds if performance budgets are exceeded."
+  challenges:
+    - "Migrating 50+ pages of content from legacy CMS to MDX without breaking URLs"
+    - "Training non-technical marketing team on Git workflow and MDX syntax"
+    - "Maintaining SEO rankings during migration with proper redirects and metadata"
+    - "Implementing preview mode for draft content without exposing unpublished pages"
+  decisions:
+    - "Chose Contentlayer2 over traditional CMS for type safety and developer experience"
+    - "Used MDX instead of plain Markdown to allow custom React components in content"
+    - "Implemented Playwright over Cypress for better TypeScript support and parallel execution"
+    - "Deployed to Vercel for automatic preview deployments and edge caching"
+relatedProjects:
+  - "conversion-playbook-revamp"
+  - "sample-saas-dashboard"
+videoTestimonial:
+  url: "https://www.youtube.com/watch?v=example-hello-world"
+  thumbnail: "/images/testimonials/acme-founder-thumb.jpg"
+  duration: 95
 ---
 
 # Hello World Project

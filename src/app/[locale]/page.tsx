@@ -7,9 +7,12 @@ import { Carousel } from "@/components/testimonials/Carousel";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/ui/project-card";
+import { TrustMetrics } from "@/components/trust/TrustMetrics";
+import { FeaturedLeadMagnet } from "@/components/lead-magnets";
 import { getLocalizedServicePackages } from "@/data/services";
 import { getTestimonials } from "@/data/testimonials";
-import { getProjects } from "@/lib/content";
+import { getTrustMetrics } from "@/data/trust";
+import { getProjects, getLeadMagnets } from "@/lib/content";
 import { getMessages, type Locale } from "@/i18n";
 import { fallbackLocale, isLocale } from "@/i18n/locales";
 import { interpolate } from "@/i18n/interpolate";
@@ -42,6 +45,9 @@ export default async function Home({ params }: PageProps) {
 
   const projects = (await getProjects(locale)).slice(0, 3);
   const testimonials = getTestimonials(messages.shared.testimonials);
+  const trustMetrics = getTrustMetrics();
+  const leadMagnets = await getLeadMagnets();
+  const featuredLeadMagnet = leadMagnets[0]; // Get the most popular lead magnet
   const servicePackages = getLocalizedServicePackages(messages.services.packages).map((service) => ({
     ...service,
     href: `/${locale}/contact?subject=${encodeURIComponent(service.name)}`,
@@ -126,39 +132,6 @@ export default async function Home({ params }: PageProps) {
                   </TrackedLink>
                 </Button>
               </div>
-
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground sm:justify-center lg:justify-start">
-                  <span className="font-semibold text-foreground">{messages.home.hero.clientsIntro}</span>
-                  {messages.home.hero.clients.map((client) => (
-                    <span key={client} className="flex items-center gap-2">
-                      <span className="size-2 rounded-full bg-muted" aria-hidden />
-                      {client}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-muted-foreground sm:justify-center lg:justify-start">
-                  <span className="flex items-center gap-2">
-                    <svg className="size-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                    </svg>
-                    <span>{messages.home.hero.trustIndicators.wcagCompliant}</span>
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <svg className="size-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                    </svg>
-                    <span>{messages.home.hero.trustIndicators.lighthouse90Plus}</span>
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <svg className="size-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
-                    </svg>
-                    <span>{messages.home.hero.trustIndicators.postLaunchSupport}</span>
-                  </span>
-                </div>
-              </div>
             </div>
 
             <aside className="hidden rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur-sm lg:block">
@@ -178,6 +151,21 @@ export default async function Home({ params }: PageProps) {
               </div>
             </aside>
           </div>
+
+          {/* Trust Metrics Section */}
+          <div className="mt-16 pt-12 border-t border-border/60">
+            <TrustMetrics metrics={trustMetrics} />
+          </div>
+
+          {/* Featured Lead Magnet */}
+          {featuredLeadMagnet && (
+            <div className="mt-16">
+              <FeaturedLeadMagnet
+                leadMagnet={featuredLeadMagnet}
+                messages={messages.resources.featured}
+              />
+            </div>
+          )}
         </Container>
       </Section>
 

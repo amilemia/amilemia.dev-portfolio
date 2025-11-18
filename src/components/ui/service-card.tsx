@@ -61,6 +61,21 @@ export function ServiceCard({ service, locale, messages }: ServiceCardProps) {
           <CardDescription className="text-base">
             {service.pitch}
           </CardDescription>
+          
+          {/* Transparent Pricing Display */}
+          <div className="mt-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-3">
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm font-medium text-muted-foreground">
+                {messages.startingAt}
+              </span>
+              <span className="text-2xl font-bold text-foreground">
+                {service.startingPrice}
+              </span>
+            </div>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {service.priceContext} • {service.estimatedTimeline}
+            </p>
+          </div>
         </div>
       </CardHeader>
 

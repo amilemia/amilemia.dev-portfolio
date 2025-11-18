@@ -10,6 +10,9 @@ export type ServiceTierBase = {
 export type ServicePackageBase = {
   id: keyof Messages["services"]["packages"];
   tiers: ServiceTierBase[];
+  startingPrice: string;
+  priceContext: string;
+  estimatedTimeline: string;
 };
 
 const servicePackagesBase: ServicePackageBase[] = [
@@ -19,6 +22,9 @@ const servicePackagesBase: ServicePackageBase[] = [
       { id: "starter", price: 1800 },
       { id: "plus", price: 2300 },
     ],
+    startingPrice: "$1,800",
+    priceContext: "for standard projects",
+    estimatedTimeline: "2-3 weeks",
   },
   {
     id: "conversionRefresh",
@@ -26,6 +32,9 @@ const servicePackagesBase: ServicePackageBase[] = [
       { id: "starter", price: 2500 },
       { id: "plus", price: 3200 },
     ],
+    startingPrice: "$2,500",
+    priceContext: "for standard optimization",
+    estimatedTimeline: "3-4 weeks",
   },
   {
     id: "growthSupport",
@@ -33,6 +42,9 @@ const servicePackagesBase: ServicePackageBase[] = [
       { id: "starter", price: 700 },
       { id: "plus", price: 1200 },
     ],
+    startingPrice: "$700",
+    priceContext: "per month",
+    estimatedTimeline: "Ongoing",
   },
 ];
 
@@ -53,6 +65,9 @@ export type LocalizedServicePackage = {
   idealFor: string;
   tiers: ServiceTier[];
   badge?: string;
+  startingPrice: string;
+  priceContext: string;
+  estimatedTimeline: string;
 };
 
 export function getLocalizedServicePackages(
@@ -94,6 +109,9 @@ export function getLocalizedServicePackages(
       idealFor: packageCopy.idealFor,
       badge: packageCopy.badge,
       tiers,
+      startingPrice: base.startingPrice,
+      priceContext: base.priceContext,
+      estimatedTimeline: base.estimatedTimeline,
     } satisfies LocalizedServicePackage;
   });
 }

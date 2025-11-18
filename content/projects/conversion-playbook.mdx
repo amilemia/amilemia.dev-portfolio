@@ -30,6 +30,44 @@ testimonial:
   quote: "Amil delivered a complete site refresh in under a month. The new messaging resonates with our audience and demo bookings are up significantly."
   author: "Marcus Rivera"
   role: "Founder, ConversionPlaybook"
+caseStudy:
+  problem: "ConversionPlaybook's marketing site was underperforming with a 1.8% demo request rate. The messaging was technical and feature-focused rather than benefit-driven, the site loaded slowly (4.2s LCP), and there was no visibility into which content drove conversions. The founder was spending hours manually tracking demo requests across multiple channels."
+  solution: "Redesigned the entire site architecture around the customer journey, mirroring the sales call flow. Created a component library of reusable sections (hero variants, comparison tables, testimonial carousels) that could be mixed and matched. Implemented comprehensive event tracking to measure every CTA interaction and form field completion."
+  implementation: "Built with Next.js 15 using static generation for optimal performance. Integrated Resend for transactional emails with custom templates and Plausible for privacy-friendly analytics with custom event tracking. Created a modular component system using shadcn/ui that allows non-technical team members to update content through MDX files. Implemented progressive image loading and font optimization to achieve sub-2s load times."
+  results:
+    - "Demo requests increased 24% in the first two weeks post-launch"
+    - "Lighthouse performance score improved from 67 to 98"
+    - "Page load time reduced from 4.2s to 1.4s (67% improvement)"
+    - "Email capture rate increased from 3% to 8.5%"
+    - "Founder now has real-time dashboard showing conversion funnel metrics"
+beforeAfter:
+  - type: "metric"
+    before: "1.8% demo request rate"
+    after: "2.4% demo request rate"
+    caption: "Conversion Rate Improvement"
+  - type: "metric"
+    before: "4.2s page load time"
+    after: "1.4s page load time"
+    caption: "Performance Optimization"
+  - type: "metric"
+    before: "67 Lighthouse score"
+    after: "98 Lighthouse score"
+    caption: "Quality Metrics"
+technicalDeepDive:
+  architecture: "The site uses Next.js 15's static generation with ISR (Incremental Static Regeneration) for content updates. All pages are pre-rendered at build time and served from Vercel's edge network for global low-latency access. The component library is built with TypeScript and Tailwind CSS, ensuring type safety and consistent styling. Plausible analytics is integrated with custom events that track user journey from landing to demo booking."
+  challenges:
+    - "Migrating from WordPress to Next.js while maintaining SEO rankings and URL structure"
+    - "Creating a flexible component system that non-technical team members could use"
+    - "Implementing reliable email delivery with proper SPF/DKIM configuration"
+    - "Balancing rich animations with performance requirements"
+  decisions:
+    - "Chose static generation over SSR to maximize performance and reduce hosting costs"
+    - "Used MDX for content management to give the team Git-based workflow without a CMS"
+    - "Implemented Resend over SendGrid for better developer experience and deliverability"
+    - "Used Plausible instead of Google Analytics for GDPR compliance and faster page loads"
+relatedProjects:
+  - "sample-saas-dashboard"
+  - "hello-world"
 ---
 
 # Conversion Playbook Revamp

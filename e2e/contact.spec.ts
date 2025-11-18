@@ -1,5 +1,26 @@
 import { expect, test } from '@playwright/test';
 
+test('contact brief pre-populates service from URL parameter', async ({ page }) => {
+  await page.goto('/en/contact?service=Launch%20Essentials');
+  
+  // Navigate to step 2 where the goals field and project scope are
+  await page.getByTestId('name-input').fill('Jane Doe');
+  await page.getByTestId('email-input').fill('jane@example.com');
+  await page.getByTestId('brief-next').click();
+  
+  // Wait for step 2 to be visible
+  await expect(page.getByTestId('brief-step-13')).toHaveText('Step 2 of 3');
+  
+  // Verify the goals field contains the service name
+  const goalsInput = page.getByTestId('message-input');
+  await expect(goalsInput).toHaveValue(/Launch Essentials/);
+  
+  // Verify that a project scope is pre-selected
+  const projectScopeGroup = page.getByRole('group', { name: 'What do you need?' });
+  const marketingSiteCheckbox = projectScopeGroup.getByRole('checkbox', { name: 'Marketing site' });
+  await expect(marketingSiteCheckbox).toBeChecked();
+});
+
 test('contact brief validates and submits', async ({ page }) => {
   await page.route('**/api/contact', async (route) => {
     await route.fulfill({
