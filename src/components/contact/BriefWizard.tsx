@@ -229,14 +229,14 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
     }
   }, [step]);
 
-  const stepFieldMap: Record<Exclude<StepIndex, 3>, Array<keyof BriefFormValues>> = {
+  const stepFieldMap: Record<Exclude<StepIndex, 3 | 4>, Array<keyof BriefFormValues>> = {
     0: ['name', 'email'],
     1: ['projectScope', 'goals'],
     2: ['budgetRange', 'startDate', 'timelineNotes'],
   };
 
   const handleNext = async () => {
-    const fields = stepFieldMap[step as Exclude<StepIndex, 3>];
+    const fields = stepFieldMap[step as Exclude<StepIndex, 3 | 4>];
 
     if (!fields) {
       setStep((prev) => (prev < SUMMARY_STEP ? ((prev + 1) as StepIndex) : prev));
