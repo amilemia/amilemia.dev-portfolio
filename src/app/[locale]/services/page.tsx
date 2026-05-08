@@ -155,11 +155,6 @@ export default async function ServicesPage({ params }: PageProps) {
                 {messages.common.actions.bookIntro}
               </TrackedLink>
             </Button>
-            <Button asChild variant="outline">
-              <TrackedLink href="mailto:hi@amilemia.dev" eventName="CTA: Email direct" eventData={{ source: 'services-footer' }}>
-                {messages.common.actions.emailDirect}
-              </TrackedLink>
-            </Button>
           </div>
         </div>
       </Container>

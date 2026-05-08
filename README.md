@@ -154,6 +154,8 @@ A modern, performant portfolio to showcase my skills and projects, built with a 
 - Consistent layout primitives: `Container` and `Section`
 - Global focus-visible outlines using theme ring token
 - Shared section spacing + typography tokens via `Section` variants and a reusable `SectionHeading` component
+- Premium "Bento Box" grid layouts for Services and Projects using `framer-motion` for scroll reveal animations
+- Subtle glassmorphism and gradient hover effects on cards
 - Header/footer alignment unified around the shared container with an accessible mobile navigation overlay
 - Minimal prose-like MDX styles (light/dark) without extra plugins
 - Reduced-motion support

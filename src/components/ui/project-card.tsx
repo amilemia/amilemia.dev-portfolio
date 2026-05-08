@@ -26,16 +26,17 @@ export function ProjectCard({ slug, title, summary, coverImage, role, tags, mess
   const detailHref = `/${locale}/projects/${slug}`;
   return (
     <Card
-      className="group flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2"
+      className="group flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_var(--color-primary)_/_0.15] focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 bg-background/50 backdrop-blur-xl border border-border/50 overflow-hidden rounded-2xl"
       data-testid="project-card"
     >
       {coverImage && (
         <div className="relative aspect-[16/9] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10" />
           <Image
             src={coverImage}
             alt={interpolate(messages.coverAlt, { title })}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           />
         </div>

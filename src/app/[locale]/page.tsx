@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/ui/project-card";
 import { TrustMetrics } from "@/components/trust/TrustMetrics";
 import { FeaturedLeadMagnet } from "@/components/lead-magnets";
+import { Particles } from "@/components/animations/particles";
+import { ScrollReveal } from "@/components/animations/scroll-reveal";
+import { AnimatedText } from "@/components/animations/animated-text";
 import { getLocalizedServicePackages } from "@/data/services";
 import { getTestimonials } from "@/data/testimonials";
 import { getTrustMetrics } from "@/data/trust";
@@ -69,12 +72,13 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <>
-      <Section size="xl">
-        <Container>
+      <Section size="xl" className="relative overflow-hidden">
+        <Particles />
+        <Container className="relative z-10">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,320px)] lg:items-center">
-            <div className="space-y-10">
+            <ScrollReveal className="space-y-10" duration={0.8}>
               <div
-                className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary/80"
+                className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-md px-4 py-2 text-sm font-medium text-primary/80 shadow-[0_0_15px_-3px_var(--color-primary)]"
                 data-testid="availability-pill"
               >
                 <span className="relative flex h-2.5 w-2.5">
@@ -86,18 +90,20 @@ export default async function Home({ params }: PageProps) {
               </div>
 
               <div className="space-y-6 text-left sm:text-center lg:text-left">
-                <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-                  {messages.home.hero.headline}
-                </h1>
-                <p className="text-base text-muted-foreground sm:text-lg">
+                <AnimatedText
+                  text={messages.home.hero.headline}
+                  el="h1"
+                  className="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl font-heading"
+                />
+                <p className="text-base text-muted-foreground sm:text-lg max-w-2xl">
                   {messages.home.hero.description}
                 </p>
               </div>
 
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-3 text-sm text-muted-foreground">
                 {messages.home.hero.bulletPoints.map((point) => (
-                  <li key={point} className="flex items-start gap-2">
-                    <span aria-hidden="true" className="mt-1 size-1.5 rounded-full bg-primary" />
+                  <li key={point} className="flex items-start gap-3">
+                    <span aria-hidden="true" className="mt-1.5 size-1.5 rounded-full bg-primary shadow-[0_0_10px_2px_var(--color-primary)]" />
                     {point}
                   </li>
                 ))}
@@ -115,13 +121,13 @@ export default async function Home({ params }: PageProps) {
                 </TrackedLink>
               </p>
 
-              <div className="flex flex-wrap gap-3 sm:justify-center lg:justify-start">
-                <Button asChild size="lg" className="px-6">
+              <div className="flex flex-wrap gap-4 sm:justify-center lg:justify-start">
+                <Button asChild size="lg" variant="premium" className="px-8">
                   <TrackedLink href={`/${locale}/contact`} eventName="CTA: Start a project" eventData={{ location: 'hero' }}>
                     {messages.common.actions.bookIntro}
                   </TrackedLink>
                 </Button>
-                <Button variant="outline" size="lg" className="px-6" asChild>
+                <Button variant="outline" size="lg" className="px-8" asChild>
                   <TrackedLink
                     href={`/${locale}/projects`}
                     eventName="CTA: View work"
@@ -132,24 +138,27 @@ export default async function Home({ params }: PageProps) {
                   </TrackedLink>
                 </Button>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <aside className="hidden rounded-3xl border border-border/60 bg-background/80 p-6 shadow-sm backdrop-blur-sm lg:block">
+            <ScrollReveal delay={0.3} direction="left" className="hidden lg:block">
+              <aside className="rounded-[2rem] border border-border/50 bg-background/40 p-8 shadow-xl backdrop-blur-xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50" />
               <div className="space-y-6">
                 <h2 className="text-lg font-semibold text-foreground">{messages.home.hero.insights.title}</h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {messages.home.hero.insights.description}
                 </p>
-                <div className="grid gap-4 text-sm text-muted-foreground">
+                <div className="grid gap-4 text-sm text-muted-foreground relative z-10">
                   {messages.home.hero.insights.items.map((item) => (
-                    <div key={item.title} className="rounded-2xl border border-border/60 bg-card/50 p-4">
+                    <div key={item.title} className="rounded-2xl border border-border/40 bg-card/40 backdrop-blur-md p-5 transition-transform hover:-translate-y-1 hover:border-primary/30">
                       <dt className="font-semibold text-foreground">{item.title}</dt>
-                      <dd className="mt-1">{item.description}</dd>
+                      <dd className="mt-1.5">{item.description}</dd>
                     </div>
                   ))}
                 </div>
               </div>
-            </aside>
+              </aside>
+            </ScrollReveal>
           </div>
 
           {/* Trust Metrics Section */}
@@ -183,13 +192,17 @@ export default async function Home({ params }: PageProps) {
             </Button>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {servicePackages.map((service) => (
-              <article
-                key={service.id}
-                className="flex h-full flex-col justify-between gap-6 rounded-3xl border bg-card/60 p-6 shadow-sm backdrop-blur-sm"
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+            {servicePackages.map((service, index) => (
+              <ScrollReveal 
+                key={service.id} 
+                delay={index * 0.15} 
               >
-                <div className="space-y-4">
+                <article
+                  className="flex h-full flex-col justify-between gap-8 rounded-[2rem] border border-border/50 bg-background/40 p-8 shadow-sm backdrop-blur-xl transition-all duration-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_var(--color-primary)_/_0.15] hover:-translate-y-2 relative overflow-hidden group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="space-y-6 relative z-10">
                   <div className="space-y-2">
                     {service.badge ? (
                       <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -213,23 +226,23 @@ export default async function Home({ params }: PageProps) {
                     ))}
                   </ul>
 
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {service.tiers.map((tier) => (
-                      <div key={`${service.id}-${tier.id}`} className="rounded-2xl border border-border/70 bg-background/70 p-3">
-                        <div className="flex items-center justify-between text-xs font-semibold text-foreground">
+                      <div key={`${service.id}-${tier.id}`} className="rounded-2xl border border-border/40 bg-background/40 backdrop-blur-sm p-4 transition-colors group-hover:border-primary/20">
+                        <div className="flex items-center justify-between text-sm font-semibold text-foreground">
                           <span>{tier.name}</span>
-                          <span>{formatTierPrice(tier.price, tier.billingSuffix)}</span>
+                          <span className="text-primary">{formatTierPrice(tier.price, tier.billingSuffix)}</span>
                         </div>
-                        <p className="mt-1 text-xs text-muted-foreground">{tier.description}</p>
+                        <p className="mt-1.5 text-xs text-muted-foreground">{tier.description}</p>
                       </div>
                     ))}
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground mt-4 font-medium">
                       {interpolate(messages.services.labels.timeline, { timeline: service.timeline })}
                     </p>
                   </div>
                 </div>
 
-                <Button asChild className="w-full">
+                <Button asChild className="w-full relative z-10" variant="outline">
                   <TrackedLink
                     href={service.href}
                     eventName="CTA: Service package"
@@ -238,7 +251,8 @@ export default async function Home({ params }: PageProps) {
                     {messages.common.actions.startProject}
                   </TrackedLink>
                 </Button>
-              </article>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
         </Container>
@@ -264,19 +278,23 @@ export default async function Home({ params }: PageProps) {
             </Button>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+            {projects.map((project, index) => (
+              <ScrollReveal
                 key={project.slug}
-                slug={project.slug}
-                title={project.title}
-                summary={project.summary}
-                coverImage={project.cover}
-                role={project.role}
-                tags={project.tags}
-                messages={messages.common.projectCard}
-                locale={locale}
-              />
+                delay={index * 0.15}
+              >
+                <ProjectCard
+                  slug={project.slug}
+                  title={project.title}
+                  summary={project.summary}
+                  coverImage={project.cover}
+                  role={project.role}
+                  tags={project.tags}
+                  messages={messages.common.projectCard}
+                  locale={locale}
+                />
+              </ScrollReveal>
             ))}
           </div>
         </Container>
@@ -284,25 +302,29 @@ export default async function Home({ params }: PageProps) {
 
       <Section size="lg">
         <Container>
-          <div className="rounded-3xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 md:p-12 lg:p-16">
-            <div className="mx-auto max-w-2xl text-center space-y-6">
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                {messages.home.finalCta.headline}
-              </h2>
-              <p className="text-base text-muted-foreground sm:text-lg">
-                {messages.home.finalCta.description}
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 pt-4">
-                <Button asChild size="lg" className="px-8">
-                  <TrackedLink 
-                    href={`/${locale}/contact`} 
-                    eventName="CTA: Final section" 
-                    eventData={{ location: 'final-cta' }}
-                  >
-                    {messages.common.actions.bookIntro}
-                  </TrackedLink>
-                </Button>
-                <Button variant="outline" size="lg" className="px-8" asChild>
+          <ScrollReveal delay={0.2} duration={0.8}>
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-border/40 bg-gradient-to-br from-primary/10 via-background/40 to-background/40 backdrop-blur-xl shadow-2xl p-8 md:p-16 lg:p-24">
+              <div className="absolute top-0 right-0 -mt-20 -mr-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl opacity-50" />
+              <div className="absolute bottom-0 left-0 -mb-20 -ml-20 h-64 w-64 rounded-full bg-primary/20 blur-3xl opacity-50" />
+              
+              <div className="relative mx-auto max-w-2xl text-center space-y-8 z-10">
+                <h2 className="text-4xl font-bold tracking-tight sm:text-5xl font-heading">
+                  {messages.home.finalCta.headline}
+                </h2>
+                <p className="text-lg text-muted-foreground sm:text-xl">
+                  {messages.home.finalCta.description}
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 pt-6">
+                  <Button asChild size="lg" variant="premium" className="px-10">
+                    <TrackedLink 
+                      href={`/${locale}/contact`} 
+                      eventName="CTA: Final section" 
+                      eventData={{ location: 'final-cta' }}
+                    >
+                      {messages.common.actions.bookIntro}
+                    </TrackedLink>
+                  </Button>
+                  <Button variant="outline" size="lg" className="px-10 bg-background/50 backdrop-blur-sm" asChild>
                   <TrackedLink
                     href={`/${locale}/services`}
                     eventName="CTA: View services final"
@@ -316,7 +338,8 @@ export default async function Home({ params }: PageProps) {
                 {messages.home.finalCta.responseTime}
               </p>
             </div>
-          </div>
+            </div>
+          </ScrollReveal>
         </Container>
       </Section>
     </>
