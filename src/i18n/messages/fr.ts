@@ -1,4 +1,4 @@
-﻿import type { Messages } from "./en";
+import type { Messages } from "./en";
 
 export const frMessages: Messages = {
   locale: "fr",
@@ -160,7 +160,7 @@ export const frMessages: Messages = {
     packages: {
       launchEssentials: {
         name: "Lancement Express",
-        pitch: "Passez de l'idée au site en ligne en quelques semaines avec une présence marketing soignée et prête à convertir.",
+        pitch: "Passez du concept à une présence marketing prête à convertir en 3 semaines. Un processus focalisé qui gère stratégie, design et code pour que vous restiez concentré sur votre activité.",
         deliverables: [
           "Appel découverte pour définir votre offre, votre audience et vos indicateurs de succès",
           "Page d'accueil, page services et formulaire de contact responsive développés avec Next.js",
@@ -178,13 +178,13 @@ export const frMessages: Messages = {
           },
           plus: {
             name: "Plus",
-            description: "Site multi-pages avec formulaires de capture de leads, réservation de rendez-vous et contenu prêt pour CMS.",
+            description: "Site multi-pages avec capture de leads, contenu prêt pour CMS et réservation automatisée.",
           },
         },
       },
       conversionRefresh: {
         name: "Refonte Conversion",
-        pitch: "Transformez votre site existant en machine à convertir avec un message plus percutant et des performances optimales.",
+        pitch: "Transformez votre site sous-performant en un actif à haut revenu. Nous auditons votre tunnel, optimisons vos performances et réécrivons votre message pour un impact maximal.",
         deliverables: [
           "Audit complet de la performance, de l'accessibilité et de l'efficacité du message",
           "Refonte des sections hero, services et preuves sociales optimisée pour la conversion",
@@ -428,9 +428,10 @@ export const frMessages: Messages = {
         projectScope: {
           label: "De quoi avez-vous besoin ?",
           options: [
-            { value: "portfolio-site", label: "Site portfolio" },
-            { value: "marketing-site", label: "Site marketing" },
-            { value: "app-features", label: "Fonctionnalités d'application" },
+            { value: "launch-site", label: "Lancement de nouveau site" },
+            { value: "conversion-refresh", label: "Optimisation de conversion" },
+            { value: "growth-support", label: "Accompagnement continu" },
+            { value: "custom-app", label: "Fonctionnalité sur mesure" },
           ],
           errors: { min: "Sélectionnez au moins une option" },
         },
@@ -446,10 +447,10 @@ export const frMessages: Messages = {
           label: "Fourchette budgétaire",
           placeholder: "Sélectionnez un budget",
           options: [
-            { value: "under-5k", label: "Moins de 5 k$" },
-            { value: "5k-10k", label: "5 k$ - 10 k$" },
-            { value: "10k-25k", label: "10 k$ - 25 k$" },
-            { value: "25k-plus", label: "25 k$ et plus" },
+            { value: "momentum", label: "1 500 $ - 3 000 $ (Standard)" },
+            { value: "growth", label: "3 000 $ - 6 000 $ (Lancement complet)" },
+            { value: "custom", label: "Plus de 6 000 $ (Sur mesure)" },
+            { value: "consult", label: "Moins de 1 500 $ (Audit stratégique uniquement)" },
           ],
         },
         startDate: {
@@ -509,6 +510,14 @@ export const frMessages: Messages = {
       },
       formatting: {
         dateNotSpecified: "Non spécifié",
+      },
+      successStep: {
+        title: "Brief reçu !",
+        description: "Les détails de votre projet sont dans ma boîte mail. Pour gagner du temps, planifions dès maintenant notre appel d'introduction.",
+        bookingTitle: "Réservez votre appel",
+        bookingDescription: "Choisissez le créneau qui vous convient. J'ai déjà votre brief, nous pourrons donc passer directement à la stratégie.",
+        button: "Planifier sur Cal.com",
+        fallback: "Ou attendez ma réponse par e-mail—je vous répondrai sous 1 jour ouvré.",
       },
     },
     info: {

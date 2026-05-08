@@ -160,7 +160,7 @@ export const enMessages = {
     packages: {
       launchEssentials: {
         name: "Launch Essentials",
-        pitch: "Go from idea to live site in weeks with a polished, conversion-ready marketing presence.",
+        pitch: "Go from concept to conversion-ready marketing presence in 3 weeks. A focused process that handles strategy, design, and code so you can stay focused on your business.",
         deliverables: [
           "Discovery call to define your offer, audience, and success metrics",
           "Responsive homepage, services page, and contact form built in Next.js",
@@ -178,13 +178,13 @@ export const enMessages = {
           },
           plus: {
             name: "Plus",
-            description: "Multi-page site with lead capture forms, calendar booking, and CMS-ready content.",
+            description: "Multi-page site with lead capture, CMS-ready content, and automated calendar booking.",
           },
         },
       },
       conversionRefresh: {
         name: "Conversion Refresh",
-        pitch: "Transform your existing site into a conversion engine with sharper messaging and faster performance.",
+        pitch: "Turn your underperforming site into a high-revenue asset. We audit your funnel, optimize your performance, and rewrite your messaging for maximum impact.",
         deliverables: [
           "Full audit of performance, accessibility, and messaging effectiveness",
           "Redesigned hero, services, and social proof sections optimized for conversions",
@@ -428,9 +428,10 @@ export const enMessages = {
         projectScope: {
           label: "What do you need?",
           options: [
-            { value: "portfolio-site", label: "Portfolio site" },
-            { value: "marketing-site", label: "Marketing site" },
-            { value: "app-features", label: "App features" },
+            { value: "launch-site", label: "New Site Launch" },
+            { value: "conversion-refresh", label: "Conversion Optimization" },
+            { value: "growth-support", label: "Ongoing Growth Support" },
+            { value: "custom-app", label: "Custom Feature / App" },
           ],
           errors: { min: "Select at least one option" },
         },
@@ -446,10 +447,10 @@ export const enMessages = {
           label: "Budget range",
           placeholder: "Select budget",
           options: [
-            { value: "under-5k", label: "Under $5k" },
-            { value: "5k-10k", label: "$5k - $10k" },
-            { value: "10k-25k", label: "$10k - $25k" },
-            { value: "25k-plus", label: "$25k+" },
+            { value: "momentum", label: "$1,500 - $3,000 (Standard)" },
+            { value: "growth", label: "$3,000 - $6,000 (Full Launch)" },
+            { value: "custom", label: "$6,000+ (Custom / Complex)" },
+            { value: "consult", label: "Under $1,500 (Consultation only)" },
           ],
         },
         startDate: {
@@ -509,6 +510,14 @@ export const enMessages = {
       },
       formatting: {
         dateNotSpecified: "Not specified",
+      },
+      successStep: {
+        title: "Brief received!",
+        description: "Your project details are in my inbox. To speed things up, let's lock in a time for our intro call.",
+        bookingTitle: "Book your intro call",
+        bookingDescription: "Pick a time that works for you. I've already got your brief, so we can dive straight into strategy.",
+        button: "Schedule on Cal.com",
+        fallback: "Or wait for my email—I'll respond within 1 business day.",
       },
     },
     info: {

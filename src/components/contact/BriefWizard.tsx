@@ -109,6 +109,14 @@ export type ContactFormMessages = {
   formatting: {
     dateNotSpecified: string;
   };
+  successStep: {
+    title: string;
+    description: string;
+    bookingTitle: string;
+    bookingDescription: string;
+    button: string;
+    fallback: string;
+  };
 };
 
 type BriefWizardProps = {
@@ -119,8 +127,9 @@ type BriefWizardProps = {
 
 const TOTAL_STEPS = 3;
 const SUMMARY_STEP = 3;
+const SUCCESS_STEP = 4;
 
-type StepIndex = 0 | 1 | 2 | 3;
+type StepIndex = 0 | 1 | 2 | 3 | 4;
 
 export type BriefFormValues = {
   name: string;
@@ -163,13 +172,13 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
   const mapServiceToScope = (serviceName: string): string[] => {
     const lowerService = serviceName.toLowerCase();
     if (lowerService.includes('launch') || lowerService.includes('essentials')) {
-      return ['marketing-site'];
+      return ['launch-site'];
     }
     if (lowerService.includes('conversion') || lowerService.includes('refresh')) {
-      return ['marketing-site'];
+      return ['conversion-refresh'];
     }
     if (lowerService.includes('growth') || lowerService.includes('support')) {
-      return ['app-features'];
+      return ['growth-support'];
     }
     // Default: try to match directly if it's already a valid scope value
     return projectScopeValues.includes(serviceName) ? [serviceName] : [];
@@ -316,8 +325,7 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
       // Clear saved progress on successful submission
       clearSavedProgress();
       
-      form.reset();
-      setStep(0);
+      setStep(SUCCESS_STEP);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Brief submission error:', error);
@@ -345,7 +353,7 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
     });
   };
 
-  const showBack = step > 0;
+  const showBack = step > 0 && step < SUCCESS_STEP;
   const displayStep = Math.min(step, SUMMARY_STEP - 1) + 1;
   const summaryValues = form.getValues();
 
@@ -632,39 +640,100 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
             </SummarySection>
           </div>
         )}
-
-        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-          {showBack && (
-            <Button type="button" variant="outline" onClick={handleBack} data-testid="brief-back">
-              {messages.buttons.back}
-            </Button>
-          )}
-
-          {step < SUMMARY_STEP ? (
-            <Button type="button" onClick={handleNext} data-testid="brief-next">
-              {messages.buttons.next}
-            </Button>
-          ) : (
-            <div data-testid="brief-submit" className="sm:ml-auto">
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full sm:w-auto"
-                data-testid="submit-button"
-                disabled={isSubmitting}
-                aria-disabled={isSubmitting}
-              >
-                {isSubmitting ? messages.buttons.submitting : messages.buttons.submit}
-              </Button>
+        
+        {step === SUCCESS_STEP && (
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700" role="region" aria-live="polite">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center space-y-6">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                  {messages.successStep.title}
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-md mx-auto">
+                  {messages.successStep.description}
+                </p>
+              </div>
             </div>
-          )}
-        </div>
 
-        <div role="status" aria-live="polite" className="sr-only">
-          {isSubmitting
-            ? messages.status.sending
-            : interpolate(messages.status.step, { current: displayStep, total: TOTAL_STEPS })}
-        </div>
+            <div className="rounded-2xl border border-border bg-card p-8 shadow-sm space-y-6">
+              <div className="space-y-2 text-center">
+                <h3 className="text-xl font-semibold">{messages.successStep.bookingTitle}</h3>
+                <p className="text-muted-foreground">
+                  {messages.successStep.bookingDescription}
+                </p>
+              </div>
+              
+              <div className="flex flex-col items-center gap-4">
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto h-12 px-8 text-lg"
+                  asChild
+                >
+                  <a 
+                    href="https://cal.com/amilemia/intro" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    {messages.successStep.button}
+                  </a>
+                </Button>
+                <p className="text-sm text-muted-foreground italic">
+                  {messages.successStep.fallback}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {step < SUCCESS_STEP && (
+          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+            {showBack && (
+              <Button type="button" variant="outline" onClick={handleBack} data-testid="brief-back">
+                {messages.buttons.back}
+              </Button>
+            )}
+
+            {step < SUMMARY_STEP ? (
+              <Button type="button" onClick={handleNext} data-testid="brief-next">
+                {messages.buttons.next}
+              </Button>
+            ) : (
+              <div data-testid="brief-submit" className="sm:ml-auto">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  data-testid="submit-button"
+                  disabled={isSubmitting}
+                  aria-disabled={isSubmitting}
+                >
+                  {isSubmitting ? messages.buttons.submitting : messages.buttons.submit}
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+
+        {step < SUCCESS_STEP && (
+          <div role="status" aria-live="polite" className="sr-only">
+            {isSubmitting
+              ? messages.status.sending
+              : interpolate(messages.status.step, { current: displayStep, total: TOTAL_STEPS })}
+          </div>
+        )}
       </form>
     </Form>
 
