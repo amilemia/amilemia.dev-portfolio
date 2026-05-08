@@ -3,6 +3,9 @@ import type { Page } from '@playwright/test';
 
 // Helper function to check color contrast (basic check)
 async function checkBasicAccessibility(page: Page, pageName: string) {
+  // Wait for the page to be fully loaded and lang attribute to be present
+  await page.waitForSelector('html[lang]');
+  
   // Check for proper HTML lang attribute
   const htmlLang = await page.getAttribute('html', 'lang');
   expect(htmlLang).toBeTruthy();
