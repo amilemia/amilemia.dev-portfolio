@@ -95,9 +95,6 @@ export default async function AboutPage({ params }: PageProps) {
           <Button asChild size="lg">
             <Link href={`/${locale}/contact`}>{messages.common.actions.bookIntro}</Link>
           </Button>
-          <Button asChild variant="outline">
-            <Link href="mailto:hi@amilemia.dev">{messages.common.actions.emailDirect}</Link>
-          </Button>
         </div>
       </Container>
     </Section>

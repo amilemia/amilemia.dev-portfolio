@@ -2,7 +2,7 @@
 import { notFound } from 'next/navigation';
 
 import { ProjectContent } from './project-content';
-import { getProjectBySlug, getProjects } from '@/lib/content';
+import { getProjectBySlug, getProjects, getRelatedLeadMagnets } from '@/lib/content';
 import { absoluteUrl } from '@/lib/site';
 import { generateHreflangAlternates } from '@/lib/metadata';
 import { getMessages, type Messages, type Locale } from '@/i18n';
@@ -101,12 +101,18 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
+  // Get related lead magnets based on project tags
+  const relatedLeadMagnets = await getRelatedLeadMagnets(project.tags);
+  const relatedLeadMagnet = relatedLeadMagnets[0]; // Get the first related lead magnet
+
   return (
     <ProjectContent
       project={project}
       locale={locale}
       messages={messages.project}
       caseStudyMessages={messages.common.caseStudy}
+      allMessages={messages}
+      relatedLeadMagnet={relatedLeadMagnet}
     />
   );
 }

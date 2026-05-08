@@ -47,7 +47,7 @@ export default async function ServicesPage({ params }: PageProps) {
 
   const packages = getLocalizedServicePackages(messages.services.packages).map((service) => ({
     ...service,
-    href: `/${locale}/contact?subject=${encodeURIComponent(service.name)}`,
+    href: `/${locale}/contact?service=${encodeURIComponent(service.name)}`,
   }));
   const testimonials = getTestimonials(messages.shared.testimonials);
 
@@ -153,11 +153,6 @@ export default async function ServicesPage({ params }: PageProps) {
             <Button asChild size="lg">
               <TrackedLink href={`/${locale}/contact`} eventName="CTA: Services footer" eventData={{ source: 'services-footer' }}>
                 {messages.common.actions.bookIntro}
-              </TrackedLink>
-            </Button>
-            <Button asChild variant="outline">
-              <TrackedLink href="mailto:hi@amilemia.dev" eventName="CTA: Email direct" eventData={{ source: 'services-footer' }}>
-                {messages.common.actions.emailDirect}
               </TrackedLink>
             </Button>
           </div>

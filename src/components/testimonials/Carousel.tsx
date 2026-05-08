@@ -9,14 +9,7 @@ import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics/track";
 import type { Messages } from "@/i18n";
 import { interpolate } from "@/i18n/interpolate";
-
-export type TestimonialItem = {
-  quote: string;
-  author: string;
-  role?: string;
-  avatarUrl?: string;
-  metric?: string;
-};
+import type { TestimonialItem } from "@/data/testimonials";
 
 type CarouselProps = {
   items: TestimonialItem[];
@@ -233,13 +226,13 @@ export function Carousel({ items, messages }: CarouselProps) {
         {items.map((item, index) => {
           return (
             <div
-              key={[item.author, index].join("-")}
+              key={[item.fullName, index].join("-")}
               ref={setSlideRef(index)}
               role="listitem"
               tabIndex={0}
               onKeyDown={(event) => handleSlideKeyDown(event, index)}
               aria-roledescription="slide"
-              aria-label={[item.author, item.role].filter(Boolean).join(", ")}
+              aria-label={[item.fullName, item.role, item.company].filter(Boolean).join(", ")}
               aria-current={activeIndex === index}
               className={cn(
                 "snap-center shrink-0 basis-full sm:basis-[420px] md:basis-[480px]",
@@ -268,13 +261,27 @@ export function Carousel({ items, messages }: CarouselProps) {
                         className="size-full object-cover"
                       />
                     ) : (
-                      getInitials(item.author)
+                      getInitials(item.fullName)
                     )}
                   </span>
-                  <span className="flex flex-col">
-                    <span className="text-sm font-semibold text-foreground">{item.author}</span>
-                    {item.role && <span>{item.role}</span>}
-                  </span>
+                  <div className="flex flex-1 flex-col">
+                    <span className="text-sm font-semibold text-foreground">{item.fullName}</span>
+                    <span className="text-xs">{item.role}</span>
+                    {item.company && (
+                      <span className="text-xs font-medium text-foreground/80">{item.company}</span>
+                    )}
+                  </div>
+                  {item.companyLogo && (
+                    <div className="flex size-10 items-center justify-center overflow-hidden rounded border border-border bg-background">
+                      <Image
+                        src={item.companyLogo}
+                        alt={`${item.company} logo`}
+                        width={40}
+                        height={40}
+                        className="size-full object-contain p-1"
+                      />
+                    </div>
+                  )}
                 </figcaption>
               </figure>
             </div>

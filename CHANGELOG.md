@@ -2,7 +2,13 @@
 
 ### Features
 
+* **ui:** redesign portfolio with premium bento layout, framer-motion animations, and glassmorphism elements
 * **website:** refresh conversion copy, dynamic availability, and add starter/plus tiers for service packages
+* **contact:** configure Resend email routing to direct replies properly
+
+### Bug Fixes
+
+* **security:** patch Next.js and dependencies to resolve Vercel vulnerability warnings
 
 # 0.1.0 (2025-10-01)
 

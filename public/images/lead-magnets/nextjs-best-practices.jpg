@@ -1,0 +1,19 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0F172A"/>
+  <text x="400" y="230" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold">
+    Next.js Best
+  </text>
+  <text x="400" y="290" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold">
+    Practices Toolkit
+  </text>
+  <text x="400" y="360" font-family="Arial, sans-serif" font-size="24" fill="#94A3B8" text-anchor="middle">
+    Production-Ready Patterns
+  </text>
+  <rect x="320" y="400" width="160" height="100" rx="8" fill="#3B82F6" opacity="0.3"/>
+  <text x="400" y="460" font-family="monospace" font-size="16" fill="#60A5FA" text-anchor="middle">
+    &lt;NextApp /&gt;
+  </text>
+  <text x="400" y="540" font-family="Arial, sans-serif" font-size="18" fill="#94A3B8" text-anchor="middle">
+    Updated for Next.js 15
+  </text>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#059669"/>
+  <text x="400" y="250" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold">
+    Conversion
+  </text>
+  <text x="400" y="310" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold">
+    Optimization Guide
+  </text>
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="24" fill="#D1FAE5" text-anchor="middle">
+    Turn Visitors Into Customers
+  </text>
+  <path d="M 350 450 L 380 480 L 420 480 L 450 450" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="530" font-family="Arial, sans-serif" font-size="20" fill="white" text-anchor="middle" font-weight="bold">
+    +28% Average Increase
+  </text>
+</svg>

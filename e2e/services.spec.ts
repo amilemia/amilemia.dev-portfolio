@@ -104,7 +104,7 @@ test.describe('Services Page', () => {
     
     // Get the href to verify it has subject parameter
     const href = await ctaLink.getAttribute('href');
-    expect(href).toMatch(/\/en\/contact\?subject=/);
+    expect(href).toMatch(/\/en\/contact\?service=/);
 
     // Click the CTA
     await ctaLink.click();
@@ -116,7 +116,7 @@ test.describe('Services Page', () => {
     await expect(page.getByTestId('name-input')).toBeVisible({ timeout: 10000 });
 
     // Verify URL contains subject parameter
-    expect(page.url()).toContain('subject=');
+    expect(page.url()).toContain('service=');
   });
 
   test('services page displays all key sections', async ({ page }) => {

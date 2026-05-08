@@ -31,6 +31,50 @@ testimonial:
   quote: "Amil transformed our dashboard into something people actually want to use. Activation jumped and our users are thrilled."
   author: "Sarah Chen"
   role: "Co-founder, AnalyticsPro"
+caseStudy:
+  problem: "AnalyticsPro's dashboard had a 42% activation rate - meaning 58% of new signups never completed onboarding. The interface was cluttered with advanced features that confused beginners, page load times averaged 3.8 seconds, and the onboarding wizard had 7 steps with a 68% drop-off rate. Support was overwhelmed with 'how do I...' tickets, and user interviews revealed frustration with finding basic reporting features."
+  solution: "Redesigned the entire user experience based on user research and analytics data. Simplified the onboarding to 3 essential steps focused on quick wins. Rebuilt the dashboard using Next.js server components with intelligent caching to reduce load times. Created contextual empty states and progressive disclosure patterns that guide users to value without overwhelming them. Implemented a comprehensive Playwright test suite to prevent regressions."
+  implementation: "Migrated from a client-heavy React SPA to Next.js 15 App Router with server components. Used React Server Components for data fetching and caching, dramatically reducing client-side JavaScript. Implemented Zod schemas for type-safe form validation and API contracts. Created a design system with Tailwind CSS that enforces consistency across 40+ dashboard screens. Playwright tests cover critical paths including signup, onboarding, report creation, and data export."
+  results:
+    - "Activation rate increased from 42% to 60% (18 percentage point improvement)"
+    - "Average dashboard load time reduced from 3.8s to 1.6s (58% faster)"
+    - "Support tickets decreased 32% due to clearer UX and better empty states"
+    - "Time to first report created dropped from 12 minutes to 4 minutes"
+    - "User satisfaction score (NPS) improved from 28 to 51"
+beforeAfter:
+  - type: "metric"
+    before: "42% activation rate"
+    after: "60% activation rate"
+    caption: "User Onboarding Success"
+  - type: "metric"
+    before: "3.8s dashboard load"
+    after: "1.6s dashboard load"
+    caption: "Performance Improvement"
+  - type: "screenshot"
+    before: "/images/projects/analytics-before.jpg"
+    after: "/images/projects/analytics-after.jpg"
+    caption: "Dashboard Redesign: Before and After"
+technicalDeepDive:
+  architecture: "The dashboard uses Next.js 15's App Router with a hybrid rendering strategy. The main dashboard shell is server-rendered with user-specific data, while interactive widgets are client components that hydrate progressively. Data fetching happens on the server using React Server Components, with results cached in Redis for 5 minutes. Real-time updates use Server-Sent Events (SSE) rather than WebSockets to reduce connection overhead. The frontend state is managed with React Context for global UI state and React Query for server state synchronization."
+  challenges:
+    - "Migrating 40+ dashboard screens from SPA to server components without breaking functionality"
+    - "Maintaining real-time data updates while reducing client-side JavaScript by 60%"
+    - "Implementing comprehensive E2E tests that run in under 5 minutes in CI"
+    - "Balancing feature richness with simplicity for new users"
+    - "Handling complex data transformations on the server without blocking rendering"
+  decisions:
+    - "Chose Next.js App Router over Pages Router for better data fetching patterns and streaming"
+    - "Used Server-Sent Events instead of WebSockets for simpler infrastructure and better reconnection handling"
+    - "Implemented Zod for runtime validation to catch API contract violations early"
+    - "Used Playwright over Cypress for better TypeScript support and faster parallel execution"
+    - "Adopted progressive disclosure pattern instead of feature flags to simplify onboarding"
+relatedProjects:
+  - "conversion-playbook-revamp"
+  - "hello-world"
+videoTestimonial:
+  url: "https://www.youtube.com/watch?v=example-analytics-pro"
+  thumbnail: "/images/testimonials/sarah-chen-thumb.jpg"
+  duration: 145
 ---
 
 # Sample SaaS Dashboard

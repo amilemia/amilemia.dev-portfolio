@@ -4,6 +4,37 @@ import remarkGfm from 'remark-gfm';
 
 import { locales, fallbackLocale } from './src/i18n/locales';
 
+export const LeadMagnet = defineDocumentType(() => ({
+  name: 'LeadMagnet',
+  filePathPattern: `lead-magnets/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    slug: { type: 'string', required: true },
+    description: { type: 'string', required: true },
+    thumbnail: { type: 'string', required: true },
+    fileUrl: { type: 'string', required: true },
+    downloadCount: { type: 'number', required: false, default: 0 },
+    rating: { type: 'number', required: false },
+    category: { 
+      type: 'enum', 
+      options: ['checklist', 'guide', 'template', 'toolkit'], 
+      required: true 
+    },
+    relatedTo: { 
+      type: 'list', 
+      of: { type: 'string' }, 
+      required: false 
+    },
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (leadMagnet) => `/resources/${leadMagnet.slug}`,
+    },
+  },
+}));
+
 export const Project = defineDocumentType(() => ({
   name: 'Project',
   filePathPattern: `projects/**/*.mdx`,
@@ -58,6 +89,52 @@ export const Project = defineDocumentType(() => ({
         role: { type: 'string', required: false },
       }
     },
+    caseStudy: {
+      type: 'json',
+      required: false,
+      fields: {
+        problem: { type: 'string', required: true },
+        solution: { type: 'string', required: true },
+        implementation: { type: 'string', required: true },
+        results: { type: 'list', of: { type: 'string' }, required: true },
+      }
+    },
+    beforeAfter: {
+      type: 'list',
+      required: false,
+      of: {
+        type: 'json',
+        fields: {
+          type: { type: 'enum', options: ['screenshot', 'metric', 'video'], required: true },
+          before: { type: 'string', required: true },
+          after: { type: 'string', required: true },
+          caption: { type: 'string', required: false },
+        }
+      }
+    },
+    technicalDeepDive: {
+      type: 'json',
+      required: false,
+      fields: {
+        architecture: { type: 'string', required: false },
+        challenges: { type: 'list', of: { type: 'string' }, required: false },
+        decisions: { type: 'list', of: { type: 'string' }, required: false },
+      }
+    },
+    relatedProjects: {
+      type: 'list',
+      of: { type: 'string' }, // slugs of related projects
+      required: false,
+    },
+    videoTestimonial: {
+      type: 'json',
+      required: false,
+      fields: {
+        url: { type: 'string', required: true },
+        thumbnail: { type: 'string', required: false },
+        duration: { type: 'number', required: false },
+      }
+    },
   },
   computedFields: {
     url: {
@@ -73,7 +150,7 @@ export const Project = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Project],
+  documentTypes: [LeadMagnet, Project],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeSlug],

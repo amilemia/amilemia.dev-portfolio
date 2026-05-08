@@ -1,4 +1,4 @@
-﻿import type { Project as ProjectType } from 'contentlayer/generated';
+﻿import type { Project as ProjectType, LeadMagnet as LeadMagnetType } from 'contentlayer/generated';
 
 import type { Locale } from '@/i18n';
 import { fallbackLocale } from '@/i18n';
@@ -63,4 +63,41 @@ export async function getProjectBySlug(slug: string, locale: Locale): Promise<Pr
   const entry = grouped.get(slug);
   if (!entry) return undefined;
   return entry[locale] ?? entry[fallbackLocale];
+}
+
+async function getLeadMagnetsData(): Promise<LeadMagnetType[]> {
+  try {
+    const { allLeadMagnets } = await import('contentlayer/generated');
+    return allLeadMagnets as LeadMagnetType[];
+  } catch {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn("Contentlayer data not available. Run `npm run build:content` to generate it.");
+    }
+    return [];
+  }
+}
+
+export async function getLeadMagnets(): Promise<LeadMagnetType[]> {
+  const leadMagnets = await getLeadMagnetsData();
+  // Sort by download count (descending) and rating
+  return [...leadMagnets].sort((a, b) => {
+    const downloadDiff = (b.downloadCount ?? 0) - (a.downloadCount ?? 0);
+    if (downloadDiff !== 0) return downloadDiff;
+    return (b.rating ?? 0) - (a.rating ?? 0);
+  });
+}
+
+export async function getLeadMagnetBySlug(slug: string): Promise<LeadMagnetType | undefined> {
+  const leadMagnets = await getLeadMagnetsData();
+  return leadMagnets.find((magnet) => magnet.slug === slug);
+}
+
+export async function getRelatedLeadMagnets(relatedTo?: string[]): Promise<LeadMagnetType[]> {
+  if (!relatedTo || relatedTo.length === 0) return [];
+  
+  const leadMagnets = await getLeadMagnetsData();
+  return leadMagnets.filter((magnet) => {
+    if (!magnet.relatedTo) return false;
+    return magnet.relatedTo.some((topic) => relatedTo.includes(topic));
+  });
 }

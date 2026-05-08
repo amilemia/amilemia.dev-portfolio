@@ -155,6 +155,7 @@ export const frMessages: Messages = {
       tiersHeading: "Choisissez votre formule",
       timeline: "Délai : {{timeline}}",
       cta: "Démarrer",
+      startingAt: "À partir de",
     },
     packages: {
       launchEssentials: {
@@ -529,6 +530,50 @@ export const frMessages: Messages = {
     timeline: {
       present: "En cours",
     },
+    cta: {
+      heading: "Démarrez votre projet",
+      description: "Prêt à obtenir des résultats similaires ? Discutons de la façon dont je peux vous aider à concrétiser votre vision.",
+      button: "Contactez-moi",
+    },
+  },
+  resources: {
+    meta: {
+      title: "Ressources gratuites",
+      description: "Guides, checklists et templates gratuits pour vous aider à créer de meilleurs sites web. Téléchargement instantané, sans engagement.",
+    },
+    hero: {
+      eyebrow: "Ressources gratuites",
+      title: "Guides et outils pour créer de meilleurs sites",
+      description: "Ressources pratiques pour fondateurs et développeurs. Téléchargement instantané—sans engagement.",
+    },
+    grid: {
+      title: "Ressources disponibles",
+      description: "Tout ce dont vous avez besoin pour créer des sites plus rapides, plus accessibles et plus performants.",
+    },
+    card: {
+      downloadCount: "{{count}} téléchargements",
+      rating: "Note {{rating}}/5",
+      download: "Télécharger gratuitement",
+      category: {
+        checklist: "Checklist",
+        guide: "Guide",
+        template: "Template",
+        toolkit: "Boîte à outils",
+      },
+    },
+    contentUpgrade: {
+      eyebrow: "Ressource gratuite",
+      title: "Vous voulez le guide détaillé ?",
+      description: "Obtenez le {{title}} complet avec des instructions étape par étape et des exemples de code.",
+      cta: "Télécharger le guide gratuit",
+    },
+    featured: {
+      eyebrow: "Ressource gratuite",
+      title: "Obtenez le {{title}}",
+      description: "{{description}}",
+      cta: "Télécharger gratuitement",
+      socialProof: "{{count}}+ téléchargements",
+    },
   },
   notFound: {
     title: "Page introuvable",
@@ -540,19 +585,28 @@ export const frMessages: Messages = {
       {
         quote: "Amina a transformé des exigences produit vagues en une version soignée. Ses audits d'accessibilité ont détecté des problèmes qui nous auraient coûté des semaines en QA. Nous avons constaté une augmentation de 28% des conversions essai-payant après le lancement.",
         author: "Lisa Dunn",
-        role: "Head of Product, Relay CRM",
+        fullName: "Lisa Dunn",
+        role: "Head of Product",
+        company: "Relay CRM",
+        companyLogo: "/images/clients/relay-crm-logo.svg",
         metric: "+28% de conversions",
       },
       {
         quote: "Notre site marketing a été lancé en 3 semaines avec analytics, documentation et zéro problème post-lancement. La meilleure expérience freelance qu'on ait eue. Le temps de chargement est passé de 4,2s à 1,1s.",
         author: "Carlos Mendes",
-        role: "Fondateur, Launchpad Studio",
+        fullName: "Carlos Mendes",
+        role: "Fondateur",
+        company: "Launchpad Studio",
+        companyLogo: "/images/clients/launchpad-studio-logo.svg",
         metric: "Lancement en 3 semaines, 74% plus rapide",
       },
       {
         quote: "Elle pose les bonnes questions, prend des décisions intelligentes et envoie des points d'avancement avant même qu'on ait à demander. Exactement ce qu'on attend d'une développeuse. Nos soumissions de formulaire ont augmenté de 42% après la refonte.",
         author: "Naomi Chen",
-        role: "COO, Stellar Labs",
+        fullName: "Naomi Chen",
+        role: "COO",
+        company: "Stellar Labs",
+        companyLogo: "/images/clients/stellar-labs-logo.svg",
         metric: "+42% de leads",
       },
     ],

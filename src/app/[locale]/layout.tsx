@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import React from "react";
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Outfit } from 'next/font/google';
 
 import "../globals.css";
 
@@ -11,14 +11,14 @@ import { getMessages, locales, fallbackLocale } from "@/i18n";
 import type { Locale } from "@/i18n";
 import { isLocale } from "@/i18n/locales";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-sans',
   subsets: ['latin'],
   display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const outfit = Outfit({
+  variable: '--font-heading',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -146,7 +146,7 @@ export default async function LocaleLayout({ children, params }: RootLayoutProps
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${inter.variable} ${outfit.variable} flex min-h-screen flex-col antialiased font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider>

@@ -21,6 +21,7 @@ import { track } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils";
 import type { Locale } from "@/i18n";
 import { interpolate } from "@/i18n/interpolate";
+import { ExitIntentModal, loadSavedProgress, clearSavedProgress } from "./ExitIntentModal";
 
 export type ContactFormMessages = {
   steps: {
@@ -113,6 +114,7 @@ export type ContactFormMessages = {
 type BriefWizardProps = {
   locale: Locale;
   messages: ContactFormMessages;
+  prefilledService?: string;
 };
 
 const TOTAL_STEPS = 3;
@@ -130,7 +132,7 @@ export type BriefFormValues = {
   timelineNotes: string;
 };
 
-export function BriefWizard({ locale, messages }: BriefWizardProps) {
+export function BriefWizard({ locale, messages, prefilledService }: BriefWizardProps) {
   const projectScopeOptions = messages.fields.projectScope.options;
   const projectScopeValues = projectScopeOptions.map((option) => option.value) as [string, ...string[]];
 
@@ -157,13 +159,31 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
     timelineNotes: z.string().max(500, messages.fields.timelineNotes.errors.max),
   });
 
+  // Map service names to project scope values
+  const mapServiceToScope = (serviceName: string): string[] => {
+    const lowerService = serviceName.toLowerCase();
+    if (lowerService.includes('launch') || lowerService.includes('essentials')) {
+      return ['marketing-site'];
+    }
+    if (lowerService.includes('conversion') || lowerService.includes('refresh')) {
+      return ['marketing-site'];
+    }
+    if (lowerService.includes('growth') || lowerService.includes('support')) {
+      return ['app-features'];
+    }
+    // Default: try to match directly if it's already a valid scope value
+    return projectScopeValues.includes(serviceName) ? [serviceName] : [];
+  };
+
+  const initialProjectScope = prefilledService ? mapServiceToScope(prefilledService) : [];
+
   const form = useForm<BriefFormValues>({
     resolver: zodResolver(BriefSchema),
     defaultValues: {
       name: '',
       email: '',
-      projectScope: [],
-      goals: '',
+      projectScope: initialProjectScope,
+      goals: prefilledService ? `I'm interested in ${prefilledService}. ` : '',
       budgetRange: budgetValues[0],
       startDate: '',
       timelineNotes: '',
@@ -176,8 +196,28 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const projectScopeLabelId = useId();
 
+  // Load saved progress on mount
   useEffect(() => {
-    headingRef.current?.focus();
+    const savedProgress = loadSavedProgress();
+    if (savedProgress) {
+      // Ask user if they want to restore progress
+      const restore = window.confirm("We found your saved progress. Would you like to continue where you left off?");
+      if (restore) {
+        form.reset(savedProgress as BriefFormValues);
+        toast.info("Your progress has been restored!");
+      } else {
+        clearSavedProgress();
+      }
+    }
+  }, [form]);
+
+  // Focus heading on step change, but only on desktop to prevent unwanted keyboard pop-ups on mobile
+  useEffect(() => {
+    // Check if device is likely mobile (screen width < 768px)
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    if (!isMobile) {
+      headingRef.current?.focus();
+    }
   }, [step]);
 
   const stepFieldMap: Record<Exclude<StepIndex, 3>, Array<keyof BriefFormValues>> = {
@@ -272,6 +312,10 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
         budget: values.budgetRange,
         timeline: values.startDate,
       });
+      
+      // Clear saved progress on successful submission
+      clearSavedProgress();
+      
       form.reset();
       setStep(0);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -284,26 +328,69 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
     }
   };
 
+  // Exit intent modal handlers
+  const handleSaveProgress = () => {
+    toast.success("Your progress has been saved! We'll be here when you're ready.");
+    track('Contact: Progress Saved', {
+      step: step,
+    });
+  };
+
+  const handleScheduleCall = () => {
+    // In a real implementation, this would open a calendar booking widget
+    // For now, we'll scroll to the alternative contact section
+    toast.info("Scroll down to see alternative contact methods including calendar booking.");
+    track('Contact: Schedule Call Clicked', {
+      step: step,
+    });
+  };
+
   const showBack = step > 0;
   const displayStep = Math.min(step, SUMMARY_STEP - 1) + 1;
   const summaryValues = form.getValues();
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" aria-live="polite">
-        <div className="space-y-2">
-          <p className="text-sm text-muted-foreground" data-testid="brief-step-13">
-            {interpolate(messages.status.step, { current: displayStep, total: TOTAL_STEPS })}
-          </p>
-          <h2
-            ref={headingRef}
-            tabIndex={-1}
-            className="text-2xl font-semibold tracking-tight focus:outline-none"
+    <div className="space-y-8">
+      {/* Response Time Banner */}
+      <div className="rounded-lg border border-primary/20 bg-primary/5 p-4" role="status">
+        <div className="flex items-start gap-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 flex-shrink-0 text-primary"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
           >
-            {messages.steps.titles[step]}
-          </h2>
-          <p className="text-muted-foreground">{messages.steps.descriptions[step]}</p>
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <div className="flex-1">
+            <p className="font-medium text-foreground">We respond within 24 hours</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Usually much faster. I&apos;ll review your brief and get back to you with next steps.
+            </p>
+          </div>
         </div>
+      </div>
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" aria-live="polite">
+          <div className="space-y-2">
+            <p className="text-sm text-muted-foreground" data-testid="brief-step-13">
+              {interpolate(messages.status.step, { current: displayStep, total: TOTAL_STEPS })}
+            </p>
+            <h2
+              ref={headingRef}
+              tabIndex={-1}
+              className="text-2xl font-semibold tracking-tight focus:outline-none"
+            >
+              {messages.steps.titles[step]}
+            </h2>
+            <p className="text-muted-foreground">{messages.steps.descriptions[step]}</p>
+          </div>
 
         {step === 0 && (
           <div className="grid gap-6 sm:grid-cols-2">
@@ -316,6 +403,9 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
                   <FormControl>
                     <Input
                       id="contact-name"
+                      type="text"
+                      inputMode="text"
+                      autoComplete="name"
                       placeholder={messages.fields.name.placeholder}
                       data-testid="name-input"
                       {...field}
@@ -335,6 +425,8 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
                     <Input
                       id="contact-email"
                       type="email"
+                      inputMode="email"
+                      autoComplete="email"
                       placeholder={messages.fields.email.placeholder}
                       data-testid="email-input"
                       {...field}
@@ -363,11 +455,11 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
                         return (
                           <label
                             key={option.value}
-                            className="flex items-start gap-3 rounded border border-border p-3 text-sm hover:border-primary focus-within:border-primary"
+                            className="flex items-start gap-3 rounded border border-border p-4 text-base hover:border-primary focus-within:border-primary cursor-pointer min-h-[44px] md:text-sm"
                           >
                             <input
                               type="checkbox"
-                              className="mt-1 h-4 w-4"
+                              className="mt-1 h-5 w-5 min-h-[20px] min-w-[20px] cursor-pointer"
                               checked={checked}
                               onChange={(event) => {
                                 if (event.target.checked) {
@@ -379,7 +471,7 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
                               onBlur={field.onBlur}
                               value={option.value}
                             />
-                            <span className="leading-6 text-foreground">{option.label}</span>
+                            <span className="leading-6 text-foreground flex-1">{option.label}</span>
                           </label>
                         );
                       })}
@@ -423,7 +515,7 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
                   <FormControl>
                     <select
                       id="budget-range"
-                      className="h-11 rounded border border-input bg-background px-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      className="min-h-[44px] h-11 w-full rounded-md border border-input bg-background px-3 text-base shadow-xs transition-[color,box-shadow] outline-none focus:border-primary focus:ring-[3px] focus:ring-ring/50 md:text-sm"
                       data-testid="budget-select"
                       value={field.value}
                       onChange={field.onChange}
@@ -575,6 +667,53 @@ export function BriefWizard({ locale, messages }: BriefWizardProps) {
         </div>
       </form>
     </Form>
+
+      {/* What Happens Next Timeline */}
+      <div className="rounded-lg border border-border bg-card/50 p-6">
+        <h3 className="mb-4 text-lg font-semibold text-foreground">What happens next</h3>
+        <ol className="space-y-4">
+          <li className="flex gap-4">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              1
+            </div>
+            <div className="flex-1 pt-1">
+              <p className="text-sm text-foreground">
+                I&apos;ll review your brief and confirm if we&apos;re a good fit for your timeline and goals.
+              </p>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              2
+            </div>
+            <div className="flex-1 pt-1">
+              <p className="text-sm text-foreground">
+                We&apos;ll schedule a 30-minute intro call to discuss scope, metrics, and approach.
+              </p>
+            </div>
+          </li>
+          <li className="flex gap-4">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+              3
+            </div>
+            <div className="flex-1 pt-1">
+              <p className="text-sm text-foreground">
+                You&apos;ll receive a proposal with deliverables, pricing, and a suggested start date.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      {/* Exit Intent Modal */}
+      <ExitIntentModal
+        formData={form.getValues()}
+        isFormDirty={form.formState.isDirty}
+        onSaveProgress={handleSaveProgress}
+        onScheduleCall={handleScheduleCall}
+        onClose={() => {}}
+      />
+    </div>
   );
 }
 

@@ -63,6 +63,7 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: 'Portfolio <onboarding@resend.dev>',
       to: env.CONTACT_TO,
+      replyTo: email,
       subject: `${name} sent a message from amilemia.dev`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
