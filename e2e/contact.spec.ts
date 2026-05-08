@@ -9,7 +9,7 @@ test('contact brief pre-populates service from URL parameter', async ({ page }) 
   await page.getByTestId('brief-next').click();
   
   // Wait for step 2 to be visible
-  await expect(page.getByTestId('brief-step-23')).toHaveText('Step 2 of 3');
+  await expect(page.getByRole('heading', { name: 'Project details' })).toBeVisible();
   
   // Verify the goals field contains the service name
   const goalsInput = page.getByTestId('message-input');
@@ -50,7 +50,7 @@ test('contact brief validates and submits', async ({ page }) => {
 
   await page.getByTestId('brief-next').click();
 
-  await expect(page.getByTestId('brief-step-23')).toHaveText('Step 2 of 3');
+  await expect(page.getByRole('heading', { name: 'Project details' })).toBeVisible();
 
   await page.getByTestId('brief-next').click();
 
