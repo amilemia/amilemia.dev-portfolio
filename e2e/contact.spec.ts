@@ -9,7 +9,7 @@ test('contact brief pre-populates service from URL parameter', async ({ page }) 
   await page.getByTestId('brief-next').click();
   
   // Wait for step 2 to be visible
-  await expect(page.getByTestId('brief-step-13')).toHaveText('Step 2 of 3');
+  await expect(page.getByRole('heading', { name: 'Project details' })).toBeVisible();
   
   // Verify the goals field contains the service name
   const goalsInput = page.getByTestId('message-input');
@@ -17,8 +17,8 @@ test('contact brief pre-populates service from URL parameter', async ({ page }) 
   
   // Verify that a project scope is pre-selected
   const projectScopeGroup = page.getByRole('group', { name: 'What do you need?' });
-  const marketingSiteCheckbox = projectScopeGroup.getByRole('checkbox', { name: 'Marketing site' });
-  await expect(marketingSiteCheckbox).toBeChecked();
+  const launchSiteCheckbox = projectScopeGroup.getByRole('checkbox', { name: 'New Site Launch' });
+  await expect(launchSiteCheckbox).toBeChecked();
 });
 
 test('contact brief validates and submits', async ({ page }) => {
@@ -50,7 +50,7 @@ test('contact brief validates and submits', async ({ page }) => {
 
   await page.getByTestId('brief-next').click();
 
-  await expect(page.getByTestId('brief-step-13')).toHaveText('Step 2 of 3');
+  await expect(page.getByRole('heading', { name: 'Project details' })).toBeVisible();
 
   await page.getByTestId('brief-next').click();
 
@@ -60,7 +60,7 @@ test('contact brief validates and submits', async ({ page }) => {
   const projectScopeGroup = page.getByRole('group', { name: 'What do you need?' });
   await expect(projectScopeGroup).toBeVisible();
 
-  await projectScopeGroup.getByRole('checkbox', { name: 'Portfolio site' }).check();
+  await projectScopeGroup.getByRole('checkbox', { name: 'New Site Launch' }).check();
   await page.getByTestId('message-input').fill('Hello there, this is a valid project brief message.');
 
   await page.getByTestId('brief-next').click();
@@ -72,6 +72,7 @@ test('contact brief validates and submits', async ({ page }) => {
 
   await page.getByTestId('submit-button').click();
 
-  const toast = page.getByRole('region', { name: 'Notifications alt+T' }).getByText("Message sent! I'll respond within 1 business day.");
-  await expect(toast).toBeVisible();
+  // Verify success step is visible
+  await expect(page.getByText(/brief received/i)).toBeVisible();
+  await expect(page.getByRole('link', { name: /schedule on cal.com/i })).toBeVisible();
 });

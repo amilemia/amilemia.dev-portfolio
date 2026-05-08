@@ -386,8 +386,9 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" aria-live="polite">
+        {step < SUCCESS_STEP && (
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground" data-testid="brief-step-13">
+            <p className="text-sm text-muted-foreground" data-testid="step-indicator">
               {interpolate(messages.status.step, { current: displayStep, total: TOTAL_STEPS })}
             </p>
             <h2
@@ -399,6 +400,7 @@ export function BriefWizard({ locale, messages, prefilledService }: BriefWizardP
             </h2>
             <p className="text-muted-foreground">{messages.steps.descriptions[step]}</p>
           </div>
+        )}
 
         {step === 0 && (
           <div className="grid gap-6 sm:grid-cols-2">
