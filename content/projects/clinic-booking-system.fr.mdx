@@ -24,9 +24,9 @@ dates:
 testimonial:
   quote: "Le système de planification basé sur Laravel a complètement éliminé nos conflits de réservation, simplifié les paiements des patients et rationalisé la génération d'ordonnances. Un vrai changement pour notre clinique."
   author: "Dr. Jean Martin"
-  role: "Praticien Principal, Clinique Martin"
+  role: "Praticien Principal, Clinique Santé Plus"
 caseStudy:
-  problem: "La Clinique Martin faisait face à des goulots d'étranglement administratifs majeurs en raison d'une planification manuelle obsolète. Des doubles réservations se produisaient fréquemment, et le suivi des dossiers des patients, de la disponibilité des médecins et des historiques d'ordonnances était chaotique. L'administration passait plus de 25 heures par semaine à gérer les calendriers, à courir après les paiements et à rédiger des documents manuellement. Il leur fallait un système moderne, bilingue et basé sur des rôles séparant médecins, assistants et administrateurs avec exports PDF et synchronisation d'agenda."
+  problem: "La Clinique Santé Plus faisait face à des goulots d'étranglement administratifs majeurs en raison d'une planification manuelle obsolète. Des doubles réservations se produisaient fréquemment, et le suivi des dossiers des patients, de la disponibilité des médecins et des historiques d'ordonnances était chaotique. L'administration passait plus de 25 heures par semaine à gérer les calendriers, à courir après les paiements et à rédiger des documents manuellement. Il leur fallait un système moderne, bilingue et basé sur des rôles séparant médecins, assistants et administrateurs avec exports PDF et synchronisation d'agenda."
   solution: "Conception et développement d'un tableau de bord web performant en utilisant Laravel 13, Tailwind CSS, Alpine.js et FullCalendar. Création d'un calendrier interactif glisser-déposer avec validation AJAX des conflits en temps réel pour les chevauchements, la disponibilité des salles et les congés des médecins. Intégration d'un support bilingue personnalisé (anglais/français), d'un contrôle d'accès basé sur les rôles (RBAC) et d'une génération automatisée de PDF pour les ordonnances et reçus de paiement via Barryvdh Laravel DomPDF."
   implementation: "Développé en utilisant l'architecture MVC robuste de Laravel avec requêtes préparées et Eloquent ORM. Implémentation d'une authentification sécurisée et de middlewares personnalisés pour la séparation des rôles (Admin, Médecin, Assistant). Création de modules complets pour les patients, rendez-vous et ordonnances avec sécurité transactionnelle. Développement d'un calendrier dynamique exploitant FullCalendar avec glisser-déposer, redimensionnement et vérification des congés. Le système est couvert par une suite de tests automatisés Pest validant l'authentification et les contraintes de base de données."
   results:
@@ -55,7 +55,7 @@ technicalDeepDive:
     - "Utilisation d'Alpine.js couplé aux Blade Views de Laravel pour obtenir une réactivité rapide sans la surcharge d'une SPA"
 relatedProjects:
   - "sample-saas-dashboard"
-  - "conversion-playbook"
+  - "conversion-playbook-revamp"
 ---
 
 # Système de Gestion de Clinique
@@ -71,18 +71,24 @@ Le cœur du système est un calendrier alimenté par FullCalendar, permettant au
 
 ![Calendrier Interactif Vue Hebdomadaire](/images/projects/week_calendar.png)
 
+![Liste des Rendez-vous](/images/projects/appointments.png)
+
 ### 2. Analyses du Tableau de Bord
 Un espace de travail central fournissant des widgets statistiques sur les rendez-vous du jour, les patients enregistrés, le nombre de factures en attente et des raccourcis de navigation rapide.
 
 ![Tableau de Bord de Clinique](/images/projects/dashboard.png)
 
 ### 3. Gestion des Patients & Ordonnances
-Un registre sécurisé pour les patients et dossiers cliniques. Les médecins peuvent rédiger des ordonnances numériques avec formatage automatisé et télécharger des versions PDF propres pour impression.
+Un registre sécurisé pour les profils des patients, l'historique des consultations et les dossiers cliniques. Les médecins peuvent rédiger des ordonnances numériques avec formatage automatisé.
 
-![Liste des Rendez-vous](/images/projects/appointments.png)
+![Dossiers Patients](/images/projects/patient.png)
 
-### 4. Planificateur de Congés des Médecins
-Les médecins peuvent enregistrer des congés et vacances, ce qui bloque immédiatement ces créneaux dans le planificateur pour éviter tout chevauchement de réservation.
+![Génération d'Ordonnance](/images/projects/prescription.png)
+
+### 4. Facturation & Règlements
+Un module dédié permettant de traiter les paiements des patients, de générer des factures numériques et d'exporter des reçus.
+
+![Gestion des Paiements](/images/projects/payment.png)
 
 ---
 

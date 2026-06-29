@@ -24,9 +24,9 @@ dates:
 testimonial:
   quote: "The Laravel-based scheduling system completely eliminated our booking conflicts, simplified patient payments, and streamlined prescription generation. A game-changer for our clinic."
   author: "Dr. Jean Martin"
-  role: "Lead Practitioner, Clinic Martin"
+  role: "Lead Practitioner, Clinique Santé Plus"
 caseStudy:
-  problem: "Clinic Martin faced significant administrative bottlenecks due to legacy manual scheduling. Double-bookings occurred frequently, and tracking patient histories, doctor availability, and prescription records was chaotic. The admin spent over 25 hours per week managing calendar grids, chasing cash payments, and writing manual scripts. They required a modern, bilingual, role-based system separating doctors, assistants, and administrators with robust PDF exports and calendar synchronization."
+  problem: "Clinique Santé Plus faced significant administrative bottlenecks due to legacy manual scheduling. Double-bookings occurred frequently, and tracking patient histories, doctor availability, and prescription records was chaotic. The admin spent over 25 hours per week managing calendar grids, chasing cash payments, and writing manual scripts. They required a modern, bilingual, role-based system separating doctors, assistants, and administrators with robust PDF exports and calendar synchronization."
   solution: "Engineered a high-performance web dashboard using Laravel 13, Tailwind CSS, Alpine.js, and FullCalendar. Built an interactive drag-and-drop calendar with real-time AJAX conflicts validation for overlaps, room availability, and doctors' scheduled leaves. Integrated custom bilingual support (English/French), role-based access control (RBAC), and automated PDF generation for prescriptions and payment receipts using Barryvdh Laravel DomPDF."
   implementation: "Developed using Laravel's robust MVC architecture with prepared statements and Eloquent ORM. Implemented secure authentication and customized middleware for role separation (Admin, Doctor, Assistant). Created full-featured Patient, Appointment, and Ordonnance modules with transactional safety. Built a dynamic calendar page leveraging FullCalendar with dragging, resizing, and leave verification. Wrapped the system in a automated Pest testing suite validating authentication, session control, and database constraints."
   results:
@@ -55,7 +55,7 @@ technicalDeepDive:
     - "Used Alpine.js coupled with Laravel Blade to achieve fast reactivity on form actions without SPA overhead"
 relatedProjects:
   - "sample-saas-dashboard"
-  - "conversion-playbook"
+  - "conversion-playbook-revamp"
 ---
 
 # Clinic Management System
@@ -71,18 +71,24 @@ The core of the system is a calendar powered by FullCalendar, allowing clinic as
 
 ![Interactive Calendar Week View](/images/projects/week_calendar.png)
 
+![Appointments List](/images/projects/appointments.png)
+
 ### 2. Dashboard Analytics
 A central workspace providing statistical widgets on daily appointments, registered patients, pending invoice counts, and quick navigation shortcuts.
 
 ![Clinic Dashboard](/images/projects/dashboard.png)
 
 ### 3. Patient & Prescription (Ordonnance) Management
-A secure registry of patients and clinical records. Doctors can write digital prescriptions (ordonnances) with automated formatting and download clean PDF versions for print.
+A secure registry of patient profiles, consultation histories, and clinical records. Doctors can write digital prescriptions (ordonnances) with automated formatting and download clean PDF versions.
 
-![Appointments List](/images/projects/appointments.png)
+![Patient Records](/images/projects/patient.png)
 
-### 4. Doctor Leave Scheduler
-Doctors can register time-offs and vacations, which immediately blocks those slots in the scheduler to prevent overlapping bookings.
+![Prescription Generation](/images/projects/prescription.png)
+
+### 4. Billing & Payments
+A dedicated billing module where assistants and doctors can process patient payments, generate digital invoices, and export receipt sheets.
+
+![Payments Management](/images/projects/payment.png)
 
 ---
 
