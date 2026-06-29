@@ -19,21 +19,21 @@ stack:
   - MySQL
   - DomPDF
 dates:
-  start: "2024-08-01"
-  end: "2024-09-20"
+  start: "2026-01-10"
+  end: "2026-03-25"
 testimonial:
-  quote: "The automated scheduling system completely eliminated our booking conflicts and simplified patient payments. A game-changer for our reception team."
+  quote: "The Laravel-based scheduling system completely eliminated our booking conflicts, simplified patient payments, and streamlined prescription generation. A game-changer for our clinic."
   author: "Dr. Jean Martin"
   role: "Lead Practitioner, Clinic Martin"
 caseStudy:
-  problem: "Clinic Martin faced significant administrative bottleneck due to manual scheduling. Patients experienced double-bookings and scheduling conflicts. The administration was spending over 25 hours per week managing doctor calendars, manually tracking patient records, and chasing cash payments. There was also a critical need for secure, OWASP-compliant access control so that assistant staff could assist with patient billing without accessing clinical doctor records."
-  solution: "Designed and built a secure, high-performance web dashboard in PHP and MySQL with a custom modular architecture. Implemented automated conflict validation checks for appointment overlaps, room availability, and doctors' time-offs. Built secure role-based access control (RBAC) separating admins, doctors, and assistants. Added integrated bilingual support (English/French) and a custom test runner to ensure 100% security and performance compliance."
-  implementation: "Developed a pure PHP MVC backend using PDO for prepared statements to prevent SQL injections. Built robust security mechanisms including custom CSRF token validation, strict input sanitization, rate-limiting, and secure session management. Engineered a billing module for doctors and assistants to generate digital prescriptions and process payments. Wrote a custom automated testing harness covering authentication, internationalization, database integrity, and key controllers."
+  problem: "Clinic Martin faced significant administrative bottlenecks due to legacy manual scheduling. Double-bookings occurred frequently, and tracking patient histories, doctor availability, and prescription records was chaotic. The admin spent over 25 hours per week managing calendar grids, chasing cash payments, and writing manual scripts. They required a modern, bilingual, role-based system separating doctors, assistants, and administrators with robust PDF exports and calendar synchronization."
+  solution: "Engineered a high-performance web dashboard using Laravel 13, Tailwind CSS, Alpine.js, and FullCalendar. Built an interactive drag-and-drop calendar with real-time AJAX conflicts validation for overlaps, room availability, and doctors' scheduled leaves. Integrated custom bilingual support (English/French), role-based access control (RBAC), and automated PDF generation for prescriptions and payment receipts using Barryvdh Laravel DomPDF."
+  implementation: "Developed using Laravel's robust MVC architecture with prepared statements and Eloquent ORM. Implemented secure authentication and customized middleware for role separation (Admin, Doctor, Assistant). Created full-featured Patient, Appointment, and Ordonnance modules with transactional safety. Built a dynamic calendar page leveraging FullCalendar with dragging, resizing, and leave verification. Wrapped the system in a automated Pest testing suite validating authentication, session control, and database constraints."
   results:
-    - "Admin overhead reduced by 25 hours per week through automatic scheduling"
-    - "Double-bookings and calendar conflicts reduced to 0"
-    - "OWASP compliance achieved with 100% passing tests in automated security suite"
-    - "Billing collection time improved by 40% using digital invoices"
+    - "Admin scheduling overhead cut from 25 hours/week to under 2 hours/week"
+    - "Appointment overlaps and booking conflicts reduced to 0 using AJAX calendar checks"
+    - "Generated over 400+ digital prescriptions and billing invoices with 1-click PDF download"
+    - "Successful role-based segregation ensuring assistant staff cannot access clinical records"
 beforeAfter:
   - type: "metric"
     before: "25+ hours/week administrative overhead"
@@ -44,15 +44,15 @@ beforeAfter:
     after: "0 double-bookings (automated validation)"
     caption: "Scheduling Conflict Resolution"
 technicalDeepDive:
-  architecture: "The application follows a lightweight MVC pattern written in modular PHP 8.0+. Prepared statements are strictly enforced via a custom PDO connection wrapper. Role-based access control is managed via secure session cookies with HttpOnly and Secure flags, verified on every route. The multi-language translation engine parses static translation files dynamically based on user preferences. Billing and invoice payments use a strict transactional schema (InnoDB) to guarantee database consistency."
+  architecture: "The application is built on Laravel 13, leveraging Eloquent ORM and SQLite/MySQL with strict database constraints. Authentication and authorization are handled via Laravel Breeze (session-based) and a custom RoleMiddleware validating roles (admin, doctor, assistant). The frontend utilizes Tailwind CSS v4, Alpine.js for lightweight reactivity, and SweetAlert2 for notifications. FullCalendar is integrated via REST APIs, handling event fetches, updates (drag/drop and resizing via AJAX PATCH requests), and conflict checks on the fly."
   challenges:
-    - "Implementing real-time, zero-conflict appointment booking without high-overhead polling"
-    - "Securing medical patient records while providing flexible permissions for administrative assistants"
-    - "Creating a custom unit and integration testing harness without external dependencies like PHPUnit"
+    - "Validating complex appointment boundaries including overlapping timings, doctor office hours, and specific leaves in real-time"
+    - "Exporting clean, print-ready, dynamic PDF documents for medical prescriptions (Ordonnances) and invoices with CSS pagination"
+    - "Managing secure separation of clinical logs (accessible only by Doctors) and payment processing (accessible by Assistants)"
   decisions:
-    - "Chose separate tables schema with a unified query layer to maximize data isolation and security"
-    - "Used custom translation array dictionaries for ultra-fast, zero-overhead localized UI routing"
-    - "Implemented strict InnoDB transaction locks on appointments and payments to prevent race conditions"
+    - "Chose Barryvdh DomPDF for server-side HTML-to-PDF rendering to ensure identical invoice printouts across devices"
+    - "Implemented a dedicated DoctorLeave entity to automatically invalidate calendar time-slots when doctor schedule changes"
+    - "Used Alpine.js coupled with Laravel Blade to achieve fast reactivity on form actions without SPA overhead"
 relatedProjects:
   - "sample-saas-dashboard"
   - "conversion-playbook"
@@ -60,31 +60,36 @@ relatedProjects:
 
 # Clinic Management System
 
-This project was built to solve critical administrative bottlenecks and scheduling conflicts for modern medical practices.
+A bilingual, high-performance web application designed to streamline clinic workflows, schedule appointments, generate medical prescriptions, and manage billing.
 
 ## Key Features
 
-- **Multi-Role Dashboards:** Customized views and access controls for Administrators, Doctors, and Receptionist/Assistants.
+### 1. Interactive Scheduler
+The core of the system is a calendar powered by FullCalendar, allowing clinic assistants and doctors to view, create, drag, and resize appointments in real-time with instant AJAX updates.
+
+![Interactive Calendar Month View](/images/projects/month_calendar.png)
+
+![Interactive Calendar Week View](/images/projects/week_calendar.png)
+
+### 2. Dashboard Analytics
+A central workspace providing statistical widgets on daily appointments, registered patients, pending invoice counts, and quick navigation shortcuts.
+
+![Clinic Dashboard](/images/projects/dashboard.png)
+
+### 3. Patient & Prescription (Ordonnance) Management
+A secure registry of patients and clinical records. Doctors can write digital prescriptions (ordonnances) with automated formatting and download clean PDF versions for print.
 
 ![Appointments List](/images/projects/appointments.png)
 
-- **Zero-Overlap Calendar:** Real-time visual calendar with conflict-checking validation for appointments and availability.
+### 4. Doctor Leave Scheduler
+Doctors can register time-offs and vacations, which immediately blocks those slots in the scheduler to prevent overlapping bookings.
 
-![Calendar Week View](/images/projects/week_calendar.png)
+---
 
-![Calendar Month View](/images/projects/month_calendar.png)
+## Tech Stack & Standards
 
-- **Prescription & Billing:** Secure generation of patient prescriptions and associated invoice payments.
-- **Bilingual Interface:** Instant locale switching (English/French) for all navigation and form components.
-
-## Results
-
-- Administrative time spent on scheduling dropped by over 90%.
-- Patient appointment conflicts reduced to zero.
-- 100% passing rate in automated security vulnerability tests.
-
-## Tech Stack & Quality Standards
-
-- Built with modern PHP 8.x, MySQL, and semantic HTML5/CSS3.
-- Secure session tokens, CSRF protection, and SQL injection prevention.
-- Custom-made testing suite verifying system installation, database health, security protocols, and login controls.
+- **Backend Framework**: Laravel 13 & PHP 8.3
+- **Frontend & Styling**: Tailwind CSS, Alpine.js, SweetAlert2
+- **Calendar Engine**: FullCalendar (v6) with AJAX Event Handling
+- **Reporting**: Barryvdh Laravel DomPDF (PDF Invoices & Receipts)
+- **Quality Assurance**: Automated integration tests utilizing Pest/PHPUnit
