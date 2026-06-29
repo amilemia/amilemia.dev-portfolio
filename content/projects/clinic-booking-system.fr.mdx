@@ -1,0 +1,87 @@
+---
+title: "Système de Gestion de Clinique"
+slug: "clinic-booking-system"
+summary: "Tableau de bord bilingue et haute performance pour la prise de rendez-vous et la facturation dans les cliniques médicales."
+locale: "fr"
+cover: "/images/projects/dashboard.png"
+tags:
+  - medical
+  - scheduling
+  - php
+  - mysql
+role: "Développeur Full-stack"
+stack:
+  - PHP 8.0+
+  - MySQL 8.0
+  - Vanilla CSS
+  - Automated Testing
+dates:
+  start: "2024-08-01"
+  end: "2024-09-20"
+testimonial:
+  quote: "Le système de planification automatisé a complètement éliminé nos conflits de réservation et a simplifié les paiements des patients. Un vrai changement pour notre équipe de réception."
+  author: "Dr. Jean Martin"
+  role: "Praticien Principal, Clinique Martin"
+caseStudy:
+  problem: "La Clinique Martin faisait face à un goulot d'étranglement administratif majeur en raison de la planification manuelle. Les patients subissaient des doubles réservations et des conflits d'horaires. L'administration passait plus de 25 heures par semaine à gérer les calendriers des médecins, à suivre manuellement les dossiers des patients et à courir après les paiements. Il y avait également un besoin critique de contrôle d'accès sécurisé et conforme à l'OWASP pour que le personnel assistant puisse aider à la facturation sans accéder aux dossiers médicaux confidentiels des médecins."
+  solution: "Conception et développement d'un tableau de bord web sécurisé et performant en PHP et MySQL avec une architecture modulaire personnalisée. Implémentation de vérifications automatisées de conflits pour les chevauchements de rendez-vous, la disponibilité des salles et les congés des médecins. Création d'un contrôle d'accès basé sur les rôles (RBAC) séparant les administrateurs, les médecins et les assistants. Ajout d'un support bilingue intégré (anglais/français) et d'un lanceur de tests personnalisé pour garantir une conformité totale en termes de sécurité et de performances."
+  implementation: "Développement d'un backend MVC en PHP pur utilisant PDO pour des requêtes préparées afin de prévenir les injections SQL. Création de mécanismes de sécurité robustes incluant la validation personnalisée de jetons CSRF, une désinfection stricte des entrées, la limitation du débit et une gestion sécurisée des sessions. Développement d'un module de facturation pour les médecins et les assistants afin de générer des ordonnances numériques et de traiter les paiements. Écriture d'un harnais de tests automatisés couvrant l'authentification, l'internationalisation, l'intégrité de la base de données et les contrôleurs clés."
+  results:
+    - "Surcharge administrative réduite de 25 heures par semaine grâce à la planification automatique"
+    - "Doubles réservations et conflits de calendrier réduits à 0"
+    - "Conformité OWASP atteinte avec 100% de réussite aux tests de sécurité"
+    - "Délai de recouvrement des factures amélioré de 40% grâce aux factures numériques"
+beforeAfter:
+  - type: "metric"
+    before: "25+ heures/semaine de surcharge administrative"
+    after: "Moins de 2 heures/semaine de gestion administrative"
+    caption: "Temps administratif gagné"
+  - type: "metric"
+    before: "Doubles réservations & conflits fréquents"
+    after: "0 double réservation (validation automatisée)"
+    caption: "Résolution des conflits de planification"
+technicalDeepDive:
+  architecture: "L'application suit un modèle MVC léger écrit en PHP 8.0+ modulaire. Les requêtes préparées sont strictement appliquées via une couche PDO personnalisée. Le contrôle d'accès basé sur les rôles est géré par des cookies de session sécurisés (flags HttpOnly et Secure) vérifiés à chaque route. Le moteur de traduction bilingue analyse dynamiquement les fichiers de langue statiques. La facturation et les paiements utilisent un schéma transactionnel strict (InnoDB) pour garantir la cohérence des données."
+  challenges:
+    - "Implémentation d'une planification de rendez-vous en temps réel sans conflit sans recours à un sondage client intensif"
+    - "Sécurisation des dossiers médicaux tout en offrant des permissions flexibles pour les assistants administratifs"
+    - "Création d'un harnais de test unitaire et d'intégration complet sans dépendances externes comme PHPUnit"
+  decisions:
+    - "Choix d'un schéma à tables séparées avec une couche de requête unifiée pour maximiser l'isolation et la sécurité des données"
+    - "Utilisation de dictionnaires de traduction ultra-rapides sous forme de tableaux PHP pour un routage localisé sans surcharge"
+    - "Mise en place de verrous de transaction InnoDB stricts sur les rendez-vous et les paiements pour éviter les conditions de concurrence"
+relatedProjects:
+  - "sample-saas-dashboard"
+  - "conversion-playbook"
+---
+
+# Système de Gestion de Clinique
+
+Ce projet a été conçu pour résoudre les goulots d'étranglement administratifs et les conflits de planification critiques des cabinets médicaux modernes.
+
+## Fonctionnalités Clés
+
+- **Tableaux de Bord Multi-Rôles :** Vues et contrôles d'accès personnalisés pour les Administrateurs, les Médecins et les Assistants de réception.
+
+![Liste des Rendez-vous](/images/projects/appointments.png)
+
+- **Calendrier sans Conflit :** Calendrier visuel en temps réel avec validation automatique des chevauchements d'horaires et de la disponibilité des médecins.
+
+![Vue Hebdomadaire du Calendrier](/images/projects/week_calendar.png)
+
+![Vue Mensuelle du Calendrier](/images/projects/month_calendar.png)
+
+- **Ordonnances & Facturation :** Génération sécurisée d'ordonnances pour les patients et traitement des paiements associés.
+- **Interface Bilingue :** Changement de langue instantané (Anglais/Français) pour tous les menus et formulaires.
+
+## Résultats
+
+- Temps de gestion de la planification réduit de plus de 90%.
+- Conflits de rendez-vous réduits à zéro.
+- 100% de réussite aux tests automatisés de vulnérabilité de sécurité.
+
+## Stack Technique & Normes de Qualité
+
+- Développé avec PHP 8.x moderne, MySQL et du HTML5/CSS3 sémantique.
+- Protection contre les injections SQL, jetons CSRF et sessions sécurisées.
+- Suite de tests personnalisée vérifiant l'installation, la santé de la base de données, les protocoles de sécurité et l'authentification.

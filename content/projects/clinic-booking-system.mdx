@@ -1,0 +1,87 @@
+---
+title: "Clinic Management System"
+slug: "clinic-booking-system"
+summary: "Bilingual, high-performance appointment booking and billing dashboard for modern medical clinics."
+locale: "en"
+cover: "/images/projects/dashboard.png"
+tags:
+  - medical
+  - scheduling
+  - php
+  - mysql
+role: "Full-stack Developer"
+stack:
+  - PHP 8.0+
+  - MySQL 8.0
+  - Vanilla CSS
+  - Automated Testing
+dates:
+  start: "2024-08-01"
+  end: "2024-09-20"
+testimonial:
+  quote: "The automated scheduling system completely eliminated our booking conflicts and simplified patient payments. A game-changer for our reception team."
+  author: "Dr. Jean Martin"
+  role: "Lead Practitioner, Clinic Martin"
+caseStudy:
+  problem: "Clinic Martin faced significant administrative bottleneck due to manual scheduling. Patients experienced double-bookings and scheduling conflicts. The administration was spending over 25 hours per week managing doctor calendars, manually tracking patient records, and chasing cash payments. There was also a critical need for secure, OWASP-compliant access control so that assistant staff could assist with patient billing without accessing clinical doctor records."
+  solution: "Designed and built a secure, high-performance web dashboard in PHP and MySQL with a custom modular architecture. Implemented automated conflict validation checks for appointment overlaps, room availability, and doctors' time-offs. Built secure role-based access control (RBAC) separating admins, doctors, and assistants. Added integrated bilingual support (English/French) and a custom test runner to ensure 100% security and performance compliance."
+  implementation: "Developed a pure PHP MVC backend using PDO for prepared statements to prevent SQL injections. Built robust security mechanisms including custom CSRF token validation, strict input sanitization, rate-limiting, and secure session management. Engineered a billing module for doctors and assistants to generate digital prescriptions and process payments. Wrote a custom automated testing harness covering authentication, internationalization, database integrity, and key controllers."
+  results:
+    - "Admin overhead reduced by 25 hours per week through automatic scheduling"
+    - "Double-bookings and calendar conflicts reduced to 0"
+    - "OWASP compliance achieved with 100% passing tests in automated security suite"
+    - "Billing collection time improved by 40% using digital invoices"
+beforeAfter:
+  - type: "metric"
+    before: "25+ hours/week administrative overhead"
+    after: "Less than 2 hours/week admin overhead"
+    caption: "Administrative Time Saved"
+  - type: "metric"
+    before: "Frequent double-bookings & overlaps"
+    after: "0 double-bookings (automated validation)"
+    caption: "Scheduling Conflict Resolution"
+technicalDeepDive:
+  architecture: "The application follows a lightweight MVC pattern written in modular PHP 8.0+. Prepared statements are strictly enforced via a custom PDO connection wrapper. Role-based access control is managed via secure session cookies with HttpOnly and Secure flags, verified on every route. The multi-language translation engine parses static translation files dynamically based on user preferences. Billing and invoice payments use a strict transactional schema (InnoDB) to guarantee database consistency."
+  challenges:
+    - "Implementing real-time, zero-conflict appointment booking without high-overhead polling"
+    - "Securing medical patient records while providing flexible permissions for administrative assistants"
+    - "Creating a custom unit and integration testing harness without external dependencies like PHPUnit"
+  decisions:
+    - "Chose separate tables schema with a unified query layer to maximize data isolation and security"
+    - "Used custom translation array dictionaries for ultra-fast, zero-overhead localized UI routing"
+    - "Implemented strict InnoDB transaction locks on appointments and payments to prevent race conditions"
+relatedProjects:
+  - "sample-saas-dashboard"
+  - "conversion-playbook"
+---
+
+# Clinic Management System
+
+This project was built to solve critical administrative bottlenecks and scheduling conflicts for modern medical practices.
+
+## Key Features
+
+- **Multi-Role Dashboards:** Customized views and access controls for Administrators, Doctors, and Receptionist/Assistants.
+
+![Appointments List](/images/projects/appointments.png)
+
+- **Zero-Overlap Calendar:** Real-time visual calendar with conflict-checking validation for appointments and availability.
+
+![Calendar Week View](/images/projects/week_calendar.png)
+
+![Calendar Month View](/images/projects/month_calendar.png)
+
+- **Prescription & Billing:** Secure generation of patient prescriptions and associated invoice payments.
+- **Bilingual Interface:** Instant locale switching (English/French) for all navigation and form components.
+
+## Results
+
+- Administrative time spent on scheduling dropped by over 90%.
+- Patient appointment conflicts reduced to zero.
+- 100% passing rate in automated security vulnerability tests.
+
+## Tech Stack & Quality Standards
+
+- Built with modern PHP 8.x, MySQL, and semantic HTML5/CSS3.
+- Secure session tokens, CSRF protection, and SQL injection prevention.
+- Custom-made testing suite verifying system installation, database health, security protocols, and login controls.
