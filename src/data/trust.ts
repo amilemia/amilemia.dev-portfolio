@@ -68,6 +68,11 @@ export const trustMetrics: TrustMetric[] = [
 
 export const clientLogos: ClientLogo[] = [
   {
+    name: 'Clinique Santé Plus',
+    src: '/images/clients/clinic-sante-plus-logo.png',
+    industry: 'Healthcare',
+  },
+  {
     name: 'TechCorp Solutions',
     src: '/images/clients/techcorp.svg',
     url: 'https://techcorp.example.com',
