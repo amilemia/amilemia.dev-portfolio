@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
     // Send email using Resend
     const { error } = await resend.emails.send({
-      from: 'Portfolio <onboarding@resend.dev>',
+      from: 'Portfolio <contact@amilemia.dev>',
       to: env.CONTACT_TO,
       replyTo: email,
       subject: `${name} sent a message from amilemia.dev`,
