@@ -10,20 +10,6 @@ function getEnv() {
   try {
     return envSchema.parse(process.env);
   } catch (error) {
-    // Skip strict validation during build or Vercel preview to prevent build failures
-    if (
-      process.env.npm_lifecycle_event === 'build' ||
-      process.env.VERCEL_ENV === 'preview' ||
-      process.env.CI === 'true' ||
-      process.env.NODE_ENV === 'development'
-    ) {
-      console.warn('⚠️ Missing environment variables, using dummy values for build/preview');
-      return {
-        RESEND_API_KEY: process.env.RESEND_API_KEY || 'dummy_key_for_build',
-        CONTACT_TO: process.env.CONTACT_TO || 'dummy@example.com',
-      };
-    }
-
     if (error instanceof z.ZodError) {
       const { fieldErrors } = error.flatten();
       const errorMessage = Object.entries(fieldErrors)
