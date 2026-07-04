@@ -3,11 +3,32 @@ import { site, absoluteUrl } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/_next/', '/_vercel/', '/sw.js', '/sw.js.map', '/workbox-*.js', '/workbox-*.js.map'],
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/_next/', '/_vercel/', '/sw.js', '/sw.js.map', '/workbox-*.js', '/workbox-*.js.map'],
+      },
+      {
+        userAgent: [
+          'GPTBot',
+          'ChatGPT-User',
+          'CCBot',
+          'anthropic-ai',
+          'Claude-Bot',
+          'ClaudeBot',
+          'Omgili',
+          'Omgilibot',
+          'FacebookBot',
+          'Google-Extended',
+          'Bytespider',
+          'Amazonbot',
+          'Diffbot',
+          'Applebot-Extended',
+        ],
+        disallow: '/',
+      },
+    ],
     sitemap: absoluteUrl('/sitemap.xml'),
     host: site.url.replace(/^https?:\/\//, ''),
   };
