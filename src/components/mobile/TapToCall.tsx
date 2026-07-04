@@ -146,26 +146,7 @@ export function TapToEmail({
     ? `mailto:${email}?subject=${encodeURIComponent(subject)}`
     : `mailto:${email}`;
 
-  // On desktop, show as plain text or styled element without mailto: link
-  if (!isMobile) {
-    return (
-      <span
-        className={cn(
-          "inline-flex items-center gap-2",
-          variant === "button" &&
-            "rounded-md border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
-          variant === "inline" && "text-foreground",
-          className
-        )}
-        aria-label={`Email address: ${displayText}`}
-      >
-        {showIcon && <Mail className="size-4" aria-hidden="true" />}
-        <span>{displayText}</span>
-      </span>
-    );
-  }
-
-  // On mobile, render as clickable link that triggers native email client
+  // Render as clickable link that triggers native email client (works on both mobile and desktop)
   return (
     <a
       href={mailtoLink}
