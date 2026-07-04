@@ -24,7 +24,7 @@ export interface AlternativeContactProps {
 }
 
 export function AlternativeContact({
-  email = "hi@amilemia.dev",
+  email = "contact@amilemia.dev",
   calendarUrl = "#", // Placeholder for future Cal.com integration
   socialLinks = {
     github: "https://github.com/amilemia",
