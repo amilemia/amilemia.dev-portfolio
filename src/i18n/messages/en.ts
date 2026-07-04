@@ -28,7 +28,7 @@ export const enMessages = {
     footer: {
       rights: "All rights reserved.",
       tagline: "Building fast, accessible sites that convert. Available for new projects.",
-      email: "hi@amilemia.dev",
+      email: "contact@amilemia.dev",
       emailLabel: "Email",
       locationLabel: "Location",
       locationValue: "Remote (UTC+1)",
@@ -497,7 +497,7 @@ export const enMessages = {
       },
       notifications: {
         success: "Message sent! I'll respond within 1 business day.",
-        error: "Something went wrong. Please try again or email hi@amilemia.dev",
+        error: "Something went wrong. Please try again or email contact@amilemia.dev",
       },
       messageTemplate: {
         intro: "New project inquiry from contact form:",
@@ -523,7 +523,7 @@ export const enMessages = {
     info: {
       title: "Contact Information",
       emailLabel: "Email",
-      emailValue: "hi@amilemia.dev",
+      emailValue: "contact@amilemia.dev",
       locationLabel: "Location",
       locationValue: "Remote",
       connectTitle: "Connect With Me",

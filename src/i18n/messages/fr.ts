@@ -28,7 +28,7 @@ export const frMessages: Messages = {
     footer: {
       rights: "Tous droits réservés.",
       tagline: "Création de sites rapides et accessibles qui convertissent. Disponible pour de nouveaux projets.",
-      email: "hi@amilemia.dev",
+      email: "contact@amilemia.dev",
       emailLabel: "E-mail",
       locationLabel: "Localisation",
       locationValue: "Télétravail (UTC+1)",
@@ -497,7 +497,7 @@ export const frMessages: Messages = {
       },
       notifications: {
         success: "Message envoyé ! Je vous réponds sous 1 jour ouvré.",
-        error: "Une erreur s'est produite. Veuillez réessayer ou m'écrire à hi@amilemia.dev",
+        error: "Une erreur s'est produite. Veuillez réessayer ou m'écrire à contact@amilemia.dev",
       },
       messageTemplate: {
         intro: "Nouvelle demande de projet via le formulaire de contact :",
@@ -523,7 +523,7 @@ export const frMessages: Messages = {
     info: {
       title: "Coordonnées",
       emailLabel: "E-mail",
-      emailValue: "hi@amilemia.dev",
+      emailValue: "contact@amilemia.dev",
       locationLabel: "Localisation",
       locationValue: "Télétravail",
       connectTitle: "Restons en contact",
