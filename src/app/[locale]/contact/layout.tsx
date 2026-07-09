@@ -21,6 +21,15 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     title: messages.contact.heading.title,
     description: messages.ads.metaDescriptions.contact,
     alternates,
+    openGraph: {
+      title: messages.contact.heading.title,
+      description: messages.ads.metaDescriptions.contact,
+      url: alternates.canonical,
+    },
+    twitter: {
+      title: messages.contact.heading.title,
+      description: messages.ads.metaDescriptions.contact,
+    },
   } satisfies Metadata;
 }
 

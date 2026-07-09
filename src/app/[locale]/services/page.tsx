@@ -37,6 +37,15 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
     title: messages.services.page.meta.title,
     description: messages.ads.metaDescriptions.services,
     alternates,
+    openGraph: {
+      title: messages.services.page.meta.title,
+      description: messages.ads.metaDescriptions.services,
+      url: alternates.canonical,
+    },
+    twitter: {
+      title: messages.services.page.meta.title,
+      description: messages.ads.metaDescriptions.services,
+    },
   } satisfies Metadata;
 }
 

@@ -28,6 +28,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: messages.projects.heading.title,
     description: messages.ads.metaDescriptions.projects,
     alternates,
+    openGraph: {
+      title: messages.projects.heading.title,
+      description: messages.ads.metaDescriptions.projects,
+      url: alternates.canonical,
+    },
+    twitter: {
+      title: messages.projects.heading.title,
+      description: messages.ads.metaDescriptions.projects,
+    },
   } satisfies Metadata;
 }
 
