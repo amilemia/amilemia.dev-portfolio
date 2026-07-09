@@ -1,4 +1,4 @@
-﻿import { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next';
 
 import { absoluteUrl } from '@/lib/site';
 import { getProjects } from '@/lib/content';
@@ -10,6 +10,7 @@ const staticPaths = [
   '/services',
   '/about',
   '/contact',
+  '/resources',
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -33,11 +34,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     projects.forEach((project) => {
       const urlPath = `${prefix}/projects/${project.slug}`;
       const modifiedDate = project.dates?.end ? new Date(project.dates.end) : project.dates?.start ? new Date(project.dates.start) : new Date();
+      
+      const isClinicProject = project.slug === 'clinic-booking-system';
+      
       entries.push({
         url: absoluteUrl(urlPath),
         lastModified: modifiedDate,
-        changeFrequency: 'weekly',
-        priority: 0.9,
+        changeFrequency: isClinicProject ? 'weekly' : 'monthly',
+        priority: isClinicProject ? 1.0 : 0.4,
       });
     });
   }
