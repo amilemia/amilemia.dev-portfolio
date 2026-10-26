@@ -19,10 +19,13 @@ interface TrustMetricsProps {
  * @param className - Optional additional CSS classes
  */
 export function TrustMetrics({ metrics, className }: TrustMetricsProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const node = containerRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,14 +35,10 @@ export function TrustMetrics({ metrics, className }: TrustMetricsProps) {
       { threshold: 0.1 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
+      observer.unobserve(node);
     };
   }, []);
 
@@ -72,7 +71,7 @@ interface MetricCardProps {
 }
 
 function MetricCard({ metric, isVisible, delay }: MetricCardProps) {
-  const [displayValue, setDisplayValue] = useState('0');
+  const [displayValue, setDisplayValue] = useState(metric.value);
 
   useEffect(() => {
     if (!isVisible) return;

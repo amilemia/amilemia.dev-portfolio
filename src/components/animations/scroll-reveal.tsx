@@ -22,16 +22,16 @@ export function ScrollReveal({
   once = true,
 }: ScrollRevealProps) {
   const directions = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
+    up: { y: 16, x: 0 },
+    down: { y: -16, x: 0 },
+    left: { x: 16, y: 0 },
+    right: { x: -16, y: 0 },
   };
 
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, ...directions[direction] }}
+      initial={{ opacity: 1, ...directions[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, margin: "-10%" }}
       transition={{

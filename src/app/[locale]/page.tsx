@@ -65,6 +65,7 @@ export default async function Home({ params }: PageProps) {
   }).format(availabilityDate);
 
   const availabilityCopy = interpolate(messages.home.hero.availability.template, {
+    period: availabilityLabel,
     month: availabilityLabel,
   });
 
