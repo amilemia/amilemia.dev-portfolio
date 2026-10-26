@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useParams, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -20,7 +20,7 @@ function ContactPageContent() {
   const contact = messages.contact;
   
   // Get prefilledService from URL params (e.g., ?service=Launch Essentials)
-  const prefilledService = searchParams.get('service') || undefined;
+  const prefilledService = searchParams.get('service') || searchParams.get('subject') || undefined;
 
   return (
     <Section size="lg">

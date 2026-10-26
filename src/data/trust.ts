@@ -75,37 +75,31 @@ export const clientLogos: ClientLogo[] = [
   {
     name: 'TechCorp Solutions',
     src: '/images/clients/techcorp.svg',
-    url: 'https://techcorp.example.com',
     industry: 'Technology',
   },
   {
     name: 'HealthFirst Medical',
     src: '/images/clients/healthfirst.svg',
-    url: 'https://healthfirst.example.com',
     industry: 'Healthcare',
   },
   {
     name: 'EduLearn Platform',
     src: '/images/clients/edulearn.svg',
-    url: 'https://edulearn.example.com',
     industry: 'Education',
   },
   {
     name: 'FinanceHub',
     src: '/images/clients/financehub.svg',
-    url: 'https://financehub.example.com',
     industry: 'Finance',
   },
   {
     name: 'RetailPro Systems',
     src: '/images/clients/retailpro.svg',
-    url: 'https://retailpro.example.com',
     industry: 'Retail',
   },
   {
     name: 'GreenEnergy Co',
     src: '/images/clients/greenenergy.svg',
-    url: 'https://greenenergy.example.com',
     industry: 'Energy',
   },
   {

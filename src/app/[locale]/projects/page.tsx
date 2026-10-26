@@ -80,6 +80,8 @@ export default async function ProjectsPage({ params, searchParams }: PageProps) 
               coverImage={project.cover}
               role={project.role}
               tags={project.tags}
+              stack={project.stack}
+              metrics={project.metrics}
               messages={messages.common.projectCard}
               locale={locale}
             />

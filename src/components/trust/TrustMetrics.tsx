@@ -92,42 +92,46 @@ function MetricCard({ metric, isVisible, delay }: MetricCardProps) {
     const stepDuration = duration / steps;
 
     let currentValue = 0;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
     const timer = setTimeout(() => {
-      const interval = setInterval(() => {
+      intervalId = setInterval(() => {
         currentValue += increment;
         if (currentValue >= targetValue) {
           setDisplayValue(metric.value);
-          clearInterval(interval);
+          if (intervalId !== null) clearInterval(intervalId);
         } else {
           setDisplayValue(`${Math.floor(currentValue)}${suffix}`);
         }
       }, stepDuration);
-
-      return () => clearInterval(interval);
     }, delay);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+      }
+    };
   }, [isVisible, metric.value, delay]);
 
   return (
     <div
       className={cn(
-        'flex flex-col items-center text-center transition-all duration-500',
+        'flex flex-col items-center text-center rounded-2xl border border-border/60 bg-card/50 p-5 shadow-xs backdrop-blur-sm transition-all duration-500 hover:border-primary/30 md:p-6',
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       )}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div
-        className="text-3xl font-bold text-primary md:text-4xl"
+        className="font-mono text-3xl font-extrabold tracking-tight text-primary md:text-4xl"
         aria-label={`${metric.label}: ${metric.value}`}
       >
         {displayValue}
       </div>
-      <div className="mt-2 text-sm font-medium text-foreground">
+      <div className="mt-2 text-sm font-semibold text-foreground">
         {metric.label}
       </div>
       {metric.context && (
-        <div className="mt-1 text-xs text-muted-foreground">
+        <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
           {metric.context}
         </div>
       )}

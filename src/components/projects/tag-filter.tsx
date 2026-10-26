@@ -1,6 +1,6 @@
-﻿'use client';
+'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { track } from '@/lib/analytics/track';
@@ -15,7 +15,6 @@ type TagFilterProps = {
 export function TagFilter({ tags, selectedTag, messages }: TagFilterProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [isMounted, setIsMounted] = useState(false);
   
   useEffect(() => {
@@ -36,7 +35,8 @@ export function TagFilter({ tags, selectedTag, messages }: TagFilterProps) {
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const currentSearch = typeof window !== 'undefined' ? window.location.search : '';
+      const params = new URLSearchParams(currentSearch);
       if (value) {
         params.set(name, value);
       } else {
@@ -44,7 +44,7 @@ export function TagFilter({ tags, selectedTag, messages }: TagFilterProps) {
       }
       return params.toString();
     },
-    [searchParams]
+    []
   );
 
   if (tags.length === 0) return null;

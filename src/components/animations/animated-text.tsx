@@ -51,22 +51,23 @@ export function AnimatedText({
 
   return (
     <motion.div
-      className={cn("flex flex-wrap", className)}
+      className={cn("block", className)}
       variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once, margin: "-10%" }}
     >
-      {/* We use a div here and then render the proper semantic tag inside if needed, but for text split we usually use spans inside the main wrapper */}
-      <Wrapper className={cn("inline-flex flex-wrap m-0", className)}>
-        {words.map((word) => (
-          <motion.span
-            variants={child}
-            key={word.key}
-            className="mr-2 last:mr-0 inline-block"
-          >
-            {word.text}
-          </motion.span>
+      <Wrapper className={cn("block m-0", className)}>
+        {words.map((word, index) => (
+          <React.Fragment key={word.key}>
+            <motion.span
+              variants={child}
+              className="inline-block"
+            >
+              {word.text}
+            </motion.span>
+            {index < words.length - 1 ? " " : null}
+          </React.Fragment>
         ))}
       </Wrapper>
     </motion.div>

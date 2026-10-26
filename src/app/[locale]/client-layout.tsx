@@ -121,18 +121,6 @@ function Header({ locale, messages }: HeaderProps) {
           </div>
         </Container>
       </header>
-      <div className="fixed bottom-6 right-6 z-40 md:hidden">
-        <Button
-          asChild
-          size="lg"
-          className="h-14 w-14 rounded-full p-0 shadow-lg animate-in fade-in-0 zoom-in-95 duration-200"
-        >
-          <Link href={`/${locale}/contact`} className="flex items-center justify-center text-lg font-medium" aria-label={messages.nav.mobileCtaLabel}>
-            <span className="sr-only">{messages.nav.mobileCtaLabel}</span>
-            <span aria-hidden="true">&#128640;</span>
-          </Link>
-        </Button>
-      </div>
       <MobileNavigation open={mobileOpen} onClose={() => setMobileOpen(false)} locale={locale} messages={messages} />
     </>
   );
@@ -188,7 +176,7 @@ function Footer({ messages, locale }: FooterProps) {
   const clientLogos = getClientLogos();
 
   return (
-    <footer className="border-t bg-muted/30 py-12">
+    <footer className="border-t bg-muted/30 pt-12 pb-24 md:py-12">
       <Container>
         {/* Client Logos Section */}
         <div className="mb-12 pb-12 border-b border-border/60">

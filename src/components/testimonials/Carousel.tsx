@@ -180,16 +180,16 @@ export function Carousel({ items, messages }: CarouselProps) {
   });
 
   return (
-    <section className="space-y-6" aria-label={messages.ariaLabel} data-testid="testimonial-carousel">
+    <section className="space-y-8" aria-label={messages.ariaLabel} data-testid="testimonial-carousel">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-1">
-          <h2 className="text-xl font-semibold">{messages.heading}</h2>
-          <p className="text-sm text-muted-foreground" aria-live="polite" aria-atomic="true">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl font-heading">{messages.heading}</h2>
+          <p className="text-sm text-muted-foreground lg:sr-only" aria-live="polite" aria-atomic="true">
             {counterLabel}
           </p>
         </div>
         {totalSlides > 1 && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 lg:hidden">
             <Button
               type="button"
               variant="outline"
@@ -219,7 +219,7 @@ export function Carousel({ items, messages }: CarouselProps) {
       <div
         id={trackId}
         ref={trackRef}
-        className="flex snap-x snap-mandatory scroll-px-4 scroll-smooth gap-6 overflow-x-auto pb-2"
+        className="flex snap-x snap-mandatory scroll-px-4 scroll-smooth gap-6 overflow-x-auto pb-2 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0"
         onScroll={handleScroll}
         role="list"
       >
@@ -235,49 +235,63 @@ export function Carousel({ items, messages }: CarouselProps) {
               aria-label={[item.fullName, item.role, item.company].filter(Boolean).join(", ")}
               aria-current={activeIndex === index}
               className={cn(
-                "snap-center shrink-0 basis-full sm:basis-[420px] md:basis-[480px]",
+                "snap-center shrink-0 basis-full sm:basis-[420px] md:basis-[460px] lg:basis-auto",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
               )}
             >
-              <figure className="flex h-full flex-col justify-between gap-6 rounded-3xl border bg-background/80 p-8 shadow-sm backdrop-blur-sm">
-                <div className="space-y-4">
-                  <blockquote className="text-lg font-medium leading-relaxed text-foreground sm:text-xl">
+              <figure className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-border/70 bg-card/80 p-7 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md">
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between gap-3">
+                    {item.metric ? (
+                      <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-semibold text-emerald-700 dark:text-emerald-400">
+                        <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+                        {item.metric}
+                      </div>
+                    ) : <span />}
+                    <div className="flex items-center gap-0.5 text-amber-400" aria-label="5 out of 5 stars">
+                      {Array.from({ length: 5 }).map((_, starIdx) => (
+                        <svg
+                          key={starIdx}
+                          className="size-4 fill-current"
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <blockquote className="text-base leading-relaxed text-foreground">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
-                  {item.metric && (
-                    <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
-                      {item.metric}
-                    </div>
-                  )}
                 </div>
-                <figcaption className="mt-6 flex items-center gap-4 text-sm text-muted-foreground">
-                  <span className="flex size-12 items-center justify-center overflow-hidden rounded-full border border-border bg-muted text-base font-semibold text-foreground">
+                <figcaption className="flex items-center gap-3.5 border-t border-border/50 pt-5 text-sm text-muted-foreground">
+                  <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-muted text-sm font-semibold text-foreground">
                     {item.avatarUrl ? (
                       <Image
                         src={item.avatarUrl}
                         alt=""
-                        width={48}
-                        height={48}
+                        width={44}
+                        height={44}
                         className="size-full object-cover"
                       />
                     ) : (
                       getInitials(item.fullName)
                     )}
                   </span>
-                  <div className="flex flex-1 flex-col">
-                    <span className="text-sm font-semibold text-foreground">{item.fullName}</span>
-                    <span className="text-xs">{item.role}</span>
-                    {item.company && (
-                      <span className="text-xs font-medium text-foreground/80">{item.company}</span>
-                    )}
+                  <div className="flex flex-1 flex-col min-w-0">
+                    <span className="truncate text-sm font-semibold text-foreground">{item.fullName}</span>
+                    <span className="truncate text-xs text-muted-foreground">
+                      {[item.role, item.company].filter(Boolean).join(", ")}
+                    </span>
                   </div>
                   {item.companyLogo && (
-                    <div className="flex size-10 items-center justify-center overflow-hidden rounded border border-border bg-background">
+                    <div className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border/60 bg-background">
                       <Image
                         src={item.companyLogo}
                         alt={`${item.company} logo`}
-                        width={40}
-                        height={40}
+                        width={36}
+                        height={36}
                         className="size-full object-contain p-1"
                       />
                     </div>

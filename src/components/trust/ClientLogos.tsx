@@ -44,6 +44,7 @@ export function ClientLogos({ logos, className }: ClientLogosProps) {
               key={`${logo.name}-${index}`}
               logo={logo}
               className="flex-shrink-0"
+              isClone={index >= logos.length}
             />
           ))}
         </div>
@@ -73,11 +74,13 @@ export function ClientLogos({ logos, className }: ClientLogosProps) {
 interface LogoItemProps {
   logo: ClientLogo;
   className?: string;
+  isClone?: boolean;
 }
 
-function LogoItem({ logo, className }: LogoItemProps) {
+function LogoItem({ logo, className, isClone = false }: LogoItemProps) {
   const content = (
     <div
+      aria-hidden={isClone ? 'true' : undefined}
       className={cn(
         'flex items-center justify-center grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100',
         className
@@ -86,7 +89,8 @@ function LogoItem({ logo, className }: LogoItemProps) {
       <div className="relative h-12 w-32">
         <Image
           src={logo.src}
-          alt={`${logo.name} logo`}
+          alt={isClone ? '' : `${logo.name} logo`}
+          aria-hidden={isClone ? 'true' : undefined}
           fill
           className="object-contain"
           loading="lazy"
@@ -101,6 +105,8 @@ function LogoItem({ logo, className }: LogoItemProps) {
         href={logo.url}
         target="_blank"
         rel="noopener noreferrer"
+        tabIndex={isClone ? -1 : undefined}
+        aria-hidden={isClone ? 'true' : undefined}
         className={cn('focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded', className)}
         aria-label={`Visit ${logo.name} website`}
       >
