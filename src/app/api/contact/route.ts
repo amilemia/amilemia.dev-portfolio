@@ -5,13 +5,16 @@ import { env } from '@/lib/env';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
-// Create a new ratelimiter, that allows 3 requests per 1 minute
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(3, '1 m'),
-  analytics: true,
-  prefix: '@upstash/ratelimit',
-});
+function getRedisClient(): Redis | null {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    try {
+      return Redis.fromEnv();
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -20,26 +23,37 @@ export async function POST(request: Request) {
     // Get the IP address from the request headers
     const ip = request.headers.get('x-forwarded-for') || '127.0.0.1';
     
-    // Check rate limit
-    const { success, limit, reset, remaining } = await ratelimit.limit(ip);
-    
-    // If rate limit is exceeded, return 429
-    if (!success) {
-      return new NextResponse(
-        JSON.stringify({ 
-          success: false, 
-          message: 'Too many requests. Please try again later.' 
-        }), 
-        { 
-          status: 429,
-          headers: {
-            'Content-Type': 'application/json',
-            'X-RateLimit-Limit': limit.toString(),
-            'X-RateLimit-Remaining': remaining.toString(),
-            'X-RateLimit-Reset': reset.toString()
-          }
+    // Check rate limit safely so an inactive Redis DB never blocks contact inquiries
+    const redis = getRedisClient();
+    if (redis) {
+      try {
+        const ratelimit = new Ratelimit({
+          redis,
+          limiter: Ratelimit.slidingWindow(3, '1 m'),
+          analytics: true,
+          prefix: '@upstash/ratelimit',
+        });
+        const { success, limit, reset, remaining } = await ratelimit.limit(ip);
+        if (!success) {
+          return new NextResponse(
+            JSON.stringify({ 
+              success: false, 
+              message: 'Too many requests. Please try again later.' 
+            }), 
+            { 
+              status: 429,
+              headers: {
+                'Content-Type': 'application/json',
+                'X-RateLimit-Limit': limit.toString(),
+                'X-RateLimit-Remaining': remaining.toString(),
+                'X-RateLimit-Reset': reset.toString()
+              }
+            }
+          );
         }
-      );
+      } catch (rateErr) {
+        console.warn('Contact rate limit check skipped (Redis unavailable):', rateErr);
+      }
     }
     
     const body = (await request.json()) as ContactInput;
