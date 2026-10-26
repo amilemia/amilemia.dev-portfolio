@@ -14,6 +14,11 @@ export const LeadMagnet = defineDocumentType(() => ({
     description: { type: 'string', required: true },
     thumbnail: { type: 'string', required: true },
     fileUrl: { type: 'string', required: true },
+    previewUrl: { type: 'string', required: true },
+    audience: { type: 'string', required: true },
+    pageCount: { type: 'number', required: true },
+    reviewMinutes: { type: 'number', required: true },
+    outcomes: { type: 'list', of: { type: 'string' }, required: true },
     downloadCount: { type: 'number', required: false, default: 0 },
     rating: { type: 'number', required: false },
     category: { 

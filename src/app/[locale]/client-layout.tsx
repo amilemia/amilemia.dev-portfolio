@@ -91,7 +91,7 @@ function Header({ locale, messages }: HeaderProps) {
           >
             {messages.brand}
           </Link>
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-1 lg:flex xl:gap-4">
             {navItems.map((item) => (
               <NavLink key={item.key} href={item.href} locale={locale}>
                 {item.label}
@@ -101,12 +101,12 @@ function Header({ locale, messages }: HeaderProps) {
           <div className="flex items-center gap-2">
             <LanguageToggle locale={locale} messages={messages.languageToggle} />
             <ThemeToggle messages={messages.themeToggle} />
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <Button asChild size="sm">
                 <Link href={`/${locale}/contact`}>{messages.actions.bookIntro}</Link>
               </Button>
             </div>
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <Button
                 variant="ghost"
                 size="icon"
@@ -135,7 +135,7 @@ function MobileNavigation({ open, onClose, locale, messages }: MobileNavigationP
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-40 md:hidden" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true">
       <button
         type="button"
         className="absolute inset-0 h-full w-full bg-background/80 backdrop-blur"

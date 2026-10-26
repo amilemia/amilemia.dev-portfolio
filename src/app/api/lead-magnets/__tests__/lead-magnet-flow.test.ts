@@ -48,6 +48,15 @@ describe('Lead Magnet End-to-End Flow', () => {
         expect(existsSync(thumbnailPath)).toBe(true);
       });
     });
+
+    it('should have a sample page for every resource card', () => {
+      allLeadMagnets.forEach((leadMagnet) => {
+        expect(leadMagnet.previewUrl).toMatch(/^\/images\/lead-magnets\/.+-preview\.jpg$/);
+        expect(existsSync(join(process.cwd(), 'public', leadMagnet.previewUrl))).toBe(true);
+        expect(leadMagnet.reviewMinutes).toBeGreaterThan(0);
+        expect(leadMagnet.audience.length).toBeGreaterThan(0);
+      });
+    });
   });
 
   describe('Lead Magnet Content', () => {

@@ -52,7 +52,7 @@ export default async function Home({ params }: PageProps) {
   const testimonials = getTestimonials(messages.shared.testimonials);
   const trustMetrics = getTrustMetrics(locale);
   const leadMagnets = await getLeadMagnets();
-  const featuredLeadMagnet = leadMagnets[0]; // Get the most popular lead magnet
+  const featuredLeadMagnet = leadMagnets.find((magnet) => magnet.slug === 'conversion-optimization-guide') ?? leadMagnets[0];
   const servicePackages = getLocalizedServicePackages(messages.services.packages).map((service) => ({
     ...service,
     href: `/${locale}/contact?service=${encodeURIComponent(service.name)}`,
@@ -208,6 +208,7 @@ export default async function Home({ params }: PageProps) {
               <FeaturedLeadMagnet
                 leadMagnet={featuredLeadMagnet}
                 messages={messages.resources.featured}
+                locale={locale}
               />
             </div>
           )}

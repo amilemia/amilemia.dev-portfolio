@@ -84,14 +84,14 @@ allLeadMagnets.forEach(lm => {
 });
 console.log('');
 
-// Check 6: Social proof data
-console.log('✅ Check 6: Social Proof Data');
+// Check 6: Resource details and recorded downloads
+console.log('✅ Check 6: Resource Details');
 allLeadMagnets.forEach(lm => {
   const hasDownloadCount = lm.downloadCount !== undefined && lm.downloadCount > 0;
-  const hasRating = lm.rating !== undefined && lm.rating > 0 && lm.rating <= 5;
   console.log(`   ${lm.slug}:`);
   console.log(`     Downloads: ${hasDownloadCount ? lm.downloadCount : 'N/A'}`);
-  console.log(`     Rating: ${hasRating ? lm.rating : 'N/A'}/5`);
+  console.log(`     Format: ${lm.pageCount} pages, ${lm.reviewMinutes}-minute first pass`);
+  console.log(`     Preview: ${existsSync(join(process.cwd(), 'public', lm.previewUrl)) ? 'Available' : 'MISSING'}`);
 });
 console.log('');
 

@@ -6,11 +6,14 @@ import type { LeadMagnet } from 'contentlayer/generated';
 import { LeadMagnetCard } from './LeadMagnetCard';
 import { EmailCaptureModal } from './EmailCaptureModal';
 import { cn } from '@/lib/utils';
+import { getMessages, type Locale } from '@/i18n';
+import { interpolate } from '@/i18n/interpolate';
 
 interface LeadMagnetGridProps {
   magnets: LeadMagnet[];
   showFilters?: boolean;
   className?: string;
+  locale?: Locale;
 }
 
 type CategoryFilter = LeadMagnet['category'] | 'all';
@@ -19,7 +22,9 @@ export function LeadMagnetGrid({
   magnets,
   showFilters = true,
   className,
+  locale = 'en',
 }: LeadMagnetGridProps) {
+  const copy = getMessages(locale).resources;
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
   const [selectedMagnet, setSelectedMagnet] = useState<LeadMagnet | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,7 +78,7 @@ export function LeadMagnetGrid({
     <div className={cn('space-y-8', className)}>
       {/* Category Filters */}
       {showFilters && categories.length > 2 && (
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+        <div className="flex flex-wrap gap-2" role="group" aria-label={copy.filters.label}>
           {categories.map((category) => {
             const isActive = selectedCategory === category;
             return (
@@ -89,7 +94,7 @@ export function LeadMagnetGrid({
                 )}
                 aria-pressed={isActive}
               >
-                {category === 'all' ? 'All Resources' : category.charAt(0).toUpperCase() + category.slice(1)}
+                {category === 'all' ? copy.filters.all : copy.card.category[category]}
               </button>
             );
           })}
@@ -98,9 +103,8 @@ export function LeadMagnetGrid({
 
       {/* Results Count */}
       {showFilters && (
-        <p className="text-sm text-muted-foreground">
-          Showing {filteredMagnets.length} {filteredMagnets.length === 1 ? 'resource' : 'resources'}
-          {selectedCategory !== 'all' && ` in ${selectedCategory}`}
+        <p className="text-sm text-muted-foreground" role="status">
+          {interpolate(copy.filters.results, { count: String(filteredMagnets.length) })}
         </p>
       )}
 
@@ -117,6 +121,7 @@ export function LeadMagnetGrid({
                 key={magnet.slug}
                 leadMagnet={magnetWithLiveCount}
                 onDownloadClick={handleDownloadClick}
+                locale={locale}
               />
             );
           })}
@@ -125,13 +130,13 @@ export function LeadMagnetGrid({
         /* Empty State */
         <div className="rounded-lg border border-dashed border-border bg-muted/50 p-12 text-center">
           <p className="text-muted-foreground">
-            No resources found in this category.
+            {copy.filters.empty}
           </p>
           <button
             onClick={() => setSelectedCategory('all')}
             className="mt-4 text-sm font-medium text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
-            View all resources
+            {copy.filters.all}
           </button>
         </div>
       )}

@@ -5,7 +5,7 @@ import { Section } from '@/components/Section';
 import { SectionHeading } from '@/components/SectionHeading';
 import { LeadMagnetGrid } from '@/components/lead-magnets';
 import { getLeadMagnets } from '@/lib/content';
-import { getMessages, type Locale } from '@/i18n';
+import { getMessages } from '@/i18n';
 import { fallbackLocale, isLocale } from '@/i18n/locales';
 import { absoluteUrl } from '@/lib/site';
 import { generateHreflangAlternates } from '@/lib/metadata';
@@ -58,7 +58,7 @@ export default async function ResourcesPage({ params }: PageProps) {
 
   return (
     <>
-      <Section size="lg">
+      <Section size="sm" className="pb-0 sm:pb-0">
         <Container>
           <div className="space-y-6 text-center">
             <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
@@ -74,7 +74,7 @@ export default async function ResourcesPage({ params }: PageProps) {
         </Container>
       </Section>
 
-      <Section>
+      <Section size="sm">
         <Container className="space-y-10">
           <SectionHeading
             title={messages.resources.grid.title}
@@ -83,6 +83,7 @@ export default async function ResourcesPage({ params }: PageProps) {
 
           <LeadMagnetGrid
             magnets={leadMagnets}
+            locale={locale}
           />
         </Container>
       </Section>

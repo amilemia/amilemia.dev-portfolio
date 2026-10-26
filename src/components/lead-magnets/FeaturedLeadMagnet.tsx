@@ -1,25 +1,33 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Download, Sparkles, Terminal } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Check, Download, Eye, Sparkles } from 'lucide-react';
 import type { LeadMagnet } from 'contentlayer/generated';
 
 import { Button } from '@/components/ui/button';
 import { EmailCaptureModal } from './EmailCaptureModal';
 import { interpolate } from '@/i18n/interpolate';
+import { getMessages, type Locale } from '@/i18n';
+import { track } from '@/lib/analytics/track';
 
 type FeaturedLeadMagnetProps = {
   leadMagnet: LeadMagnet;
+  locale?: Locale;
   messages: {
     eyebrow: string;
     title: string;
     description: string;
     cta: string;
     socialProof: string;
+    browse: string;
+    delivery: string;
   };
 };
 
-export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetProps) {
+export function FeaturedLeadMagnet({ leadMagnet, messages, locale = 'en' }: FeaturedLeadMagnetProps) {
+  const copy = getMessages(locale).resources.card;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [downloadCount, setDownloadCount] = useState<number>(leadMagnet.downloadCount ?? 0);
 
@@ -51,7 +59,7 @@ export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetP
           className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary/20 blur-3xl opacity-60"
           aria-hidden="true"
         />
-        <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_320px] lg:items-center">
+        <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_360px] lg:items-center">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/20 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-blue-300">
@@ -66,7 +74,7 @@ export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetP
               ) : (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-900/90 px-3 py-1 font-mono text-xs font-medium text-emerald-400">
                   <Download className="size-3.5" aria-hidden="true" />
-                  PDF Guide • Instant Access
+                  {copy.format}
                 </span>
               )}
             </div>
@@ -80,6 +88,14 @@ export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetP
               </p>
             </div>
 
+            <ul className="space-y-2 text-sm text-zinc-200">
+              {leadMagnet.outcomes.map((outcome) => (
+                <li key={outcome} className="flex items-start gap-2">
+                  <Check className="mt-0.5 size-4 shrink-0 text-blue-300" aria-hidden="true" />
+                  {outcome}
+                </li>
+              ))}
+            </ul>
             <div className="flex flex-wrap items-center gap-4 pt-1">
               <Button
                 size="lg"
@@ -90,32 +106,28 @@ export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetP
                 <Download className="mr-2 size-4" aria-hidden="true" />
                 {messages.cta}
               </Button>
+              <Link href={`/${locale}/resources`} className="rounded text-sm font-semibold text-blue-200 underline underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4">
+                {messages.browse}
+              </Link>
             </div>
+            <p className="text-xs leading-relaxed text-zinc-400">{messages.delivery}</p>
           </div>
 
-          {/* 3D-Styled Engineering Toolkit Mockup */}
-          <div className="mx-auto w-full max-w-[300px] lg:mx-0">
-            <div className="group relative rounded-xl border border-zinc-700/80 bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-950 p-5 shadow-2xl transition-transform duration-300 hover:-translate-y-1">
-              <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-blue-400">
-                  NEXT.JS 15+ SERIES
-                </span>
-                <Terminal className="size-4 text-zinc-400" aria-hidden="true" />
-              </div>
-              <div className="my-4 space-y-1.5">
-                <p className="text-base font-bold leading-snug text-white">
-                  {leadMagnet.title}
-                </p>
-                <p className="text-xs text-zinc-400">
-                  Architecture, SSR, CWV &amp; Conversion Checklist
-                </p>
-              </div>
-              <div className="rounded-lg border border-zinc-800 bg-black/70 p-3 font-mono text-[11px] leading-relaxed text-zinc-300">
-                <div className="text-zinc-500">$ npx amilemia-toolkit@latest</div>
-                <div className="mt-1 text-emerald-400">&#10003; 98+ Lighthouse Score</div>
-                <div className="text-blue-400">&#10003; WCAG 2.1 AA Verified</div>
-              </div>
-            </div>
+          <div className="space-y-4">
+            <a href={leadMagnet.previewUrl} target="_blank" rel="noopener noreferrer"
+              className="block overflow-hidden rounded-xl border border-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-4"
+              aria-label={`${copy.preview}: ${leadMagnet.title}`}
+              onClick={() => track('Resource: Preview', { slug: leadMagnet.slug, location: 'homepage' })}>
+              <Image src={leadMagnet.thumbnail} alt="" width={1200} height={675}
+                sizes="(min-width: 1024px) 360px, 100vw" className="h-auto w-full" />
+              <span className="flex items-center justify-center gap-2 bg-zinc-900 px-4 py-3 text-sm font-medium text-blue-200">
+                <Eye className="size-4" aria-hidden="true" />{copy.preview}
+              </span>
+            </a>
+            <p className="text-center text-xs text-zinc-400">
+              {interpolate(copy.pages, { count: String(leadMagnet.pageCount) })}
+              {' · '}{interpolate(copy.firstPass, { minutes: String(leadMagnet.reviewMinutes) })}
+            </p>
           </div>
         </div>
       </div>

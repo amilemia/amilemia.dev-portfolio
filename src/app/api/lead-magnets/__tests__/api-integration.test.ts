@@ -71,7 +71,8 @@ describe('Lead Magnet API Integration', () => {
       expect(leadMagnet?.category).toBe('checklist');
       expect(leadMagnet?.fileUrl).toBe('/resources/web-performance-checklist.pdf');
       expect(leadMagnet?.downloadCount).toBeGreaterThanOrEqual(0);
-      expect(leadMagnet?.rating).toBeGreaterThan(0);
+      expect(leadMagnet?.pageCount).toBe(4);
+      expect(leadMagnet?.outcomes).toHaveLength(3);
     });
 
     it('should have conversion optimization guide with correct data', () => {
@@ -84,7 +85,8 @@ describe('Lead Magnet API Integration', () => {
       expect(leadMagnet?.category).toBe('guide');
       expect(leadMagnet?.fileUrl).toBe('/resources/conversion-optimization-guide.pdf');
       expect(leadMagnet?.downloadCount).toBeGreaterThanOrEqual(0);
-      expect(leadMagnet?.rating).toBeGreaterThan(0);
+      expect(leadMagnet?.pageCount).toBe(4);
+      expect(leadMagnet?.outcomes).toHaveLength(3);
     });
 
     it('should have nextjs best practices with correct data', () => {
@@ -97,7 +99,8 @@ describe('Lead Magnet API Integration', () => {
       expect(leadMagnet?.category).toBe('toolkit');
       expect(leadMagnet?.fileUrl).toBe('/resources/nextjs-best-practices.pdf');
       expect(leadMagnet?.downloadCount).toBeGreaterThanOrEqual(0);
-      expect(leadMagnet?.rating).toBeGreaterThan(0);
+      expect(leadMagnet?.pageCount).toBe(4);
+      expect(leadMagnet?.outcomes).toHaveLength(3);
     });
   });
 });
