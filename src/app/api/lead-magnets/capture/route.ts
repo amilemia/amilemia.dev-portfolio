@@ -35,7 +35,7 @@ async function incrementDownloadCount(slug: string, baseCount = 0): Promise<numb
   return next;
 }
 
-async function getDownloadCounts(): Promise<Record<string, number>> {
+async function getDownloadCounts(isKeepalive = false): Promise<Record<string, number>> {
   const counts: Record<string, number> = {};
   const redis = getRedisClient();
 
@@ -47,10 +47,10 @@ async function getDownloadCounts(): Promise<Record<string, number>> {
   if (redis && allLeadMagnets.length > 0) {
     try {
       const keys = allLeadMagnets.map((lm) => `lead-magnet:downloads:${lm.slug}`);
-      const [values] = await Promise.all([
-        redis.mget<number[]>(...keys),
-        redis.set('keepalive:last_ping', new Date().toISOString()),
-      ]);
+      const values = await redis.mget<number[]>(...keys);
+      if (isKeepalive) {
+        await redis.set('keepalive:last_ping', new Date().toISOString());
+      }
       allLeadMagnets.forEach((lm, index) => {
         const redisCount = Number(values?.[index] ?? 0);
         counts[lm.slug] = (lm.downloadCount ?? 0) + (Number.isFinite(redisCount) ? redisCount : 0);
@@ -63,8 +63,17 @@ async function getDownloadCounts(): Promise<Record<string, number>> {
   return counts;
 }
 
-export async function GET() {
-  const counts = await getDownloadCounts();
+export async function GET(request?: Request) {
+  let isKeepalive = false;
+  if (request?.url) {
+    try {
+      const { searchParams } = new URL(request.url);
+      isKeepalive = searchParams.get('keepalive') === '1';
+    } catch {
+      isKeepalive = false;
+    }
+  }
+  const counts = await getDownloadCounts(isKeepalive);
   return NextResponse.json({
     success: true,
     counts,

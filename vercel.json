@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/lead-magnets/capture",
+      "path": "/api/lead-magnets/capture?keepalive=1",
       "schedule": "0 9 * * *"
     }
   ]

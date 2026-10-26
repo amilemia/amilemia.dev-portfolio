@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Ping Lead Magnet API (triggers Redis MGET + SET keepalive)
         run: |
-          curl -fsS "https://amilemia.dev/api/lead-magnets/capture"
+          curl -fsS "https://amilemia.dev/api/lead-magnets/capture?keepalive=1"
