@@ -17,6 +17,7 @@ export const enMessages = {
         { key: "home", label: "Home", href: "/" },
         { key: "projects", label: "Projects", href: "/projects" },
         { key: "services", label: "Services", href: "/services" },
+        { key: "resources", label: "Free resources", href: "/resources" },
         { key: "about", label: "About", href: "/about" },
         { key: "contact", label: "Contact", href: "/contact" },
       ],
@@ -367,8 +368,8 @@ export const enMessages = {
       title: "Education & Training",
       roles: [
         {
-          title: "Professional Bachelor's in Multimedia & Web Technologies",
-          place: "Fédération Internationale des Établissements de Formation Professionnelle • Kénitra",
+          title: "Bachelor's Degree in Multimedia & Web Technologies",
+          place: "International Federation of Vocational Training Institutions (FIEFP) • Kenitra",
           timeframe: "2021 - 2024",
           summary:
             "Specialized in full-stack web development, interactive multimedia, UI/UX design, and modern web application architecture.",
@@ -548,21 +549,32 @@ export const enMessages = {
   resources: {
     meta: {
       title: "Free Resources",
-      description: "Free guides, checklists, and templates to help you build better websites. Download instantly, no strings attached.",
+      description: "Three free, fillable PDF workbooks for clearer offers, faster websites and Next.js launches. Preview a page, then get your copy by email.",
     },
     hero: {
       eyebrow: "Free Resources",
-      title: "Guides and tools to help you ship better sites",
-      description: "Practical resources for founders and developers. Download instantly—no strings attached.",
+      title: "A practical next step for your website",
+      description: "Three focused workbooks for founders and developers. Preview a page, choose the problem you want to solve, then get the PDF by email.",
     },
     grid: {
       title: "Available Resources",
-      description: "Everything you need to build faster, more accessible, and higher-converting websites.",
+      description: "Each four-page workbook includes a practical checklist and fillable action plan. All PDFs are in English.",
+    },
+    filters: {
+      all: "All resources",
+      label: "Filter by category",
+      results: "{{count}} resources",
+      empty: "No resources found in this category.",
     },
     card: {
       downloadCount: "{{count}} downloads",
       rating: "{{rating}}/5 rating",
-      download: "Download Free",
+      download: "Email me the free PDF",
+      preview: "Preview a page",
+      audience: "Best for",
+      pages: "{{count}} pages",
+      firstPass: "{{minutes}}-min first pass",
+      format: "Fillable PDF · English",
       category: {
         checklist: "Checklist",
         guide: "Guide",
@@ -573,14 +585,16 @@ export const enMessages = {
     contentUpgrade: {
       eyebrow: "Free Resource",
       title: "Want the detailed guide?",
-      description: "Get the complete {{title}} with step-by-step instructions and code examples.",
+      description: "Use the {{title}} to review your site and plan a focused next step.",
       cta: "Download Free Guide",
     },
     featured: {
       eyebrow: "Free Resource",
       title: "Get the {{title}}",
       description: "{{description}}",
-      cta: "Download Free",
+      cta: "Email me the free PDF",
+      browse: "Explore all 3 resources",
+      delivery: "Free PDF by email. Preview a page before signing up.",
       socialProof: "{{count}}+ downloads",
     },
   },

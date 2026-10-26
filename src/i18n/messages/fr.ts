@@ -17,6 +17,7 @@ export const frMessages: Messages = {
         { key: "home", label: "Accueil", href: "/" },
         { key: "projects", label: "Projets", href: "/projects" },
         { key: "services", label: "Services", href: "/services" },
+        { key: "resources", label: "Ressources", href: "/resources" },
         { key: "about", label: "À propos", href: "/about" },
         { key: "contact", label: "Contact", href: "/contact" },
       ],
@@ -374,8 +375,8 @@ export const frMessages: Messages = {
             "Spécialisation en développement web full-stack, technologies multimédias interactives, design UI/UX et architecture d'applications web modernes.",
         },
         {
-          title: "Programme d'Ingénierie Logicielle (Software Engineering)",
-          place: "ALX Africa",
+          title: "Programme d'Ingénierie Logicielle",
+          place: "ALX Afrique",
           timeframe: "2023 - 2024",
           summary:
             "Formation intensive par projets couvrant la programmation système, les environnements Linux/Bash, l'architecture backend, l'algorithmique et les workflows collaboratifs Git.",
@@ -548,21 +549,32 @@ export const frMessages: Messages = {
   resources: {
     meta: {
       title: "Ressources gratuites",
-      description: "Guides, checklists et templates gratuits pour vous aider à créer de meilleurs sites web. Téléchargement instantané, sans engagement.",
+      description: "Trois guides PDF gratuits et remplissables pour clarifier votre offre, accélérer votre site et préparer un lancement Next.js. Guides en anglais.",
     },
     hero: {
       eyebrow: "Ressources gratuites",
-      title: "Guides et outils pour créer de meilleurs sites",
-      description: "Ressources pratiques pour fondateurs et développeurs. Téléchargement instantané—sans engagement.",
+      title: "Une prochaine étape concrète pour votre site",
+      description: "Trois guides pratiques pour fondateurs et développeurs. Consultez un aperçu, choisissez votre priorité et recevez le PDF par e-mail.",
     },
     grid: {
       title: "Ressources disponibles",
-      description: "Tout ce dont vous avez besoin pour créer des sites plus rapides, plus accessibles et plus performants.",
+      description: "Chaque guide de quatre pages comprend une checklist et un plan à remplir. Tous les PDF sont en anglais.",
+    },
+    filters: {
+      all: "Toutes les ressources",
+      label: "Filtrer par catégorie",
+      results: "{{count}} ressources",
+      empty: "Aucune ressource dans cette catégorie.",
     },
     card: {
       downloadCount: "{{count}} téléchargements",
       rating: "Note {{rating}}/5",
-      download: "Télécharger gratuitement",
+      download: "Recevoir le PDF gratuit",
+      preview: "Voir une page",
+      audience: "Pour",
+      pages: "{{count}} pages",
+      firstPass: "{{minutes}} min pour commencer",
+      format: "PDF remplissable · Anglais",
       category: {
         checklist: "Checklist",
         guide: "Guide",
@@ -573,14 +585,16 @@ export const frMessages: Messages = {
     contentUpgrade: {
       eyebrow: "Ressource gratuite",
       title: "Vous voulez le guide détaillé ?",
-      description: "Obtenez le {{title}} complet avec des instructions étape par étape et des exemples de code.",
+      description: "Utilisez le {{title}} pour examiner votre site et définir votre prochaine étape.",
       cta: "Télécharger le guide gratuit",
     },
     featured: {
       eyebrow: "Ressource gratuite",
       title: "Obtenez le {{title}}",
       description: "{{description}}",
-      cta: "Télécharger gratuitement",
+      cta: "Recevoir le PDF gratuit",
+      browse: "Voir les 3 ressources",
+      delivery: "PDF gratuit par e-mail. Consultez un aperçu avant de vous inscrire.",
       socialProof: "{{count}}+ téléchargements",
     },
   },
