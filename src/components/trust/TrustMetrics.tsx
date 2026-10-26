@@ -92,9 +92,15 @@ function MetricCard({ metric, isVisible, delay }: MetricCardProps) {
     const stepDuration = duration / steps;
 
     let currentValue = 0;
+    let isMounted = true;
     let intervalId: ReturnType<typeof setInterval> | null = null;
     const timer = setTimeout(() => {
+      if (!isMounted || typeof window === 'undefined') return;
       intervalId = setInterval(() => {
+        if (!isMounted || typeof window === 'undefined') {
+          if (intervalId !== null) clearInterval(intervalId);
+          return;
+        }
         currentValue += increment;
         if (currentValue >= targetValue) {
           setDisplayValue(metric.value);
@@ -106,6 +112,7 @@ function MetricCard({ metric, isVisible, delay }: MetricCardProps) {
     }, delay);
 
     return () => {
+      isMounted = false;
       clearTimeout(timer);
       if (intervalId !== null) {
         clearInterval(intervalId);

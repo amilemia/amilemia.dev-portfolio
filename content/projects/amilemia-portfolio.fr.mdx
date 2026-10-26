@@ -1,0 +1,79 @@
+---
+title: "Portfolio Bilingue & Plateforme Client (amilemia.dev)"
+slug: "amilemia-portfolio"
+summary: "Portfolio bilingue (EN/FR) sous Next.js 15, centre de ressources techniques et tunnel de qualification de projets avec génération statique et tests E2E automatisés."
+locale: "fr"
+cover: "/images/projects/amilemia-portfolio.png"
+tags:
+  - nextjs
+  - typescript
+  - tailwindcss
+  - i18n
+role: "Développeur Full-stack"
+stack:
+  - Next.js 15
+  - TypeScript
+  - Tailwind CSS
+  - Contentlayer2
+  - Upstash Redis
+  - Resend
+  - Playwright
+dates:
+  start: "2026-02-01"
+  end: "2026-04-15"
+links:
+  live: "https://amilemia.dev"
+  repo: "https://github.com/amilemia/amilemia.dev-portfolio"
+metrics:
+  - label: "SSG Statique"
+    value: "100%"
+  - label: "Tests automatisés"
+    value: "105+"
+  - label: "Langues"
+    value: "EN / FR"
+caseStudy:
+  problem: "La plupart des portfolios de développeurs souffrent d'un défaut majeur : soit ce sont de simples galeries statiques sans parcours structuré pour qualifier un projet client, soit ils reposent sur un rendu côté client (CSR) qui génère un HTML initial vide et pénalise le référencement SEO."
+  solution: "Conception et développement d'un portfolio bilingue (anglais/français) et d'un moteur de prise de brief avec Next.js 15 App Router, Contentlayer2 MDX, Upstash Redis et Resend. Intégration d'un formulaire de brief en 4 étapes validé par Zod, d'un système d'envoi de guides PDF avec compteur de téléchargements Redis en temps réel, et d'une génération statique (SSG) sur les 29 routes."
+  implementation: "Architecture de routage statique localisé via generateStaticParams avec balises hreflang et métadonnées canoniques. Élimination des bascules CSR de Next.js (liées à useSearchParams et aux limites Suspense) afin de livrer 100 % du HTML dès le premier octet. Intégration du rate-limiting et du suivi de téléchargements via Upstash Redis, d'e-mails transactionnels via Resend, et d'une suite CI Vitest + Playwright vérifiant l'accessibilité WCAG AA."
+  results:
+    - "Pré-rendu HTML 100 % statique sur les 29 pages localisées sans bascule CSR"
+    - "Localisation complète anglais/français avec détection automatique et conservation des paramètres d'URL"
+    - "105+ tests unitaires (Vitest) et tests d'accessibilité E2E (Playwright) exécutés sous GitHub Actions CI"
+    - "Assistant de brief projet en 4 étapes avec validation Zod, limitation de débit et réservation Cal.com"
+beforeAfter:
+  - type: "metric"
+    before: "Bascule en rendu client CSR (HTML initial vide)"
+    after: "HTML SSG 100 % pré-rendu pour un LCP instantané et une indexation optimale"
+    caption: "Architecture de rendu serveur"
+  - type: "metric"
+    before: "Simples liens mailto non structurés"
+    after: "Assistant de brief en 4 étapes + livraison automatisée de ressources PDF"
+    caption: "Qualification de projets & conversion"
+technicalDeepDive:
+  architecture: "L'application repose sur Next.js 15 App Router avec génération statique (SSG) pour l'ensemble des pages marketing, services et études de cas. Contentlayer2 compile les fichiers MDX en modules TypeScript typés au moment du build. Les routes API (/api/contact et /api/lead-magnets/capture) utilisent Zod pour la validation, Upstash Redis pour le rate-limiting (5 req/min) et le compteur de téléchargements en direct, et Resend pour l'envoi d'e-mails. Déployé sur Vercel derrière Cloudflare avec en-têtes de sécurité stricts (CSP, HSTS)."
+  challenges:
+    - "Empêcher Next.js App Router de basculer silencieusement en rendu client (CSR) lors de l'utilisation de paramètres d'URL"
+    - "Synchroniser le routage bilingue (EN/FR), les balises SEO hreflang et la génération dynamique d'images OpenGraph"
+    - "Garantir que les animations Framer Motion affichent un état SSR visible (opacity: 1) pour les moteurs d'indexation et Lighthouse"
+  decisions:
+    - "Remplacement des hooks useSearchParams au rendu par une lecture à l'événement pour préserver un HTML 100 % statique"
+    - "Utilisation de Contentlayer2 + MDX pour gérer le contenu typé directement via Git sans latence de CMS externe"
+    - "Combinaison de tests unitaires Vitest et de tests E2E Playwright dans le pipeline CI GitHub Actions"
+relatedProjects:
+  - clinic-booking-system
+---
+
+# Portfolio Bilingue & Plateforme Client (amilemia.dev)
+
+Une plateforme Next.js 15 bilingue regroupant études de cas, offres de services à périmètre fixe et qualification de projets, conçue pour la performance et l'accessibilité.
+
+## Points Techniques Clés
+
+### 1. Génération Statique (SSG) Sans Bascule CSR
+Chaque route localisée (`/en`, `/fr`, `/projects`, `/services`, `/resources`) est pré-rendue statiquement au build avec un HTML complet, des données structurées JSON-LD et des métadonnées OpenGraph bilingues.
+
+### 2. Qualification de Projet en 4 Étapes & Ressources PDF
+Les clients peuvent détailler leur besoin via un formulaire en 4 étapes validé par Zod (périmètre, objectifs, budget, délais) protégé par Upstash Redis et connecté à Resend, ou télécharger des guides techniques PDF avec compteur de téléchargements en temps réel.
+
+### 3. Pipeline Automatisé de Qualité & Accessibilité
+Chaque déploiement est validé par plus de 105 tests unitaires et d'intégration Vitest ainsi que des tests E2E Playwright contrôlant la navigation au clavier et la conformité WCAG AA.

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Download, Star } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -63,9 +63,9 @@ export function LeadMagnetCard({ leadMagnet, onDownloadClick }: LeadMagnetCardPr
       </CardHeader>
 
       <CardContent className="flex-1">
-        {/* Social Proof */}
+        {/* Resource Metadata & Live Download Count */}
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          {leadMagnet.downloadCount !== undefined && leadMagnet.downloadCount > 0 && (
+          {leadMagnet.downloadCount !== undefined && leadMagnet.downloadCount > 0 ? (
             <div className="flex items-center gap-1">
               <Download className="h-4 w-4" aria-hidden="true" />
               <span>
@@ -73,12 +73,10 @@ export function LeadMagnetCard({ leadMagnet, onDownloadClick }: LeadMagnetCardPr
                 {leadMagnet.downloadCount !== 1 ? 's' : ''}
               </span>
             </div>
-          )}
-          
-          {leadMagnet.rating !== undefined && leadMagnet.rating > 0 && (
-            <div className="flex items-center gap-1">
-              <Star className="h-4 w-4 fill-current text-yellow-500" aria-hidden="true" />
-              <span>{leadMagnet.rating.toFixed(1)}</span>
+          ) : (
+            <div className="flex items-center gap-1 font-mono text-xs text-primary">
+              <Download className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>Free PDF Guide</span>
             </div>
           )}
         </div>

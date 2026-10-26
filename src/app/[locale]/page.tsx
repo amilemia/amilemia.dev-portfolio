@@ -50,7 +50,7 @@ export default async function Home({ params }: PageProps) {
 
   const projects = (await getProjects(locale)).slice(0, 3);
   const testimonials = getTestimonials(messages.shared.testimonials);
-  const trustMetrics = getTrustMetrics();
+  const trustMetrics = getTrustMetrics(locale);
   const leadMagnets = await getLeadMagnets();
   const featuredLeadMagnet = leadMagnets[0]; // Get the most popular lead magnet
   const servicePackages = getLocalizedServicePackages(messages.services.packages).map((service) => ({
@@ -366,7 +366,12 @@ export default async function Home({ params }: PageProps) {
             </Button>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+          <div
+            className={cn(
+              "grid gap-6 items-stretch",
+              projects.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"
+            )}
+          >
             {projects.map((project, index) => (
               <ScrollReveal
                 key={project.slug}

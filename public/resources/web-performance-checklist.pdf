@@ -1,69 +1,130 @@
 %PDF-1.4
 1 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
+<< /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<<
-/Type /Pages
-/Kids [3 0 R]
-/Count 1
->>
+<< /Type /Pages /Kids [6 0 R 8 0 R] /Count 2 >>
 endobj
 3 0 obj
-<<
-/Type /Page
-/Parent 2 0 R
-/Resources <<
-/Font <<
-/F1 4 0 R
->>
->>
-/MediaBox [0 0 612 792]
-/Contents 5 0 R
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 4 0 obj
-<<
-/Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 5 0 obj
-<<
-/Length 200
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 3514 >>
 stream
-BT
-/F1 24 Tf
-50 700 Td
-(Web Performance Checklist) Tj
-0 -30 Td
-/F1 12 Tf
-(A comprehensive guide to optimizing your website's performance) Tj
-0 -40 Td
-(Core Web Vitals, Image Optimization, Caching, and More) Tj
-0 -40 Td
-(Download from: amilemia.dev) Tj
-ET
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  PERFORMANCE CHECKLIST  |  PAGE 1 OF 2) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (Core Web Vitals & Web Performance Checklist) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Actionable Engineering Audit for Sub-2s LCP, Low INP, Zero CLS & Edge Caching) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (1. Largest Contentful Paint \(LCP < 2.0 Seconds\)) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 652 Td (Largest Contentful Paint measures how quickly the main hero headline or visual asset) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 638.5 Td (becomes visible in the viewport. Over 70% of poor LCP scores come from unoptimized) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 625 Td (server rendering, render-blocking fonts, or oversized images.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 606.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 607.5 Td (Pre-Render Above-the-Fold HTML on the Server \(SSG / ISR\)) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 594.5 Td (Ensure the hero headline, availability badge, and primary CTAs are present in the) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 582.5 Td (initial HTML document with opacity: 1-never gated behind client-side hydration.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 565.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 566.5 Td (Responsive Image Sizing & Priority Hints) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 553.5 Td (Use next/image with accurate sizes="\(min-width: 1024px\) 33vw, \(min-width: 640px\)) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 541.5 Td (50vw, 100vw" and AVIF/WebP formats. Set priority on above-the-fold hero imagery) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 529.5 Td (only.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 512.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 513.5 Td (Self-Hosted Variable Fonts via next/font) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 500.5 Td (Load Inter, Outfit, or JetBrains Mono with display: "swap" and preload: true to) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 488.5 Td (eliminate external DNS lookups to fonts.googleapis.com and prevent Flash of) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 476.5 Td (Invisible Text \(FOIT\).) Tj ET
+0.94 0.96 1 rg 44 448.5 524 22 re f
+0.145 0.388 0.922 rg 44 448.5 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 455.5 Td (2. Cumulative Layout Shift \(CLS < 0.05\)) Tj ET
+0.145 0.388 0.922 RG 1 w 46 429.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 430.5 Td (Explicit Aspect-Ratio Containers on Media) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 417.5 Td (Wrap all project thumbnails and screenshots in aspect-[16/9] or fixed-dimension) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 405.5 Td (containers so the browser reserves exact layout space before images arrive.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 388.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 389.5 Td (Stable Sticky Navigation Chrome) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 376.5 Td (Use fixed heights \(h-16\) on top navigation headers and transform-based animations) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 364.5 Td (\(translate-y\) on mobile bottom bars so scrolling never triggers layout reflow.) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 1 / 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3415 >>
+stream
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  PERFORMANCE CHECKLIST  |  PAGE 2 OF 2) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (Core Web Vitals & Web Performance Checklist) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Actionable Engineering Audit for Sub-2s LCP, Low INP, Zero CLS & Edge Caching) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (3. Interaction to Next Paint \(INP < 150ms\)) Tj ET
+0.145 0.388 0.922 RG 1 w 46 651 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 652 Td (Keep Client Component Bundles Lean) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 639 Td (Push static sections \(layouts, grids, MDX case studies\) to React Server Components) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 627 Td (and isolate interactivity \(modals, carousels, theme toggles\) into small leaf Client) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 615 Td (Components.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 598 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 599 Td (Throttle Scroll & Resize Listeners with requestAnimationFrame) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 586 Td (Always attach scroll listeners with { passive: true } and batch state updates inside) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 574 Td (window.requestAnimationFrame to maintain 60fps scrolling on mobile devices.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 557 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 558 Td (Replace Heavy Tag Managers with Lightweight Analytics) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 545 Td (Use Plausible \(< 1 KB script\) or Vercel Analytics instead of multi-hundred-kilobyte) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 533 Td (third-party tracking bundles that block the main thread.) Tj ET
+0.94 0.96 1 rg 44 505 524 22 re f
+0.145 0.388 0.922 rg 44 505 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 512 Td (4. Backend, Database & Edge Delivery \(Laravel / Next.js\)) Tj ET
+0.145 0.388 0.922 RG 1 w 46 486 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 487 Td (Eliminate N+1 Database Queries) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 474 Td (Use eager loading \(Eloquent with\(\) in Laravel or relation includes in Prisma\) and) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 462 Td (index foreign keys + date-range columns used in scheduling and filtering.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 445 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 446 Td (Edge Caching & Cloudflare Bot Hygiene) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 433 Td (Serve static assets with immutable Cache-Control headers. When using Cloudflare in) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 421 Td (front of Vercel, ensure static chunks \(/_next/*\) and verified crawlers are never) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 409 Td (blocked by JS challenges.) Tj ET
+0.93 0.99 0.96 rg 44 361 524 42 re f
+0.06 0.72 0.50 rg 44 361 4 42 re f
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 390 Td (Want a full performance & accessibility audit on your existing site? Explore the) Tj ET
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 377 Td (Conversion Refresh package at https://amilemia.dev/en/services) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 2 / 2) Tj ET
 endstream
 endobj
 xref
-0 6
-0000000000 65535 f
-0000000009 00000 n
-0000000058 00000 n
-0000000115 00000 n
-0000000274 00000 n
-0000000351 00000 n
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000334 00000 n 
+0000000480 00000 n 
+0000004046 00000 n 
+0000004192 00000 n 
 trailer
-<<
-/Size 6
-/Root 1 0 R
->>
+<< /Size 10 /Root 1 0 R >>
 startxref
-603
+7659
 %%EOF

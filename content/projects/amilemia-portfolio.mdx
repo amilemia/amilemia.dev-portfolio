@@ -1,0 +1,79 @@
+---
+title: "Bilingual Portfolio & Lead Engine (amilemia.dev)"
+slug: "amilemia-portfolio"
+summary: "Bilingual (EN/FR) Next.js 15 portfolio, technical resource hub, and multi-step project intake engine built with static generation and automated E2E testing."
+locale: "en"
+cover: "/images/projects/amilemia-portfolio.png"
+tags:
+  - nextjs
+  - typescript
+  - tailwindcss
+  - i18n
+role: "Full-stack Developer"
+stack:
+  - Next.js 15
+  - TypeScript
+  - Tailwind CSS
+  - Contentlayer2
+  - Upstash Redis
+  - Resend
+  - Playwright
+dates:
+  start: "2026-02-01"
+  end: "2026-04-15"
+links:
+  live: "https://amilemia.dev"
+  repo: "https://github.com/amilemia/amilemia.dev-portfolio"
+metrics:
+  - label: "Static SSG"
+    value: "100%"
+  - label: "Automated tests"
+    value: "105+"
+  - label: "Locales"
+    value: "EN / FR"
+caseStudy:
+  problem: "Most developer portfolios fail in one of two ways: either they are static galleries with no structured intake funnel for prospective clients, or they rely on heavy client-side rendering (CSR) that causes blank initial HTML, poor SEO indexing, and broken previews in automated crawlers."
+  solution: "Engineered a bilingual (English/French) portfolio and conversion engine using Next.js 15 App Router, Contentlayer2 MDX, Upstash Redis, and Resend. Built a 4-step validated project brief wizard, an automated technical resource delivery system with live Redis download tracking, and strict pre-rendered Static Site Generation (SSG) across all 29 routes."
+  implementation: "Architected localized static routing via generateStaticParams with full hreflang and canonical metadata. Eliminated Next.js client-side rendering bailouts (useSearchParams traps and root Suspense streaming) so search engines and AI crawlers receive 100% visible HTML on the first byte. Integrated Upstash Redis sliding-window rate limiting and live download counters on API routes, Resend for transactional email delivery, and a comprehensive Vitest + Playwright CI pipeline enforcing WCAG AA accessibility."
+  results:
+    - "100% static HTML pre-rendering across all 29 localized routes with zero CSR bailouts"
+    - "Full English & French localization with automatic locale negotiation and preserved query state"
+    - "105+ unit tests (Vitest) and end-to-end accessibility specs (Playwright) running in GitHub Actions CI"
+    - "4-step interactive project brief wizard with Zod validation, rate limiting, and Cal.com scheduling"
+beforeAfter:
+  - type: "metric"
+    before: "Client-side rendering bailout (0 visible words in raw HTML)"
+    after: "100% pre-rendered SSG HTML for instant LCP & crawler indexing"
+    caption: "Server Rendering & Crawler Architecture"
+  - type: "metric"
+    before: "Unstructured contact mailto links"
+    after: "4-step validated brief wizard + automated resource delivery"
+    caption: "Client Intake & Lead Qualification"
+technicalDeepDive:
+  architecture: "The application is built on Next.js 15 App Router using Static Site Generation (SSG) for all marketing, service, and case study routes. Contentlayer2 compiles MDX case studies and technical resources into strongly typed TypeScript modules at build time. API routes (/api/contact and /api/lead-magnets/capture) use Zod schema validation, Upstash Redis for sliding-window rate limiting (5 req/min) and live download counters, and Resend for transactional emails. Deployed on Vercel behind Cloudflare with strict CSP, HSTS, and security headers."
+  challenges:
+    - "Preventing Next.js App Router from silently bailing out to client-side rendering when client components read URL search parameters"
+    - "Maintaining synchronized bilingual (EN/FR) routing, SEO hreflang alternates, and dynamic OpenGraph image generation"
+    - "Ensuring Framer Motion scroll animations render visible SSR states (opacity: 1) so headless browsers and Lighthouse audits never capture blank viewports"
+  decisions:
+    - "Replaced render-time useSearchParams hooks in global navigation and filters with event-time URLSearchParams parsing to preserve 100% static HTML output"
+    - "Used Contentlayer2 + MDX for Git-backed, type-safe case studies without external CMS latency"
+    - "Combined Vitest unit/integration tests with Playwright E2E accessibility checks in GitHub Actions CI"
+relatedProjects:
+  - clinic-booking-system
+---
+
+# Bilingual Portfolio & Lead Engine (amilemia.dev)
+
+A production Next.js 15 portfolio, service catalog, and client intake platform engineered for speed, bilingual accessibility, and verifiable technical quality.
+
+## Key Engineering Highlights
+
+### 1. Zero-Bailout Static Site Generation (SSG)
+Every localized route (`/en`, `/fr`, `/projects`, `/services`, `/resources`) is statically pre-rendered at build time with complete HTML content, structured JSON-LD schema, and localized OpenGraph metadata.
+
+### 2. Multi-Step Project Brief Wizard & Lead Magnet Engine
+Prospective clients can scope their project through a 4-step Zod-validated intake form (scope, goals, budget tier, timeline) backed by Upstash Redis rate limiting and Resend email notifications, or download technical PDF guides with real-time Redis download tracking.
+
+### 3. Automated Quality & Accessibility Pipeline
+Every push is verified through 105+ Vitest unit/integration tests and Playwright E2E accessibility tests verifying keyboard navigation, ARIA landmarks, and bilingual locale switching.

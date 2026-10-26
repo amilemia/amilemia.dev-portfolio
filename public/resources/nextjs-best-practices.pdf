@@ -1,73 +1,181 @@
 %PDF-1.4
 1 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
+<< /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<<
-/Type /Pages
-/Kids [3 0 R]
-/Count 1
->>
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
 endobj
 3 0 obj
-<<
-/Type /Page
-/Parent 2 0 R
-/Resources <<
-/Font <<
-/F1 4 0 R
->>
->>
-/MediaBox [0 0 612 792]
-/Contents 5 0 R
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 4 0 obj
-<<
-/Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 5 0 obj
-<<
-/Length 240
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 3693 >>
 stream
-BT
-/F1 24 Tf
-50 700 Td
-(Next.js Best Practices Toolkit) Tj
-0 -30 Td
-/F1 12 Tf
-(Complete toolkit for building production-ready Next.js apps) Tj
-0 -40 Td
-(Code Templates, Architecture Patterns, Deployment Checklists) Tj
-0 -40 Td
-(Updated for Next.js 15 and React 19) Tj
-0 -40 Td
-(Save 20+ hours of research and setup time) Tj
-0 -40 Td
-(Download from: amilemia.dev) Tj
-ET
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  ENGINEERING TOOLKIT  |  PAGE 1 OF 3) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (Next.js 15 Production & Architecture Toolkit) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Zero-Bailout Static Generation, Bilingual Routing, Security Headers & CI Verification) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (1. App Router Architecture & Zero-Bailout SSG) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 652 Td (Next.js 15 App Router defaults to Server Components, but subtle client hooks can) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 638.5 Td (silently force an entire route to bail out to client-side rendering \(CSR\). Follow these) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 625 Td (architectural rules to keep 100% of your marketing and case study HTML pre-rendered at) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 611.5 Td (build time.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 593 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 594 Td (Avoid Top-Level useSearchParams\(\) in Shared Chrome) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 581 Td (Calling useSearchParams\(\) inside a Header, LanguageToggle, or TagFilter without a) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 569 Td (<Suspense> boundary causes the entire page to emit BAILOUT_TO_CLIENT_SIDE_RENDERING.) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 557 Td (Read window.location.search inside click/change handlers instead.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 540 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 541 Td (Eliminate Unnecessary Root loading.tsx Boundaries on Static Routes) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 528 Td (A root app/loading.tsx wraps static pages in a streaming Suspense boundary \(<div) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 516 Td (hidden id="S:0">\), hiding content from non-JS scrapers and delaying initial DOM) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 504 Td (visibility.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 487 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 488 Td (Never Render opacity: 0 as the Initial SSR State) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 475 Td (Scroll-reveal and text-split animations that start at opacity: 0 render invisible) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 463 Td (text in SSR HTML, hurting Lighthouse LCP and causing blank captures in automated) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 451 Td (preview tools.) Tj ET
+0.06 0.07 0.10 rg 44 371 524 74 re f
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 433 Td (// GOOD: Event-time URL query preservation without CSR bailout) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 421 Td (const handleLocaleChange = \(nextLocale: Locale\) => {) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 409 Td (  const query = typeof window !== "undefined" ? window.location.search : "";) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 397 Td (  router.push\(`/${nextLocale}${cleanPath}${query}`\);) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 385 Td (};) Tj ET
+0.93 0.99 0.96 rg 44 310 524 55 re f
+0.06 0.72 0.50 rg 44 310 4 55 re f
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 352 Td (Verification Rule: Run curl -s https://your-domain.com/en | grep -c) Tj ET
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 339 Td ("BAILOUT_TO_CLIENT_SIDE_RENDERING" after every build to confirm your primary content) Tj ET
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 326 Td (renders in static HTML.) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 1 / 3) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3917 >>
+stream
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  ENGINEERING TOOLKIT  |  PAGE 2 OF 3) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (Next.js 15 Production & Architecture Toolkit) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Zero-Bailout Static Generation, Bilingual Routing, Security Headers & CI Verification) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (2. Bilingual i18n, SEO Metadata & Crawler Access) Tj ET
+0.145 0.388 0.922 RG 1 w 46 651 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 652 Td (Static Locale Pre-Rendering via generateStaticParams) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 639 Td (Export generateStaticParams\(\) in app/[locale]/layout.tsx so Next.js pre-builds /en) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 627 Td (and /fr routes as static HTML files at build time.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 610 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 611 Td (Complete Hreflang & Canonical Alternates) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 598 Td (In generateMetadata\(\), populate alternates.canonical and alternates.languages for) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 586 Td (every supported locale plus x-default so search engines index localized variants) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 574 Td (accurately.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 557 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 558 Td (Never Disallow /_next/ in robots.ts) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 545 Td (Blocking /_next/ in robots.txt prevents Googlebot and design/SEO auditors from) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 533 Td (loading CSS stylesheets, web fonts, and optimized images, causing pages to render as) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 521 Td (unstyled text.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 504 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 505 Td (Server-Level Root Redirect in next.config.ts) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 492 Td (Configure a server redirect from / to /en \(temporary 307\) alongside middleware) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 480 Td (locale negotiation so HTTP clients without cookies land cleanly on the default) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 468 Td (locale.) Tj ET
+0.94 0.96 1 rg 44 440 524 22 re f
+0.145 0.388 0.922 rg 44 440 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 447 Td (3. API Route Validation, Rate Limiting & Security Headers) Tj ET
+0.06 0.07 0.10 rg 44 334 524 98 re f
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 420 Td (// API Route Defense-in-Depth Pattern \(Zod + Upstash Redis\)) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 408 Td (const ratelimit = new Ratelimit\({) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 396 Td (  redis: Redis.fromEnv\(\),) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 384 Td (  limiter: Ratelimit.slidingWindow\(5, "1 m"\),) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 372 Td (}\);) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 360 Td (const parsed = ContactSchema.safeParse\(await req.json\(\)\);) Tj ET
+BT /F3 8.5 Tf 0.75 0.88 1 rg 54 348 Td (if \(!parsed.success\) return NextResponse.json\({ errors: parsed.error.flatten\(\) }, { status: 400 }\);) Tj ET
+0.145 0.388 0.922 RG 1 w 46 317 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 318 Td (Strict HTTP Security Headers) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 305 Td (Configure Content-Security-Policy \(CSP\), Strict-Transport-Security \(HSTS\),) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 293 Td (X-Frame-Options: DENY, X-Content-Type-Options: nosniff, and Permissions-Policy in) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 281 Td (middleware or next.config.ts.) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 2 / 3) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 2690 >>
+stream
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  ENGINEERING TOOLKIT  |  PAGE 3 OF 3) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (Next.js 15 Production & Architecture Toolkit) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Zero-Bailout Static Generation, Bilingual Routing, Security Headers & CI Verification) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (4. Production Launch & CI/CD Verification Checklist) Tj ET
+0.145 0.388 0.922 RG 1 w 46 651 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 652 Td (Type Safety & Content Schema Compilation) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 639 Td (Run contentlayer2 build && tsc --noEmit in CI to validate MDX frontmatter schemas) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 627 Td (and TypeScript types before building.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 610 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 611 Td (Unit & Integration Suite \(Vitest\)) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 598 Td (Test Zod validation schemas, i18n routing helpers, email client error handling, and) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 586 Td (component ARIA contracts in Vitest.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 569 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 570 Td (End-to-End Accessibility & Flow Verification \(Playwright\)) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 557 Td (Pin runs-on: ubuntu-24.04 in GitHub Actions CI. Verify html[lang], skip-to-content) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 545 Td (links, keyboard Tab navigation, locale switching with query preservation, and) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 533 Td (contact wizard submission.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 516 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 517 Td (Real-Time Analytics & Transactional Email) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 504 Td (Verify SPF/DKIM records on your custom domain for Resend delivery, and wire) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 492 Td (privacy-friendly event tracking \(Plausible / Vercel Analytics\) on primary CTAs.) Tj ET
+0.93 0.99 0.96 rg 44 444 524 42 re f
+0.06 0.72 0.50 rg 44 444 4 42 re f
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 473 Td (Need help architecting or launching your Next.js application? Book an intro call at) Tj ET
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 460 Td (https://amilemia.dev/en/contact) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 3 / 3) Tj ET
 endstream
 endobj
 xref
-0 6
-0000000000 65535 f
-0000000009 00000 n
-0000000058 00000 n
-0000000115 00000 n
-0000000274 00000 n
-0000000351 00000 n
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000128 00000 n 
+0000000198 00000 n 
+0000000273 00000 n 
+0000000341 00000 n 
+0000000487 00000 n 
+0000004232 00000 n 
+0000004378 00000 n 
+0000008347 00000 n 
+0000008495 00000 n 
 trailer
-<<
-/Size 6
-/Root 1 0 R
->>
+<< /Size 12 /Root 1 0 R >>
 startxref
-643
+11238
 %%EOF

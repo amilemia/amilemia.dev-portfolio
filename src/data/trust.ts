@@ -37,27 +37,54 @@ export interface Certification {
 
 export const trustMetrics: TrustMetric[] = [
   {
-    label: 'Happy Clients',
-    value: '25+',
-    context: 'Successful partnerships across industries',
-    icon: 'users',
-  },
-  {
-    label: 'Projects Delivered',
-    value: '40+',
-    context: 'From MVPs to enterprise applications',
-    icon: 'briefcase',
-  },
-  {
-    label: 'Average Conversion Lift',
-    value: '28%',
-    context: 'Measured across 12 optimization projects',
+    label: 'Lighthouse Target',
+    value: '95+',
+    context: 'Performance, Accessibility & SEO audited on every release',
     icon: 'trending-up',
   },
   {
-    label: 'Client Satisfaction',
-    value: '4.9/5',
-    context: 'Based on post-project surveys',
+    label: 'Delivery Window',
+    value: '2-4 wks',
+    context: 'Focused sprints from discovery to production deployment',
+    icon: 'briefcase',
+  },
+  {
+    label: 'Bilingual Native',
+    value: '100%',
+    context: 'Built-in English & French localization and SEO routing',
+    icon: 'users',
+  },
+  {
+    label: 'Post-Launch QA',
+    value: '14 Days',
+    context: 'Dedicated bug-fix, handoff documentation & launch support',
+    icon: 'star',
+  },
+];
+
+export const trustMetricsFr: TrustMetric[] = [
+  {
+    label: 'Objectif Lighthouse',
+    value: '95+',
+    context: 'Performance, accessibilité et SEO audités à chaque livraison',
+    icon: 'trending-up',
+  },
+  {
+    label: 'Délai de livraison',
+    value: '2-4 sem.',
+    context: 'Sprints focalisés de la découverte à la mise en production',
+    icon: 'briefcase',
+  },
+  {
+    label: 'Bilingue natif',
+    value: '100%',
+    context: 'Localisation anglais/français et routage SEO intégrés',
+    icon: 'users',
+  },
+  {
+    label: 'Support QA post-lancement',
+    value: '14 Jours',
+    context: 'Corrections, documentation de passation et suivi inclus',
     icon: 'star',
   },
 ];
@@ -71,46 +98,6 @@ export const clientLogos: ClientLogo[] = [
     name: 'Clinique Santé Plus',
     src: '/images/clients/clinic-sante-plus-logo.png',
     industry: 'Healthcare',
-  },
-  {
-    name: 'TechCorp Solutions',
-    src: '/images/clients/techcorp.svg',
-    industry: 'Technology',
-  },
-  {
-    name: 'HealthFirst Medical',
-    src: '/images/clients/healthfirst.svg',
-    industry: 'Healthcare',
-  },
-  {
-    name: 'EduLearn Platform',
-    src: '/images/clients/edulearn.svg',
-    industry: 'Education',
-  },
-  {
-    name: 'FinanceHub',
-    src: '/images/clients/financehub.svg',
-    industry: 'Finance',
-  },
-  {
-    name: 'RetailPro Systems',
-    src: '/images/clients/retailpro.svg',
-    industry: 'Retail',
-  },
-  {
-    name: 'GreenEnergy Co',
-    src: '/images/clients/greenenergy.svg',
-    industry: 'Energy',
-  },
-  {
-    name: 'MediaStream Inc',
-    src: '/images/clients/mediastream.svg',
-    industry: 'Media',
-  },
-  {
-    name: 'LogiTrack Solutions',
-    src: '/images/clients/logitrack.svg',
-    industry: 'Logistics',
   },
 ];
 
@@ -168,8 +155,8 @@ export const certifications: Certification[] = [
 /**
  * Get trust metrics for display
  */
-export function getTrustMetrics(): TrustMetric[] {
-  return trustMetrics;
+export function getTrustMetrics(locale: 'en' | 'fr' = 'en'): TrustMetric[] {
+  return locale === 'fr' ? trustMetricsFr : trustMetrics;
 }
 
 /**

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Download, Sparkles, Terminal } from 'lucide-react';
 import type { LeadMagnet } from 'contentlayer/generated';
 
@@ -21,9 +21,27 @@ type FeaturedLeadMagnetProps = {
 
 export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [downloadCount, setDownloadCount] = useState<number>(leadMagnet.downloadCount ?? 0);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/lead-magnets/capture')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data?.counts && typeof data.counts[leadMagnet.slug] === 'number') {
+          setDownloadCount(data.counts[leadMagnet.slug]);
+        }
+      })
+      .catch(() => {
+        // Ignore fetch errors and keep initial count
+      });
+    return () => {
+      active = false;
+    };
+  }, [leadMagnet.slug]);
 
   const socialProofText = interpolate(messages.socialProof, {
-    count: String(leadMagnet.downloadCount ?? 0),
+    count: String(downloadCount),
   });
 
   return (
@@ -40,10 +58,15 @@ export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetP
                 <Sparkles className="size-3.5" aria-hidden="true" />
                 {messages.eyebrow}
               </span>
-              {leadMagnet.downloadCount && leadMagnet.downloadCount > 0 && (
+              {downloadCount > 0 ? (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-900/90 px-3 py-1 font-mono text-xs font-medium text-emerald-400">
                   <Download className="size-3.5" aria-hidden="true" />
                   {socialProofText}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-zinc-800 bg-zinc-900/90 px-3 py-1 font-mono text-xs font-medium text-emerald-400">
+                  <Download className="size-3.5" aria-hidden="true" />
+                  PDF Guide • Instant Access
                 </span>
               )}
             </div>
@@ -100,8 +123,12 @@ export function FeaturedLeadMagnet({ leadMagnet, messages }: FeaturedLeadMagnetP
       <EmailCaptureModal
         leadMagnetSlug={leadMagnet.slug}
         leadMagnetTitle={leadMagnet.title}
+        fileUrl={leadMagnet.fileUrl}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        onSuccess={(newCount) => {
+          setDownloadCount((prev) => (typeof newCount === 'number' ? newCount : prev + 1));
+        }}
       />
     </>
   );

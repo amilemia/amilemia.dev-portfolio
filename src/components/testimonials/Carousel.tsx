@@ -219,7 +219,14 @@ export function Carousel({ items, messages }: CarouselProps) {
       <div
         id={trackId}
         ref={trackRef}
-        className="flex snap-x snap-mandatory scroll-px-4 scroll-smooth gap-6 overflow-x-auto pb-2 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0"
+        className={cn(
+          "flex snap-x snap-mandatory scroll-px-4 scroll-smooth gap-6 overflow-x-auto pb-2 lg:overflow-visible lg:pb-0",
+          totalSlides === 1
+            ? "lg:block"
+            : totalSlides === 2
+              ? "lg:grid lg:grid-cols-2"
+              : "lg:grid lg:grid-cols-3"
+        )}
         onScroll={handleScroll}
         role="list"
       >

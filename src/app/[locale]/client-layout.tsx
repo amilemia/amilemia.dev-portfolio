@@ -13,11 +13,9 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { MobileBottomBar } from "@/components/mobile";
 
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { ClientLogos } from "@/components/trust/ClientLogos";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { beforeSend } from "@/lib/analytics-config";
-import { getClientLogos } from "@/data/trust";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Locale, Messages } from "@/i18n";
@@ -171,23 +169,12 @@ type FooterProps = {
   locale: Locale;
 };
 
-function Footer({ messages, locale }: FooterProps) {
+function Footer({ messages }: FooterProps) {
   const year = new Date().getFullYear();
-  const clientLogos = getClientLogos();
 
   return (
     <footer className="border-t bg-muted/30 pt-12 pb-24 md:py-12">
       <Container>
-        {/* Client Logos Section */}
-        <div className="mb-12 pb-12 border-b border-border/60">
-          <div className="text-center mb-8">
-            <h3 className="text-sm font-semibold text-foreground mb-2">
-              Trusted by
-            </h3>
-          </div>
-          <ClientLogos logos={clientLogos} />
-        </div>
-
         <div className="grid gap-8 md:grid-cols-[1fr_auto_auto] md:gap-12">
           <div className="space-y-4">
             <Link href="/" className="inline-block font-mono text-lg font-semibold">
@@ -214,7 +201,7 @@ function Footer({ messages, locale }: FooterProps) {
                 {messages.footer.social.github}
               </a>
               <a
-                href="https://linkedin.com/in/amilemia"
+                href="https://www.linkedin.com/in/aminemadah/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground transition-colors hover:text-foreground flex items-center gap-2"

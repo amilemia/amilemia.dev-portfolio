@@ -101,8 +101,8 @@ export const enMessages = {
         "Accessibility, performance, and SEO built in from day one, not bolted on later.",
       ],
       pricingPrompt: "View service packages",
-      clientsIntro: "Trusted by teams at",
-      clients: ["Relay CRM", "Launchpad Studio", "Stellar Labs"],
+      clientsIntro: "Featured project partners",
+      clients: ["Clinique Santé Plus"],
       trustIndicators: {
         wcagCompliant: "WCAG AA Compliant",
         lighthouse90Plus: "Lighthouse 90+ Scores",
@@ -138,7 +138,7 @@ export const enMessages = {
     recentProjects: {
       heading: {
         title: "Recent work",
-        description: "Real projects with measurable results—from 28% conversion lifts to sites that launched in 3 weeks.",
+        description: "Production web applications and bilingual platforms engineered with Laravel, Next.js, and automated QA.",
       },
       viewAll: "View all projects",
     },
@@ -341,44 +341,51 @@ export const enMessages = {
   about: {
     heading: {
       title: "Building sites that convert, not just look good",
-      description: "I'm Amilemia—a full-stack developer who helps founders and small teams ship high-performing web experiences that drive real business results.",
+      description: "I'm Mohammed-Amine Madah (Amilemia)—a full-stack web developer combining software engineering rigor, multimedia design, and commercial strategy.",
     },
     introduction:
-      "From discovery to deployment, I focus on what moves your business forward. That means combining thoughtful UX with solid engineering, running accessibility and performance checks before launch, and delivering documentation your team can actually use.",
+      "With a Bachelor's degree in Multimedia & Web Technologies, hands-on software engineering training, and a foundation in commerce, I approach every build from both an engineering and business perspective. From database architecture and role-based backends in Laravel to high-speed bilingual frontends in Next.js, I deliver production-ready applications with automated testing and clear documentation.",
     focusAreas: {
       title: "What I specialize in",
       items: [
-        "Conversion-focused flows: onboarding, pricing pages, checkout, and lead capture",
-        "Marketing sites: landing pages and content hubs built to generate leads",
-        "Design systems: reusable component libraries that scale with your team",
-        "Launch-ready quality: accessibility, performance, and testing built in from day one",
+        "Full-stack web applications: role-based dashboards, scheduling systems, and PDF reporting workflows",
+        "Conversion-focused web platforms: bilingual (EN/FR) marketing sites, service catalogs, and intake funnels",
+        "UI/UX & Multimedia craft: clean component systems, responsive interfaces, and brand-ready visual assets",
+        "Launch-ready quality: WCAG AA accessibility, static/SSR performance, and automated E2E/unit testing",
       ],
     },
     toolset: {
       title: "Tech stack",
       items: [
-        "React, Next.js, TypeScript, and Vercel Edge",
-        "Contentlayer, MDX, and headless CMS integrations",
-        "Playwright, Vitest, and automated testing pipelines",
-        "Upstash, Resend, and analytics tools like Plausible",
+        "Frontend & UI: React, Next.js 15, TypeScript, JavaScript (ES6+), Tailwind CSS, Alpine.js, HTML5 & CSS3",
+        "Backend & Databases: Laravel, PHP 8+, Node.js, REST APIs, PostgreSQL, MySQL, SQLite & Upstash Redis",
+        "Testing & DevOps: Playwright (E2E), Vitest, Pest / PHPUnit, Git & GitHub Actions CI/CD, Linux/Bash, Vercel & Cloudflare",
+        "Design & Multimedia: Figma, Adobe Photoshop, Adobe Illustrator, UI/UX Prototyping & Responsive Design",
       ],
     },
     experience: {
-      title: "Background",
+      title: "Education & Training",
       roles: [
         {
-          title: "Senior Frontend Developer",
-          place: "Relay CRM",
-          timeframe: "2022 - Present",
+          title: "Professional Bachelor's in Multimedia & Web Technologies",
+          place: "Fédération Internationale des Établissements de Formation Professionnelle • Kénitra",
+          timeframe: "2021 - 2024",
           summary:
-            "Built revenue-critical onboarding and pricing flows that increased trial-to-paid conversions by 28% while establishing accessibility and testing standards.",
+            "Specialized in full-stack web development, interactive multimedia, UI/UX design, and modern web application architecture.",
         },
         {
-          title: "Product Engineer",
-          place: "Launchpad Studio",
-          timeframe: "2019 - 2022",
+          title: "Software Engineering Program",
+          place: "ALX Africa",
+          timeframe: "2023 - 2024",
           summary:
-            "Shipped rapid marketing experiments and landing pages, reducing campaign launch time from weeks to days through reusable components and streamlined workflows.",
+            "Intensive project-based software engineering curriculum covering systems programming, Linux/Bash environments, backend engineering, algorithms, and collaborative Git workflows.",
+        },
+        {
+          title: "Specialized Diploma in Commerce & Business Operations",
+          place: "ISTA Maamora • Kénitra",
+          timeframe: "2019 - 2021",
+          summary:
+            "Trained in commercial strategy, client acquisition, and business operations—shaping how I structure web experiences around measurable conversion and operational efficiency.",
         },
       ],
     },
@@ -601,24 +608,6 @@ export const enMessages = {
         avatarUrl: "/images/testimonials/dr-jean-martin.png",
         metric: "0 calendar conflicts",
       },
-      {
-        quote: "Our marketing site launched in 3 weeks with analytics, documentation, and zero post-launch fires. Best freelance experience we've had. Page load time dropped from 4.2s to 1.1s.",
-        author: "Carlos Mendes",
-        fullName: "Carlos Mendes",
-        role: "Founder",
-        company: "Launchpad Studio",
-        companyLogo: "/images/clients/launchpad-studio-logo.svg",
-        metric: "3-week launch, 74% faster",
-      },
-      {
-        quote: "Amina turned vague product requirements into a polished release. Her accessibility audits caught issues that would have cost us weeks in QA. We saw a 28% increase in trial-to-paid conversions after launch.",
-        author: "Lisa Dunn",
-        fullName: "Lisa Dunn",
-        role: "Head of Product",
-        company: "Relay CRM",
-        companyLogo: "/images/clients/relay-crm-logo.svg",
-        metric: "28% conversion increase",
-      },
     ],
   },
   ads: {
@@ -638,12 +627,12 @@ export const enMessages = {
       speed: "Ship your site in weeks with a developer who handles strategy, design, and code. No handoffs, no delays. Book intro.",
     },
     socialProof: {
-      clientCount: "Trusted by 15+ startups",
-      projectCount: "30+ sites launched",
-      conversionStat: "Average 28% conversion lift",
-      speedStat: "Average 3-week launch",
-      satisfactionStat: "100% client satisfaction",
-      clients: ["Relay CRM", "Launchpad Studio", "Clinique Santé Plus", "Quantum Analytics", "Bright Path"],
+      clientCount: "Built for founders & small teams",
+      projectCount: "Full-stack Next.js & Laravel delivery",
+      conversionStat: "95+ Lighthouse performance target",
+      speedStat: "Average 2-4 week launch",
+      satisfactionStat: "14-day post-launch QA included",
+      clients: ["Clinique Santé Plus"],
     },
     urgency: {
       availability: "1 project slot open for {{period}}",
@@ -653,10 +642,10 @@ export const enMessages = {
       fastStart: "Start in 2-3 weeks",
     },
     metaDescriptions: {
-      home: "Freelance Next.js developer building fast, accessible sites that convert. Launch in 3 weeks with strategy, design, and development from one partner. Book intro call.",
+      home: "Full-stack web developer (Next.js, TypeScript, Laravel) building fast, accessible sites and web apps that convert. Launch in weeks with strategy, design, and code.",
       services: "Fixed-scope web development packages. Launch sites in 2-3 weeks, refresh for conversions, or book ongoing support. Clear pricing, fast delivery, measurable results.",
-      projects: "Real projects with real results. See case studies with conversion lifts, performance improvements, and 3-week launches. Next.js, accessibility, and SEO expertise.",
-      about: "Full-stack developer specializing in conversion-focused sites. 28% average conversion increase, 3-week launches, accessibility and performance built in. View work.",
+      projects: "Production web applications and case studies built with Laravel, Next.js 15, TypeScript, and PostgreSQL. Full-stack engineering, accessibility, and automated QA.",
+      about: "Mohammed-Amine Madah (Amilemia)—full-stack web developer with a Bachelor's in Multimedia & Web Technologies, ALX Software Engineering training, and Commerce background.",
       contact: "Book a project intro call. Share your goals and timeline. Get a proposal with deliverables, pricing, and start date within 1 business day.",
     },
     callouts: {

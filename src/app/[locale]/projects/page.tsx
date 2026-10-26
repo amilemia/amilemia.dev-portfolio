@@ -70,7 +70,13 @@ export default async function ProjectsPage({ params, searchParams }: PageProps) 
           <TagFilter tags={allTags} selectedTag={selectedTag || undefined} messages={messages.common.tagFilter} />
         ) : null}
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={
+            filteredProjects.length === 2
+              ? "grid gap-8 md:grid-cols-2"
+              : "grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          }
+        >
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.slug}

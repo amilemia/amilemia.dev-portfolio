@@ -1,71 +1,130 @@
 %PDF-1.4
 1 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
+<< /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<<
-/Type /Pages
-/Kids [3 0 R]
-/Count 1
->>
+<< /Type /Pages /Kids [6 0 R 8 0 R] /Count 2 >>
 endobj
 3 0 obj
-<<
-/Type /Page
-/Parent 2 0 R
-/Resources <<
-/Font <<
-/F1 4 0 R
->>
->>
-/MediaBox [0 0 612 792]
-/Contents 5 0 R
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 4 0 obj
-<<
-/Type /Font
-/Subtype /Type1
-/BaseFont /Helvetica
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 5 0 obj
-<<
-/Length 220
->>
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 3437 >>
 stream
-BT
-/F1 24 Tf
-50 700 Td
-(Conversion Optimization Guide) Tj
-0 -30 Td
-/F1 12 Tf
-(Proven strategies to increase your website's conversion rate) Tj
-0 -40 Td
-(A/B Testing, Copywriting, UX Best Practices, and More) Tj
-0 -40 Td
-(28% average conversion increase for clients) Tj
-0 -40 Td
-(Download from: amilemia.dev) Tj
-ET
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  CONVERSION GUIDE  |  PAGE 1 OF 2) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (High-Converting Web Architecture Guide) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Structuring Value Propositions, Service Tiers, Verifiable Proof & Multi-Step Intake Funnels) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (1. Above-the-Fold Hierarchy: The 5-Second Test) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 652 Td (When a founder or decision-maker lands on your site, they should understand within 5) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 638.5 Td (seconds: \(1\) what you build, \(2\) how quickly and reliably you deliver, and \(3\) what) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 625 Td (action to take next.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 606.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 607.5 Td (Live Availability & Turnaround Anchor) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 594.5 Td (Display a clear availability indicator \(e.g., "1 project slot open for next month -) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 582.5 Td (Remote \(UTC+1\)"\) above the headline to establish real-time responsiveness.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 565.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 566.5 Td (Outcome-Driven Headline + 3 Scannable Bullets) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 553.5 Td (Lead with the business benefit \("Ship faster with a developer who handles strategy,) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 541.5 Td (design, and code"\) supported by 3 check-marked differentiators.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 524.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 525.5 Td (Pair the Hero with a "3-Stage Delivery Protocol" Card) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 512.5 Td (Reduce buyer risk immediately by showing how the engagement works \(Fast delivery in) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 500.5 Td (2-4 weeks, Launch-ready QA, Weekly async updates\) right beside the primary CTA.) Tj ET
+0.94 0.96 1 rg 44 472.5 524 22 re f
+0.145 0.388 0.922 rg 44 472.5 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 479.5 Td (2. Productized Service Packaging \(Eliminating Decision Fatigue\)) Tj ET
+0.145 0.388 0.922 RG 1 w 46 453.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 454.5 Td (Anchor 3 Distinct Packages by Buyer Stage) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 441.5 Td (Structure offerings into Launch Essentials \(Most Popular / 2-3 week sprint\),) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 429.5 Td (Conversion Refresh \(Best Value / optimization\), and Growth Support \(Flexible monthly) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 417.5 Td (retainer\).) Tj ET
+0.145 0.388 0.922 RG 1 w 46 400.5 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 401.5 Td (Nested Starter vs. Plus Scope Tiers) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 388.5 Td (Give buyers transparent self-selection inside each package with a clear Starter) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 376.5 Td (price and a highlighted Plus tier for full multi-page or automated workflows.) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 1 / 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3573 >>
+stream
+1 1 1 rg 0 0 612 792 re f
+0.04 0.04 0.06 rg 0 710 612 82 re f
+0.145 0.388 0.922 rg 0 707 612 3 re f
+BT /F2 9 Tf 0.4 0.65 1 rg 44 766 Td (AMILEMIA.DEV  |  CONVERSION GUIDE  |  PAGE 2 OF 2) Tj ET
+BT /F2 17 Tf 1 1 1 rg 44 743 Td (High-Converting Web Architecture Guide) Tj ET
+BT /F1 9.5 Tf 0.78 0.80 0.85 rg 44 725 Td (Structuring Value Propositions, Service Tiers, Verifiable Proof & Multi-Step Intake Funnels) Tj ET
+0.94 0.96 1 rg 44 670 524 22 re f
+0.145 0.388 0.922 rg 44 670 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 677 Td (3. Verifiable Engineering Proof Over Vanity Claims) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 652 Td (Technical buyers immediately distrust unverified agency clich-s. Replace generic fluff) Tj ET
+BT /F1 9.5 Tf 0.20 0.23 0.28 rg 44 638.5 Td (with concrete, verifiable proof of engineering and operational impact.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 620 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 621 Td (Pin Quantitative Outcome Chips to the Top of Case Studies & Quotes) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 608 Td (Surface the concrete result at the very top of the card \(e.g., "0 calendar) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 596 Td (conflicts", "-92% admin overhead", "100% Static SSG", "105+ automated tests"\) before) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 584 Td (the long-form text.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 567 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 568 Td (Show Real Application Screens & Architecture Deep-Dives) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 555 Td (Include real interface views \(calendars, dashboards, billing workflows\) alongside) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 543 Td (Problem -> Solution -> Implementation breakdowns and tech stack badges.) Tj ET
+0.94 0.96 1 rg 44 515 524 22 re f
+0.145 0.388 0.922 rg 44 515 4 22 re f
+BT /F2 11.5 Tf 0.06 0.09 0.16 rg 56 522 Td (4. Multi-Step Project Intake & Mobile Touch Ergonomics) Tj ET
+0.145 0.388 0.922 RG 1 w 46 496 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 497 Td (4-Step Progressive Project Brief Wizard) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 484 Td (Break long contact forms into 4 low-friction steps: \(1\) Contact Info, \(2\) Project) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 472 Td (Scope Pills & Goals, \(3\) Budget Tier & Target Date, and \(4\) Review & Submit.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 455 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 456 Td (Immediate Post-Submission Calendar Booking) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 443 Td (Once the brief is submitted, immediately present a direct Cal.com scheduling trigger) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 431 Td (while buyer intent is at its peak.) Tj ET
+0.145 0.388 0.922 RG 1 w 46 414 8 8 re S
+BT /F2 9.5 Tf 0.06 0.09 0.16 rg 62 415 Td (Thumb-Friendly Mobile CTAs \(Min-Height 48px\)) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 402 Td (Set primary mobile buttons to full width with min-h-[48px] and use a compact) Tj ET
+BT /F1 9 Tf 0.30 0.34 0.40 rg 62 390 Td (2-column side-by-side tier comparison to prevent vertical scroll fatigue.) Tj ET
+0.93 0.99 0.96 rg 44 342 524 42 re f
+0.06 0.72 0.50 rg 44 342 4 42 re f
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 371 Td (Ready to turn your site into a high-converting asset? Start your project brief at) Tj ET
+BT /F2 9 Tf 0.04 0.35 0.25 rg 56 358 Td (https://amilemia.dev/en/contact) Tj ET
+0.85 0.87 0.90 RG 0.75 w 44 42 m 568 42 l S
+BT /F1 8.5 Tf 0.40 0.44 0.50 rg 44 27 Td (Authored by Mohammed-Amine Madah \(Amilemia\)  |  https://amilemia.dev  |  contact@amilemia.dev) Tj ET
+BT /F3 8.5 Tf 0.145 0.388 0.922 rg 490 27 Td (Page 2 / 2) Tj ET
 endstream
 endobj
 xref
-0 6
-0000000000 65535 f
-0000000009 00000 n
-0000000058 00000 n
-0000000115 00000 n
-0000000274 00000 n
-0000000351 00000 n
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000334 00000 n 
+0000000480 00000 n 
+0000003969 00000 n 
+0000004115 00000 n 
 trailer
-<<
-/Size 6
-/Root 1 0 R
->>
+<< /Size 10 /Root 1 0 R >>
 startxref
-623
+7740
 %%EOF

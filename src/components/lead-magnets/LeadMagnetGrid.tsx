@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import type { LeadMagnet } from 'contentlayer/generated';
 import { LeadMagnetCard } from './LeadMagnetCard';
@@ -23,6 +23,24 @@ export function LeadMagnetGrid({
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
   const [selectedMagnet, setSelectedMagnet] = useState<LeadMagnet | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [liveCounts, setLiveCounts] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/lead-magnets/capture')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && data?.counts) {
+          setLiveCounts(data.counts);
+        }
+      })
+      .catch(() => {
+        // Ignore fetch errors
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // Get unique categories
   const categories = useMemo(() => {
@@ -89,13 +107,19 @@ export function LeadMagnetGrid({
       {/* Grid */}
       {filteredMagnets.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredMagnets.map((magnet) => (
-            <LeadMagnetCard
-              key={magnet.slug}
-              leadMagnet={magnet}
-              onDownloadClick={handleDownloadClick}
-            />
-          ))}
+          {filteredMagnets.map((magnet) => {
+            const magnetWithLiveCount =
+              typeof liveCounts[magnet.slug] === 'number'
+                ? { ...magnet, downloadCount: liveCounts[magnet.slug] }
+                : magnet;
+            return (
+              <LeadMagnetCard
+                key={magnet.slug}
+                leadMagnet={magnetWithLiveCount}
+                onDownloadClick={handleDownloadClick}
+              />
+            );
+          })}
         </div>
       ) : (
         /* Empty State */
@@ -119,6 +143,16 @@ export function LeadMagnetGrid({
           onClose={handleModalClose}
           leadMagnetSlug={selectedMagnet.slug}
           leadMagnetTitle={selectedMagnet.title}
+          fileUrl={selectedMagnet.fileUrl}
+          onSuccess={(newCount) => {
+            setLiveCounts((prev) => ({
+              ...prev,
+              [selectedMagnet.slug]:
+                typeof newCount === 'number'
+                  ? newCount
+                  : (prev[selectedMagnet.slug] ?? selectedMagnet.downloadCount ?? 0) + 1,
+            }));
+          }}
         />
       )}
     </div>

@@ -31,7 +31,8 @@ interface EmailCaptureModalProps {
   onClose: () => void;
   leadMagnetSlug: string;
   leadMagnetTitle: string;
-  onSuccess?: () => void;
+  fileUrl?: string;
+  onSuccess?: (newDownloadCount?: number) => void;
 }
 
 export function EmailCaptureModal({
@@ -39,10 +40,12 @@ export function EmailCaptureModal({
   onClose,
   leadMagnetSlug,
   leadMagnetTitle,
+  fileUrl,
   onSuccess,
 }: EmailCaptureModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [directDownloadUrl, setDirectDownloadUrl] = useState<string | undefined>(fileUrl);
 
   const form = useForm<EmailCaptureFormData>({
     resolver: zodResolver(emailCaptureSchema),
@@ -67,13 +70,18 @@ export function EmailCaptureModal({
         }),
       });
 
+      const payload = await response.json();
+
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Failed to send resource');
+        throw new Error(payload.message || 'Failed to send resource');
+      }
+
+      if (payload.downloadUrl) {
+        setDirectDownloadUrl(payload.downloadUrl);
       }
 
       setIsSuccess(true);
-      toast.success('Check your email! Your resource is on its way.');
+      toast.success('Check your email! Your resource is ready.');
       
       // Track download event for analytics and retargeting
       track(EVENTS.DOWNLOAD, {
@@ -83,15 +91,8 @@ export function EmailCaptureModal({
       });
       
       if (onSuccess) {
-        onSuccess();
+        onSuccess(typeof payload.downloadCount === 'number' ? payload.downloadCount : undefined);
       }
-
-      // Close modal after 3 seconds
-      setTimeout(() => {
-        onClose();
-        form.reset();
-        setIsSuccess(false);
-      }, 3000);
     } catch (error) {
       console.error('Email capture error:', error);
       toast.error(
@@ -209,17 +210,32 @@ export function EmailCaptureModal({
           </>
         ) : (
           /* Success State */
-          <div className="py-8 text-center">
-            <div className="mb-4 flex justify-center">
+          <div className="py-6 text-center space-y-4">
+            <div className="flex justify-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
                 <CheckCircle2 className="h-8 w-8 text-green-600 dark:text-green-400" />
               </div>
             </div>
-            <h3 className="mb-2 text-xl font-semibold">Check Your Email!</h3>
-            <p className="text-muted-foreground">
-              We&apos;ve sent <strong>{leadMagnetTitle}</strong> to your inbox. It should arrive
-              within the next few minutes.
-            </p>
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold">Resource Ready!</h3>
+              <p className="text-sm text-muted-foreground">
+                We&apos;ve sent <strong>{leadMagnetTitle}</strong> to your inbox, and you can also download the PDF directly below:
+              </p>
+            </div>
+            {(directDownloadUrl || fileUrl) && (
+              <div className="pt-2">
+                <Button asChild className="w-full" variant="premium">
+                  <a
+                    href={directDownloadUrl || fileUrl}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Download PDF Now
+                  </a>
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </div>

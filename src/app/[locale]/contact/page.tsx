@@ -56,7 +56,7 @@ function ContactPageContent() {
               socialLinks={{
                 github: "https://github.com/amilemia",
                 twitter: "https://twitter.com/amilemia",
-                linkedin: "https://linkedin.com/in/amilemia",
+                linkedin: "https://www.linkedin.com/in/aminemadah/",
               }}
             />
           </div>
