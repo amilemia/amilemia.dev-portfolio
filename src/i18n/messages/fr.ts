@@ -341,10 +341,10 @@ export const frMessages: Messages = {
   about: {
     heading: {
       title: "Créer des sites qui convertissent, pas seulement qui ont l'air bien",
-      description: "Je suis Mohammed-Amine Madah (Amilemia)—développeur web full-stack alliant rigueur d'ingénierie logicielle, design multimédia et stratégie commerciale.",
+      description: "Je suis Mohammed-Amine Madah (Amilemia)—développeur web full-stack alliant rigueur d'ingénierie logicielle, design multimédia et UX orientée conversion.",
     },
     introduction:
-      "Titulaire d'un Bachelor Professionnel en Multimédia et Technologies du Web, formé à l'ingénierie logicielle et doté d'une base solide en commerce, j'aborde chaque projet sous l'angle technique et business. De l'architecture de base de données et des backends sécurisés sous Laravel aux interfaces bilingues ultra-rapides sous Next.js, je livre des applications prêtes pour la production avec tests automatisés et documentation claire.",
+      "Titulaire d'un Bachelor Professionnel en Multimédia et Technologies du Web et formé à l'ingénierie logicielle, j'aborde chaque projet avec précision architecturale et sens du design centré utilisateur. De l'architecture de base de données et des backends sécurisés sous Laravel aux interfaces bilingues ultra-rapides sous Next.js, je livre des applications prêtes pour la production avec tests automatisés et documentation claire.",
     focusAreas: {
       title: "Mes spécialités",
       items: [
@@ -379,13 +379,6 @@ export const frMessages: Messages = {
           timeframe: "2023 - 2024",
           summary:
             "Formation intensive par projets couvrant la programmation système, les environnements Linux/Bash, l'architecture backend, l'algorithmique et les workflows collaboratifs Git.",
-        },
-        {
-          title: "Diplôme de Technicien Spécialisé en Commerce",
-          place: "ISTA Maamora • Kénitra",
-          timeframe: "2019 - 2021",
-          summary:
-            "Formation en stratégie commerciale, acquisition client et gestion opérationnelle—fondement de mon approche orientée conversion et résultats business mesurables.",
         },
       ],
     },

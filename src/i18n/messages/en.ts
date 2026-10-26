@@ -341,10 +341,10 @@ export const enMessages = {
   about: {
     heading: {
       title: "Building sites that convert, not just look good",
-      description: "I'm Mohammed-Amine Madah (Amilemia)—a full-stack web developer combining software engineering rigor, multimedia design, and commercial strategy.",
+      description: "I'm Mohammed-Amine Madah (Amilemia)—a full-stack web developer combining software engineering rigor, multimedia design, and conversion-focused UX.",
     },
     introduction:
-      "With a Bachelor's degree in Multimedia & Web Technologies, hands-on software engineering training, and a foundation in commerce, I approach every build from both an engineering and business perspective. From database architecture and role-based backends in Laravel to high-speed bilingual frontends in Next.js, I deliver production-ready applications with automated testing and clear documentation.",
+      "With a Bachelor's degree in Multimedia & Web Technologies and intensive software engineering training, I approach every build with both architectural precision and user-centric design. From database architecture and role-based backends in Laravel to high-speed bilingual frontends in Next.js, I deliver production-ready applications with automated testing and clear documentation.",
     focusAreas: {
       title: "What I specialize in",
       items: [
@@ -379,13 +379,6 @@ export const enMessages = {
           timeframe: "2023 - 2024",
           summary:
             "Intensive project-based software engineering curriculum covering systems programming, Linux/Bash environments, backend engineering, algorithms, and collaborative Git workflows.",
-        },
-        {
-          title: "Specialized Diploma in Commerce & Business Operations",
-          place: "ISTA Maamora • Kénitra",
-          timeframe: "2019 - 2021",
-          summary:
-            "Trained in commercial strategy, client acquisition, and business operations—shaping how I structure web experiences around measurable conversion and operational efficiency.",
         },
       ],
     },
