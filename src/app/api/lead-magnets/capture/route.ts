@@ -47,7 +47,10 @@ async function getDownloadCounts(): Promise<Record<string, number>> {
   if (redis && allLeadMagnets.length > 0) {
     try {
       const keys = allLeadMagnets.map((lm) => `lead-magnet:downloads:${lm.slug}`);
-      const values = await redis.mget<number[]>(...keys);
+      const [values] = await Promise.all([
+        redis.mget<number[]>(...keys),
+        redis.set('keepalive:last_ping', new Date().toISOString()),
+      ]);
       allLeadMagnets.forEach((lm, index) => {
         const redisCount = Number(values?.[index] ?? 0);
         counts[lm.slug] = (lm.downloadCount ?? 0) + (Number.isFinite(redisCount) ? redisCount : 0);

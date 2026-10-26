@@ -1,0 +1,15 @@
+name: Upstash Redis Keepalive
+
+on:
+  schedule:
+    # Runs at 08:00 UTC every 3 days to ensure Upstash Free Redis never hits 14-day inactivity
+    - cron: "0 8 */3 * *"
+  workflow_dispatch:
+
+jobs:
+  ping-redis:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Ping Lead Magnet API (triggers Redis MGET + SET keepalive)
+        run: |
+          curl -fsS "https://amilemia.dev/api/lead-magnets/capture"
