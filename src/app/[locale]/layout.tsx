@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import React from "react";
-import { Inter, Outfit } from 'next/font/google';
 
 import "../globals.css";
 
@@ -10,18 +9,6 @@ import { absoluteUrl, site } from "@/lib/site";
 import { getMessages, locales, fallbackLocale } from "@/i18n";
 import type { Locale } from "@/i18n";
 import { isLocale } from "@/i18n/locales";
-
-const inter = Inter({
-  variable: '--font-sans',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const outfit = Outfit({
-  variable: '--font-heading',
-  subsets: ['latin'],
-  display: 'swap',
-});
 
 export const viewport: Viewport = {
   themeColor: [
@@ -144,17 +131,10 @@ export default async function LocaleLayout({ children, params }: RootLayoutProps
   const messages = getMessages(locale);
 
   return (
-    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${outfit.variable} flex min-h-screen flex-col antialiased font-sans`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider>
-          <ClientLayout locale={locale} messages={messages}>
-            {children}
-          </ClientLayout>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider>
+      <ClientLayout locale={locale} messages={messages}>
+        {children}
+      </ClientLayout>
+    </ThemeProvider>
   );
 }

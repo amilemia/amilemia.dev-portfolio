@@ -24,7 +24,7 @@ export function AnimatedText({
   }));
 
   const container = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: (i = 1) => ({
       opacity: 1,
       transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
@@ -42,8 +42,8 @@ export function AnimatedText({
       },
     },
     hidden: {
-      opacity: 0,
-      y: 20,
+      opacity: 1,
+      y: 0,
     },
   };
 

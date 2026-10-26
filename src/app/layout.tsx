@@ -1,5 +1,20 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import { Inter, Outfit } from 'next/font/google';
+
+import './globals.css';
+
+const inter = Inter({
+  variable: '--font-sans',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  variable: '--font-heading',
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -8,12 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
-// Root layout - the middleware handles locale redirects
-// This layout is only used for the root path before middleware redirects
+// Root layout - provides the top-level document shell
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${outfit.variable} flex min-h-screen flex-col antialiased font-sans`}
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

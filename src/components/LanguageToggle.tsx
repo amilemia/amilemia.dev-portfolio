@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 import {
@@ -25,7 +25,6 @@ type LanguageToggleProps = {
 export function LanguageToggle({ locale, messages }: LanguageToggleProps) {
   const router = useRouter();
   const pathname = usePathname() || "/";
-  const searchParams = useSearchParams();
   const announcementRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (nextLocale: string) => {
@@ -44,8 +43,8 @@ export function LanguageToggle({ locale, messages }: LanguageToggleProps) {
     }
 
     const basePath = replaceLocaleInPathname(pathname, targetLocale, locale);
-    const queryString = searchParams.toString();
-    const url = queryString ? `${basePath}?${queryString}` : basePath;
+    const search = typeof window !== 'undefined' ? window.location.search : '';
+    const url = search ? `${basePath}${search}` : basePath;
 
     router.push(url);
   };

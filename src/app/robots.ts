@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/_next/', '/_vercel/', '/sw.js', '/sw.js.map', '/workbox-*.js', '/workbox-*.js.map'],
+      disallow: ['/api/', '/_vercel/', '/sw.js', '/sw.js.map', '/workbox-*.js', '/workbox-*.js.map'],
     },
     sitemap: absoluteUrl('/sitemap.xml'),
     host: site.url.replace(/^https?:\/\//, ''),
