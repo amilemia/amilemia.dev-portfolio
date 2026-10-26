@@ -143,6 +143,24 @@ export const frMessages: Messages = {
       },
       viewAll: "Voir tous les projets",
     },
+    coverage: {
+      eyebrow: "Positionnement & Zone d'intervention",
+      title: "Qui j'accompagne et où j'interviens",
+      summary:
+        "amilemia.dev est un studio indépendant de développement web full-stack dirigé par Mohammed-Amine Madah, basé au Maroc (UTC+1). J'accompagne les fondateurs, cliniques et entreprises de services dans la création de sites web rapides visibles par Google et l'IA (SEO/GEO), d'applications sur mesure (Laravel / Next.js) et de pages orientées conversion. Contactez-moi pour cadrer un projet au forfait ou réserver un appel découverte.",
+      zonesLabel: "Zones géographiques & marchés desservis",
+      zones: [
+        "Maroc (Kénitra, Rabat, Casablanca)",
+        "France",
+        "Belgique & Suisse",
+        "International en télétravail (FR / EN)",
+      ],
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Questions fréquentes avant de démarrer",
+      description: "Réponses claires sur les délais, la visibilité Google & IA (SEO/GEO), les tarifs et le support après lancement.",
+    },
     finalCta: {
       headline: "Prêt à lancer votre prochain projet ?",
       description: "Partagez vos objectifs et votre calendrier. Je réviserai votre brief et vous répondrai sous un jour ouvrable avec les prochaines étapes et ma disponibilité.",
@@ -163,10 +181,10 @@ export const frMessages: Messages = {
         name: "Lancement Express",
         pitch: "Passez du concept à une présence marketing prête à convertir en 3 semaines. Un processus focalisé qui gère stratégie, design et code pour que vous restiez concentré sur votre activité.",
         deliverables: [
-          "Appel découverte pour définir votre offre, votre audience et vos indicateurs de succès",
-          "Page d'accueil, page services et formulaire de contact responsive développés avec Next.js",
-          "Configuration SEO, intégration analytics et conformité accessibilité",
-          "Migration de contenu et révision de textes pour jusqu'à 5 sections",
+          "Appel découverte pour définir votre offre, votre audience cible et vos indicateurs de conversion",
+          "Page d'accueil scroll mobile-first, pages services dédiées et formulaire de prise de brief sous Next.js",
+          "SEO technique, données structurées Schema.org pour la visibilité IA (GEO) et accessibilité WCAG AA",
+          "Structuration du contenu et rédaction concrète pour jusqu'à 5 sections clés",
           "Checklist de lancement, vidéo explicative et documentation de passation",
         ],
         timeline: "2 à 3 semaines après le démarrage",
@@ -187,11 +205,11 @@ export const frMessages: Messages = {
         name: "Refonte Conversion",
         pitch: "Transformez votre site sous-performant en un actif à haut revenu. Nous auditons votre tunnel, optimisons vos performances et réécrivons votre message pour un impact maximal.",
         deliverables: [
-          "Audit complet de la performance, de l'accessibilité et de l'efficacité du message",
-          "Refonte des sections hero, services et preuves sociales optimisée pour la conversion",
-          "Bibliothèque de composants réutilisables pour un design cohérent et maintenable",
+          "Audit complet des Core Web Vitals, de l'accessibilité et de la clarté du parcours de conversion",
+          "Refonte des sections hero, services et preuves sociales optimisée pour le trafic mobile et social",
+          "Données structurées Schema.org, hiérarchie HTML sémantique et optimisation pour les moteurs IA (GEO/AEO)",
           "Optimisation des performances avec rapport de métriques avant/après",
-          "Revue analytics avec recommandations de tracking d'événements",
+          "Revue analytics avec tracking des événements de conversion",
         ],
         timeline: "3 à 4 semaines, révisions incluses",
         idealFor: "les entreprises en croissance qui ont besoin de générer plus de leads",
@@ -329,6 +347,12 @@ export const frMessages: Messages = {
             question: "Proposez-vous un support après le lancement ?",
             answer:
               "Oui. Chaque projet inclut 14 jours de support post-lancement pour les corrections de bugs et questions. Le travail continu peut se poursuivre via la formule Accompagnement Continu.",
+          },
+          {
+            id: "ai-seo-visibility",
+            question: "Comment rendez-vous les sites visibles sur Google et dans les systèmes d'IA (ChatGPT, Perplexity) ?",
+            answer:
+              "Chaque site intègre une hiérarchie HTML sémantique propre, un rendu serveur ultra-rapide, un sitemap XML, des données structurées Schema.org (JSON-LD pour l'entreprise, les services et les FAQ) ainsi qu'un positionnement explicite afin que Google et les moteurs d'IA générative puissent comprendre et recommander votre activité.",
           },
         ],
       },
@@ -603,6 +627,41 @@ export const frMessages: Messages = {
     description: "La page que vous recherchez n'existe pas ou a été déplacée.",
     cta: "Retour à l'accueil",
   },
+  linksPage: {
+    meta: {
+      title: "Liens rapides",
+      description:
+        "Liens mobiles directs pour amilemia.dev : démarrer un projet, consulter les études de cas, découvrir les forfaits ou télécharger les guides PDF gratuits.",
+    },
+    bio: {
+      role: "Développeur Web Full-Stack • Next.js & Laravel",
+      location: "Basé au Maroc (UTC+1) • Clients FR & EN",
+      tagline:
+        "Sites web visibles par Google/IA (SEO/GEO) et applications sur mesure qui transforment vos visiteurs en demandes qualifiées.",
+    },
+    actions: {
+      quote: {
+        title: "Demander un devis / Démarrer un projet",
+        subtitle: "Partagez vos objectifs et délais — réponse sous 1 jour ouvré",
+      },
+      services: {
+        title: "Forfaits & tarifs (800 $ – 2 800 $)",
+        subtitle: "Lancement Express, Refonte Conversion & Accompagnement",
+      },
+      projects: {
+        title: "Voir les réalisations & études de cas",
+        subtitle: "Système de Gestion Clinique & Plateforme Bilingue",
+      },
+      resources: {
+        title: "Guides PDF gratuits à remplir",
+        subtitle: "Guide Conversion, Checklist Performance & Toolkit Next.js",
+      },
+      email: {
+        title: "M'envoyer un e-mail direct",
+        subtitle: "contact@amilemia.dev",
+      },
+    },
+  },
   shared: {
     testimonials: [
       {
@@ -652,7 +711,7 @@ export const frMessages: Messages = {
       home: "Développeur web full-stack (Next.js, TypeScript, Laravel) créant des sites et applications rapides et accessibles. Lancez en quelques semaines avec stratégie, design et code.",
       services: "Forfaits de développement web à périmètre fixe. Lancez des sites en 2-3 semaines, optimisez pour les conversions ou réservez un accompagnement continu.",
       projects: "Applications web de production et études de cas réalisées avec Laravel, Next.js 15, TypeScript et PostgreSQL. Ingénierie full-stack, accessibilité et QA automatisée.",
-      about: "Mohammed-Amine Madah (Amilemia)—développeur web full-stack titulaire d'un Bachelor en Multimédia et Technologies du Web, formé à l'ingénierie logicielle (ALX) et au commerce.",
+      about: "Mohammed-Amine Madah (Amilemia)—développeur web full-stack titulaire d'un Bachelor en Multimédia et Technologies du Web et formé à l'ingénierie logicielle (ALX).",
       contact: "Prenez rendez-vous pour un appel découverte. Partagez vos objectifs et votre calendrier. Recevez une proposition avec livrables, tarif et date de démarrage sous 1 jour ouvré.",
     },
     callouts: {

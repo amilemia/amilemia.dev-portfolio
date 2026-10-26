@@ -1,10 +1,11 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { ProjectContent } from './project-content';
 import { getProjectBySlug, getProjects, getRelatedLeadMagnets } from '@/lib/content';
 import { absoluteUrl } from '@/lib/site';
 import { generateHreflangAlternates } from '@/lib/metadata';
+import { buildBreadcrumbJsonLd, buildProjectJsonLd } from '@/lib/structured-data';
 import { getMessages, type Messages, type Locale } from '@/i18n';
 import { locales, fallbackLocale, isLocale } from '@/i18n/locales';
 
@@ -104,15 +105,31 @@ export default async function Page({ params }: PageProps) {
   // Get related lead magnets based on project tags
   const relatedLeadMagnets = await getRelatedLeadMagnets(project.tags);
   const relatedLeadMagnet = relatedLeadMagnets[0]; // Get the first related lead magnet
+  const projectJsonLd = buildProjectJsonLd(project, locale);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: messages.common.nav.items[0]?.label ?? 'Home', url: absoluteUrl(`/${locale}`) },
+    { name: messages.projects.heading.title, url: absoluteUrl(`/${locale}/projects`) },
+    { name: project.title, url: absoluteUrl(`/${locale}/projects/${project.slug}`) },
+  ]);
 
   return (
-    <ProjectContent
-      project={project}
-      locale={locale}
-      messages={messages.project}
-      caseStudyMessages={messages.common.caseStudy}
-      allMessages={messages}
-      relatedLeadMagnet={relatedLeadMagnet}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: projectJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
+      />
+      <ProjectContent
+        project={project}
+        locale={locale}
+        messages={messages.project}
+        caseStudyMessages={messages.common.caseStudy}
+        allMessages={messages}
+        relatedLeadMagnet={relatedLeadMagnet}
+      />
+    </>
   );
 }

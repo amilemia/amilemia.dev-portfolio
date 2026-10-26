@@ -11,6 +11,8 @@ import { FaqList } from "./_components/service-sections";
 import { getLocalizedServicePackages } from "@/data/services";
 import { getTestimonials } from "@/data/testimonials";
 import { generateHreflangAlternates } from "@/lib/metadata";
+import { absoluteUrl } from "@/lib/site";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, buildProfessionalServiceJsonLd } from "@/lib/structured-data";
 import { getMessages, type Locale } from "@/i18n";
 import { fallbackLocale, isLocale } from "@/i18n/locales";
 
@@ -61,9 +63,27 @@ export default async function ServicesPage({ params }: PageProps) {
   const testimonials = getTestimonials(messages.shared.testimonials);
 
   const pageCopy = messages.services.page;
+  const serviceJsonLd = buildProfessionalServiceJsonLd(locale, messages);
+  const faqJsonLd = buildFaqJsonLd(pageCopy.faq.items);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+    { name: messages.common.nav.items[0]?.label ?? "Home", url: absoluteUrl(`/${locale}`) },
+    { name: pageCopy.meta.title, url: absoluteUrl(`/${locale}/services`) },
+  ]);
 
   return (
     <Section size="xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serviceJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: faqJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJsonLd }}
+      />
       <Container className="space-y-16">
         <SectionHeading
           eyebrow={pageCopy.hero.eyebrow}

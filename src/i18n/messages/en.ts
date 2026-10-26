@@ -143,6 +143,24 @@ export const enMessages = {
       },
       viewAll: "View all projects",
     },
+    coverage: {
+      eyebrow: "Positioning & Service Zones",
+      title: "Who I help and where I work",
+      summary:
+        "amilemia.dev is an independent full-stack web development studio led by Mohammed-Amine Madah, based in Morocco (UTC+1). I help founders, healthcare clinics, and service businesses build fast, AI-visible (SEO/GEO) websites, custom Laravel & Next.js web applications, and conversion-focused landing pages. Contact me to scope a fixed-price build or schedule an intro call.",
+      zonesLabel: "Regions & markets served",
+      zones: [
+        "Morocco (Kenitra, Rabat, Casablanca)",
+        "France",
+        "Belgium & Switzerland",
+        "International Remote (EN / FR)",
+      ],
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Common questions before we start",
+      description: "Clear answers on timelines, Google & AI search visibility (SEO/GEO), pricing, and post-launch support.",
+    },
     finalCta: {
       headline: "Ready to launch your next project?",
       description: "Share your goals and timeline. I'll review your brief and respond within one business day with next steps and availability.",
@@ -163,10 +181,10 @@ export const enMessages = {
         name: "Launch Essentials",
         pitch: "Go from concept to conversion-ready marketing presence in 3 weeks. A focused process that handles strategy, design, and code so you can stay focused on your business.",
         deliverables: [
-          "Discovery call to define your offer, audience, and success metrics",
-          "Responsive homepage, services page, and contact form built in Next.js",
-          "SEO setup, analytics integration, and accessibility compliance",
-          "Content migration and copy refinement for up to 5 sections",
+          "Discovery call to define your offer, target audience, and conversion metrics",
+          "Mobile-first scroll homepage, dedicated service pages, and intake form built in Next.js",
+          "Technical SEO, Schema.org structured data for AI visibility (GEO), and WCAG AA accessibility",
+          "Content structure and concrete copy refinement for up to 5 core sections",
           "Launch checklist, video walkthrough, and handoff documentation",
         ],
         timeline: "2-3 weeks from kickoff",
@@ -187,11 +205,11 @@ export const enMessages = {
         name: "Conversion Refresh",
         pitch: "Turn your underperforming site into a high-revenue asset. We audit your funnel, optimize your performance, and rewrite your messaging for maximum impact.",
         deliverables: [
-          "Full audit of performance, accessibility, and messaging effectiveness",
-          "Redesigned hero, services, and social proof sections optimized for conversions",
-          "Reusable component library for consistent, maintainable design",
+          "Full audit of Core Web Vitals, accessibility, and offer-to-inquiry clarity",
+          "Redesigned hero, services, and social proof sections optimized for mobile & social traffic",
+          "Schema.org structured data, semantic HTML hierarchy, and AI search optimization (GEO/AEO)",
           "Performance optimization with before/after metrics report",
-          "Analytics review with event tracking recommendations",
+          "Analytics review with conversion funnel event tracking",
         ],
         timeline: "3-4 weeks including revisions",
         idealFor: "growing businesses that need their site to generate more leads",
@@ -329,6 +347,12 @@ export const enMessages = {
             question: "Do you provide support after launch?",
             answer:
               "Yes. Every project includes 14 days of post-launch support for bug fixes and questions. Ongoing work can continue through the Growth Support package.",
+          },
+          {
+            id: "ai-seo-visibility",
+            question: "How do you make sites visible to Google and AI assistants (ChatGPT, Perplexity)?",
+            answer:
+              "Every build includes clean semantic HTML headings, fast server-rendered pages, XML sitemaps, Schema.org JSON-LD structured data (Organization, Service, FAQ), and concrete entity positioning so both search engines and generative AI systems can accurately index and cite your business.",
           },
         ],
       },
@@ -603,6 +627,41 @@ export const enMessages = {
     description: "The page you're looking for doesn't exist or has been moved.",
     cta: "Return Home",
   },
+  linksPage: {
+    meta: {
+      title: "Quick Links",
+      description:
+        "Direct mobile links for amilemia.dev: start a project, view verified case studies, explore service packages, or download free PDF workbooks.",
+    },
+    bio: {
+      role: "Full-Stack Web Developer • Next.js & Laravel",
+      location: "Based in Morocco (UTC+1) • Serving EN & FR clients",
+      tagline:
+        "AI-visible (SEO/GEO) websites and custom web applications that turn visitors into qualified inquiries.",
+    },
+    actions: {
+      quote: {
+        title: "Request a project quote",
+        subtitle: "Share your goals & timeline — response within 1 business day",
+      },
+      services: {
+        title: "Service packages & pricing ($800–$2,800)",
+        subtitle: "Launch Essentials, Conversion Refresh & Growth Support",
+      },
+      projects: {
+        title: "View verified case studies",
+        subtitle: "Clinic Management System & Bilingual Lead Engine",
+      },
+      resources: {
+        title: "Free fillable PDF workbooks",
+        subtitle: "Conversion Guide, Performance Checklist & Next.js Toolkit",
+      },
+      email: {
+        title: "Email me directly",
+        subtitle: "contact@amilemia.dev",
+      },
+    },
+  },
   shared: {
     testimonials: [
       {
@@ -652,7 +711,7 @@ export const enMessages = {
       home: "Full-stack web developer (Next.js, TypeScript, Laravel) building fast, accessible sites and web apps that convert. Launch in weeks with strategy, design, and code.",
       services: "Fixed-scope web development packages. Launch sites in 2-3 weeks, refresh for conversions, or book ongoing support. Clear pricing, fast delivery, measurable results.",
       projects: "Production web applications and case studies built with Laravel, Next.js 15, TypeScript, and PostgreSQL. Full-stack engineering, accessibility, and automated QA.",
-      about: "Mohammed-Amine Madah (Amilemia)—full-stack web developer with a Bachelor's in Multimedia & Web Technologies, ALX Software Engineering training, and Commerce background.",
+      about: "Mohammed-Amine Madah (Amilemia)—full-stack web developer with a Bachelor's Degree in Multimedia & Web Technologies and ALX Software Engineering training.",
       contact: "Book a project intro call. Share your goals and timeline. Get a proposal with deliverables, pricing, and start date within 1 business day.",
     },
     callouts: {

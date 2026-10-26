@@ -25,11 +25,10 @@ export interface AlternativeContactProps {
 
 export function AlternativeContact({
   email = "contact@amilemia.dev",
-  calendarUrl = "#", // Placeholder for future Cal.com integration
+  calendarUrl = "mailto:contact@amilemia.dev?subject=30-Minute%20Intro%20Call%20Request",
   socialLinks = {
     github: "https://github.com/amilemia",
-    twitter: "https://twitter.com/amilemia",
-    linkedin: "https://linkedin.com/in/amilemia",
+    linkedin: "https://www.linkedin.com/in/aminemadah/",
   },
   title = "Other Ways to Connect",
   description = "Prefer a different way to get in touch? Choose what works best for you.",
@@ -122,12 +121,13 @@ export function AlternativeContact({
             }
             
             // Regular link for other methods
+            const isExternalHttp = method.url.startsWith("http");
             return (
               <a
                 key={method.label}
                 href={method.url}
-                target={method.type === "calendar" ? "_blank" : undefined}
-                rel={method.type === "calendar" ? "noopener noreferrer" : undefined}
+                target={isExternalHttp ? "_blank" : undefined}
+                rel={isExternalHttp ? "noopener noreferrer" : undefined}
                 className="flex items-start gap-3 rounded-lg border border-border/40 bg-background/50 p-4 transition-all hover:border-border hover:bg-background hover:shadow-sm"
               >
                 <div className="mt-0.5 flex-shrink-0 text-primary">

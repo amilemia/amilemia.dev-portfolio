@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, CheckCircle2, Eye, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, Eye, Globe, ShieldCheck, Zap } from "lucide-react";
 
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
@@ -13,6 +13,7 @@ import { FeaturedLeadMagnet } from "@/components/lead-magnets";
 import { Particles } from "@/components/animations/particles";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { AnimatedText } from "@/components/animations/animated-text";
+import { FaqList } from "./services/_components/service-sections";
 import { getLocalizedServicePackages } from "@/data/services";
 import { getTestimonials } from "@/data/testimonials";
 import { getTrustMetrics } from "@/data/trust";
@@ -20,6 +21,7 @@ import { getProjects, getLeadMagnets } from "@/lib/content";
 import { getMessages, type Locale } from "@/i18n";
 import { fallbackLocale, isLocale } from "@/i18n/locales";
 import { interpolate } from "@/i18n/interpolate";
+import { buildFaqJsonLd, buildProfessionalServiceJsonLd } from "@/lib/structured-data";
 import { cn } from "@/lib/utils";
 
 function formatCurrency(locale: Locale) {
@@ -74,9 +76,19 @@ export default async function Home({ params }: PageProps) {
   const formatTierPrice = formatCurrency(locale);
   const protocolBadgeLabel = locale === "fr" ? "PROTOCOLE 3 ÉTAPES" : "3-STAGE PROTOCOL";
   const insightIcons = [Zap, ShieldCheck, Eye];
+  const professionalServiceJsonLd = buildProfessionalServiceJsonLd(locale, messages);
+  const faqJsonLd = buildFaqJsonLd(messages.services.page.faq.items);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: professionalServiceJsonLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: faqJsonLd }}
+      />
       <Section size="xl" className="relative overflow-hidden">
         <Particles />
         <Container className="relative z-10">
@@ -392,6 +404,58 @@ export default async function Home({ params }: PageProps) {
                 />
               </ScrollReveal>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Positioning, Service Zones & Homepage FAQ */}
+      <Section size="lg">
+        <Container className="space-y-16">
+          <ScrollReveal delay={0.1}>
+            <div className="rounded-2xl border border-border/70 bg-card/80 p-6 sm:p-10 shadow-sm backdrop-blur-xl">
+              <div className="grid gap-8 lg:grid-cols-[1.35fr_0.95fr] lg:items-center">
+                <div className="space-y-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-primary">
+                    <Globe className="size-3.5" aria-hidden="true" />
+                    {messages.home.coverage.eyebrow}
+                  </span>
+                  <h2 className="text-2xl font-bold tracking-tight sm:text-3xl font-heading">
+                    {messages.home.coverage.title}
+                  </h2>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                    {messages.home.coverage.summary}
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-border/60 bg-background/60 p-5 space-y-3.5">
+                  <p className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {messages.home.coverage.zonesLabel}
+                  </p>
+                  <ul className="grid gap-2.5 sm:grid-cols-2">
+                    {messages.home.coverage.zones.map((zone) => (
+                      <li
+                        key={zone}
+                        className="flex items-center gap-2.5 rounded-lg border border-border/60 bg-card px-3.5 py-2.5 text-xs sm:text-sm font-medium text-foreground"
+                      >
+                        <span className="size-2 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                        <span>{zone}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <div className="space-y-8">
+            <SectionHeading
+              eyebrow={messages.home.faq.eyebrow}
+              title={messages.home.faq.title}
+              description={messages.home.faq.description}
+              className="max-w-2xl"
+              id="home-faq-heading"
+            />
+            <FaqList items={messages.services.page.faq.items} />
           </div>
         </Container>
       </Section>
