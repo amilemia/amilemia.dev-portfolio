@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { Redis } from '@upstash/redis';
 import { env } from '@/lib/env';
 
 /**
@@ -6,6 +7,17 @@ import { env } from '@/lib/env';
  * Configured with API key from environment variables
  */
 export const resend = new Resend(env.RESEND_API_KEY);
+
+function getRedisClient(): Redis | null {
+  if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+    try {
+      return Redis.fromEnv();
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
 
 /**
  * Email subscriber information
@@ -45,8 +57,9 @@ export async function sendLeadMagnetEmail(data: LeadMagnetEmailData) {
   } = data;
 
   const result = await resend.emails.send({
-    from: 'Portfolio <onboarding@resend.dev>',
+    from: 'Mohammed-Amine Madah <contact@amilemia.dev>',
     to: recipientEmail,
+    replyTo: env.CONTACT_TO,
     subject: `Your ${leadMagnetTitle} is ready!`,
     html: generateLeadMagnetEmailHTML({
       recipientName,
@@ -196,20 +209,78 @@ You're receiving this email because you requested a resource from amilemia.dev
  * @returns Promise with result
  */
 export async function addSubscriber(subscriber: EmailSubscriber) {
-  // Note: Resend Audiences API requires a paid plan
-  // For now, we'll just log the subscriber
-  // In production, integrate with your email service provider
-  
-  console.log('New subscriber:', {
-    email: subscriber.email,
+  const normalizedEmail = subscriber.email.trim().toLowerCase();
+  const timestamp = new Date().toISOString();
+  const resourceSlug = String(subscriber.metadata?.leadMagnetSlug ?? subscriber.tags?.[0] ?? 'unknown');
+  const resourceTitle = String(subscriber.metadata?.leadMagnetTitle ?? resourceSlug);
+
+  // 1. Persist subscriber in Upstash Redis when configured
+  const redis = getRedisClient();
+  if (redis) {
+    try {
+      const subscriberKey = `lead-magnet:subscriber:${normalizedEmail}`;
+      await Promise.all([
+        redis.sadd('lead-magnet:subscribers', normalizedEmail),
+        redis.hset(subscriberKey, {
+          email: normalizedEmail,
+          name: subscriber.name ?? '',
+          source: subscriber.source,
+          lastResourceSlug: resourceSlug,
+          lastResourceTitle: resourceTitle,
+          updatedAt: timestamp,
+        }),
+        redis.sadd(`${subscriberKey}:resources`, resourceSlug),
+        redis.lpush(
+          'lead-magnet:downloads:log',
+          JSON.stringify({
+            email: normalizedEmail,
+            name: subscriber.name ?? '',
+            resourceSlug,
+            resourceTitle,
+            timestamp,
+          })
+        ),
+      ]);
+    } catch (redisErr) {
+      console.warn('Failed to persist subscriber in Upstash Redis:', redisErr);
+    }
+  }
+
+  // 2. Send a non-blocking lead notification to CONTACT_TO when Resend is configured
+  if (
+    process.env.RESEND_API_KEY &&
+    process.env.RESEND_API_KEY !== 're_dummy_key_for_ci_builds' &&
+    process.env.NODE_ENV !== 'test'
+  ) {
+    try {
+      await resend.emails.send({
+        from: 'Portfolio Leads <contact@amilemia.dev>',
+        to: env.CONTACT_TO,
+        replyTo: normalizedEmail,
+        subject: `New Lead Magnet Download: ${subscriber.name || normalizedEmail} (${resourceTitle})`,
+        text: [
+          `A visitor just downloaded a free workbook on amilemia.dev:`,
+          ``,
+          `Name: ${subscriber.name || 'Not provided'}`,
+          `Email: ${normalizedEmail}`,
+          `Resource: ${resourceTitle} (${resourceSlug})`,
+          `Time: ${timestamp}`,
+          ``,
+          `Tip: You can reply directly to this email in 2–3 days to offer a quick audit related to "${resourceTitle}".`,
+        ].join('\n'),
+      });
+    } catch (notifyErr) {
+      console.warn('Failed to send lead notification email:', notifyErr);
+    }
+  }
+
+  console.log('New subscriber recorded:', {
+    email: normalizedEmail,
     name: subscriber.name,
     source: subscriber.source,
     tags: subscriber.tags,
-    timestamp: new Date().toISOString(),
+    timestamp,
   });
 
-  // TODO: Implement audience management when Resend Audiences is available
-  // or integrate with another email service provider (e.g., ConvertKit, Mailchimp)
-  
   return { success: true };
 }

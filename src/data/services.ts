@@ -19,10 +19,10 @@ const servicePackagesBase: ServicePackageBase[] = [
   {
     id: "launchEssentials",
     tiers: [
-      { id: "starter", price: 1500 },
+      { id: "starter", price: 950 },
       { id: "plus", price: 2200 },
     ],
-    startingPrice: "$1,500",
+    startingPrice: "$950",
     priceContext: "for standard projects",
     estimatedTimeline: "2-3 weeks",
   },

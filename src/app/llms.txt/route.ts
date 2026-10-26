@@ -19,8 +19,8 @@ export function GET() {
 - **LinkedIn:** https://www.linkedin.com/in/aminemadah/
 
 ## Service Packages & Fixed-Scope Pricing
-- **Launch Essentials ($1,500 – $2,200 | 2–3 weeks):** Mobile-first scroll homepage, dedicated service pages, intake form in Next.js, technical SEO, Schema.org structured data (GEO/AEO), and WCAG AA accessibility.
-  - Starter ($1,500): Single-page conversion site with offer, social proof, and contact path.
+- **Launch Essentials ($950 – $2,200 | 2–3 weeks):** Mobile-first scroll homepage, dedicated service pages, intake form in Next.js, technical SEO, Schema.org structured data (GEO/AEO), and WCAG AA accessibility.
+  - Starter ($950): Single-page conversion site with offer, social proof, and contact path.
   - Plus ($2,200): Multi-page site with lead capture, CMS-ready content, and automated calendar booking.
 - **Conversion Refresh ($1,800 – $2,800 | 3–4 weeks):** Full audit of Core Web Vitals, accessibility, and offer-to-inquiry clarity; redesigned hero, services, and proof sections; Schema.org + AI search optimization; before/after performance report.
   - Starter ($1,800): Refresh 3 key sections with conversion-focused copy and design updates.
