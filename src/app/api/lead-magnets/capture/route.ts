@@ -63,15 +63,14 @@ async function getDownloadCounts(isKeepalive = false): Promise<Record<string, nu
   return counts;
 }
 
-export async function GET(request?: Request) {
+export async function GET(request: Request) {
   let isKeepalive = false;
-  if (request?.url) {
-    try {
-      const { searchParams } = new URL(request.url);
-      isKeepalive = searchParams.get('keepalive') === '1';
-    } catch {
-      isKeepalive = false;
-    }
+  try {
+    const { searchParams } = new URL(request.url);
+    const isVercelCron = request.headers.get('user-agent')?.includes('vercel-cron') ?? false;
+    isKeepalive = searchParams.get('keepalive') === '1' || isVercelCron;
+  } catch {
+    isKeepalive = false;
   }
   const counts = await getDownloadCounts(isKeepalive);
   return NextResponse.json({
